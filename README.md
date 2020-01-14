@@ -36,13 +36,6 @@ Common Terms:
 
 Branch: is an active line of developement, the most recent commits to a branch is referred to as the tip of that branch.
 
-Release: Reserved for supported releases. UNUSED IN OUR CASE.
- - Must branch from: Master.
- 
-Fix: Bug-fixes are in here. UNUSED IN OUR CASE.
-  - Must branch from: Release.
-  - Must merge to: Master & Release.
-
 Pull or pull request: Where you 'fetch' code from github and 'merge' to your desktop's local repository/branch in order to work on that code locally. 
 
 Push: Upload code to github, you must specify the branch in order to push successfully. Yes, it does matter which branch you upload to.
@@ -52,8 +45,6 @@ Fetch: Fetching = download basically, fetching a branch downloads all the files 
 Blame: View line-by-line history of a file and see who worked on it and etc.
 
 Merge: Merging is performed by an automatic process that identifies changes made since the branches diverged, and then applies all those changes together. In cases where changes conflict, manual intervention may be required to complete the merge.
-
-Merges are done by first fetching files from a remote branch, then merging the result into desired branch, this combination is also called a pull.
 
 
 
