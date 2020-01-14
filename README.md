@@ -7,8 +7,10 @@ First of all, you must have the github extension/setting/whatever installed on w
 Vscode: Look in the extension marketplace and search up git.
 
 Git: you could also download git and link github to it and use the git terminal to upload to and fro your desktop to the source control version (SCV).
+
 OR
-Github desktop: This is the GUI version of git, also extremely useful. Download from github.
+
+Github desktop: This is the GUI version of git, download from github.
 
 Visual Studio: Should automatically have git support installed, if not, check the visual studio installer (if you have visual studio, you definitely have visual studio installer as well).
 
