@@ -20,7 +20,7 @@ IntelliJ, Eclipse, netbeans, etc: I have no idea, search it up.
 
 Branch Guide: There are several branches in this github due to the scope of the project, each branch is to serve a specific purpose, do not defile their purpose. Or else.
 
-DO NOT UNDER ANY CIRCUMSTANCE UPLOAD TO MASTER BRANCH, we will do that when the entire group is around and it's under explicit consensus from everyone to upload, until then, keep your code local.
+DO NOT UNDER ANY CIRCUMSTANCE UPLOAD TO MASTER OR STABLE BRANCH, we will do that when the entire group is around and it's under explicit consensus from everyone to upload, until then, keep your code local.
 
 Master: Default development branch, in most cases, this contains the local development, though that is purely by convention and is not required. In our case, it's our most active branch since it contains our recent changes to the application.
 
