@@ -22,12 +22,16 @@ Branch Guide: There are several branches in this github due to the scope of the 
 
 DO NOT UNDER ANY CIRCUMSTANCE UPLOAD TO MASTER OR STABLE BRANCH, we will do that when the entire group is around and it's under explicit consensus from everyone to upload, until then, keep your code local.
 
-Master: Default development branch, in most cases, this contains the local development, though that is purely by convention and is not required. In our case, it's our most active branch since it contains our recent changes to the application.
+Consider stable to always represent the latest code deployed to production. During day to day development, the stable branch will not be interacted with.
 
-Init: When in doubt, upload here, this is the initialization of all files, in a perfect world this would not be used, but we're not perfect.
+When the source code in the master branch is stable and has been deployed, all of the changes will be merged into stable and tagged with a release number.
+
+Master: Default development branch, in most cases, this contains the local development, though that is purely by convention and is not required. In our case, it's our most active branch since it contains our recent changes to the application.
 
 Stable: A stable branch is a development or feature branch that is guaranteed to build and pass integrated tests.
  - Must branch from: Master.
+ 
+Init: When in doubt, upload here, this is the initialization of all files, in a perfect world this would not be used, but we're not perfect.
 
 Feature: A feature branch is where new development is done. However, master should be merged periodically into a feature branch.
  - Must branch from: Master.
