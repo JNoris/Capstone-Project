@@ -1,5 +1,5 @@
-# Final-Capstone-Project
-Final Capstone Project meant to liberate all people from their diminutive lives
+# Capstone-Project
+Capstone Project meant to liberate all people from their diminutive lives
 
 Installing Source Control:
 First of all, you must have the github extension/setting/whatever installed on whichever IDE you are currently using. 
