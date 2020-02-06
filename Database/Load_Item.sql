@@ -20,7 +20,7 @@ insert into Item (itemID, item_type, vendorID, description, price, name, quantit
 insert into Item (itemID, item_type, vendorID, description, price, name, quantity, upc)
 	values (0000000009, 'comic',1,'Immortal Hulk Vol. 5: Breaker of Worlds',19.18,'Immortal Hulk Vol. 5',6,96374185245695175);
 insert into Item (itemID, item_type, vendorID, description, price, name, quantity, upc)
-	values (0000000010,'comic',1,'Friendly Neighborhood Spider-Man The Complete Collection',39.64,'Friendly Neighborhood Spider-Man',7,5236478910304 );
+	values (0000000010,'comic',1,'FN Spider-Man Complete',39.64,'Friendly Neighborhood Spider-Man',7,5236478910304 );
 insert into Item (itemID,item_type,vendorID,description,price,name,quantity,upc)
 	values (0000000011,'consession',3,null,0.99,'Can of Coke',158,049000028904);
 insert into Item (itemID,item_type,vendorID,description,price,name,quantity,upc)
