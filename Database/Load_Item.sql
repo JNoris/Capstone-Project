@@ -42,11 +42,11 @@ insert into Item (itemID,item_type,vendorID,description,price,name,quantity,upc)
 insert into Item (itemID,item_type,vendorID,description,price,name,quantity,upc)
 	values (0000000020,'consession',0005478935,null,1.25,'Potato chips - Salt and vinegar',20,005789654886);
 insert into Item (itemID,item_type,vendorID,description,price,name,quantity,upc)
-	values (0000000021,'Action Figures',0045844571,'Marvel Action figure',12.75,'Venom action figure',5,457896321554);
+	values (0000000021,'act figure',0045844571,'Marvel Action figure',12.75,'Venom action figure',5,457896321554);
 insert into Item (itemID,item_type,vendorID,description,price,name,quantity,upc)
-	values (0000000022,'Action Figures',0045844571,'Marvel Action figure',12.75,'Captian America action figure',2,457896321578);
+	values (0000000022,'act figure',0045844571,'Marvel Action figure',12.75,'Captian America action figure',2,457896321578);
 insert into Item (itemID,item_type,vendorID,description,price,name,quantity,upc)
-	values (0000000023,'Action Figures',0045844573,'DC Action figure',11.25,'Superman action figure',5,951753852456);
+	values (0000000023,'act figures',0045844573,'DC Action figure',11.25,'Superman action figure',5,951753852456);
 insert into Item (itemID,item_type,vendorID,description,price,name,quantity,upc)
-	values (0000000024,'Action Figures',0045844573,'DC Action figure',11.25,'Flash action figure',5,173846258425);
+	values (0000000024,'act figure',0045844573,'DC Action figure',11.25,'Flash action figure',5,173846258425);
 			

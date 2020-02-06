@@ -7,5 +7,5 @@ insert into Type (item_Type)
 insert into Type (item_Type)
 	values ('funko pop');
 insert into Type (item_Type)
-	values ('action figures');
+	values ('act figure');
 
