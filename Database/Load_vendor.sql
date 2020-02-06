@@ -1,19 +1,19 @@
 /*insert into vendor (vendorID,vendor_name)
 	values (0000000000,'');*/
 insert into vendor (vendorID,vendor_name)
-	values (1234567890,'Comics Inc.');
+	values (1,'Comics Inc.');
 insert into vendor (vendorID,vendor_name)
-	values (2190293874,'Unique Comics ltd.');
+	values (2,'Unique Comics ltd.');
 insert into vendor (vendorID,vendor_name)
-	values (0005478965,'CocaCola');
+	values (3,'CocaCola');
 insert into vendor (vendorID,vendor_name)
-	values (0005478966,'Pepsi');
+	values (4,'Pepsi');
 insert into vendor (vendorID,vendor_name)
-	values (00007896541,'Funko');
+	values (5,'Funko');
 insert into vendor (vendorID,vendor_name)
-	values (0005478935,'Acme foods');
+	values (6,'Acme foods');
 insert into vendor (vendorID,vendor_name)
-	values (0045844571,'Marvel Toys');
+	values (7,'Marvel Toys');
 insert into vendor (vendorID,vendor_name)
-	values (0045844573,'DC Toys');
+	values (8,'DC Toys');
 		
