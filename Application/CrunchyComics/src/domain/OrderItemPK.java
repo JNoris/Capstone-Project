@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package broker;
+package domain;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
@@ -15,21 +15,21 @@ import javax.persistence.Embeddable;
  * @author 695553
  */
 @Embeddable
-public class TransactionItemPK implements Serializable {
+public class OrderItemPK implements Serializable {
 
     @Basic(optional = false)
     @Column(name = "itemID")
     private int itemID;
     @Basic(optional = false)
-    @Column(name = "transactionID")
-    private int transactionID;
+    @Column(name = "order_no")
+    private int orderNo;
 
-    public TransactionItemPK() {
+    public OrderItemPK() {
     }
 
-    public TransactionItemPK(int itemID, int transactionID) {
+    public OrderItemPK(int itemID, int orderNo) {
         this.itemID = itemID;
-        this.transactionID = transactionID;
+        this.orderNo = orderNo;
     }
 
     public int getItemID() {
@@ -40,33 +40,33 @@ public class TransactionItemPK implements Serializable {
         this.itemID = itemID;
     }
 
-    public int getTransactionID() {
-        return transactionID;
+    public int getOrderNo() {
+        return orderNo;
     }
 
-    public void setTransactionID(int transactionID) {
-        this.transactionID = transactionID;
+    public void setOrderNo(int orderNo) {
+        this.orderNo = orderNo;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
         hash += (int) itemID;
-        hash += (int) transactionID;
+        hash += (int) orderNo;
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof TransactionItemPK)) {
+        if (!(object instanceof OrderItemPK)) {
             return false;
         }
-        TransactionItemPK other = (TransactionItemPK) object;
+        OrderItemPK other = (OrderItemPK) object;
         if (this.itemID != other.itemID) {
             return false;
         }
-        if (this.transactionID != other.transactionID) {
+        if (this.orderNo != other.orderNo) {
             return false;
         }
         return true;
@@ -74,7 +74,7 @@ public class TransactionItemPK implements Serializable {
 
     @Override
     public String toString() {
-        return "broker.TransactionItemPK[ itemID=" + itemID + ", transactionID=" + transactionID + " ]";
+        return "broker.OrderItemPK[ itemID=" + itemID + ", orderNo=" + orderNo + " ]";
     }
     
 }

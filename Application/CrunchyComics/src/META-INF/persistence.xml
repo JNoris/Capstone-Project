@@ -2,15 +2,15 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="CrunchyComicsPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <class>broker.Refund</class>
-    <class>broker.Orders</class>
-    <class>broker.Vendor</class>
-    <class>broker.Transaction</class>
-    <class>broker.OrderItem</class>
-    <class>broker.Comic</class>
-    <class>broker.TransactionItem</class>
-    <class>broker.Type</class>
-    <class>broker.Item</class>
+    <class>domain.Orders</class>
+    <class>domain.Refund</class>
+    <class>domain.Type</class>
+    <class>domain.TransactionItem</class>
+    <class>domain.Transaction</class>
+    <class>domain.OrderItem</class>
+    <class>domain.Vendor</class>
+    <class>domain.Comic</class>
+    <class>domain.Item</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/captstone_test?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
