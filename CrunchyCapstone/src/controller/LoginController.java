@@ -1,12 +1,8 @@
 package controller;
 
 import javafx.scene.input.*;
-
-import java.beans.EventHandler;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -14,11 +10,8 @@ import javafx.scene.Parent;
 import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.stage.*;
-import Utility.LoginService;
-import javafx.scene.control.*;
+import utility.LoginService;
 import javafx.fxml.*;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.paint.Color;
 import javafx.event.*;
 
@@ -59,7 +52,7 @@ public class LoginController implements Initializable {
      */
     public void loginEnterBtnClicked(ActionEvent event) {
         try {
-            Parent mainScreenParent = FXMLLoader.load(getClass().getResource("/fxml/MainScreen_Backup.fxml"));
+            Parent mainScreenParent = FXMLLoader.load(getClass().getResource("/fxml/MainScreen.fxml"));
             Scene main = new Scene(mainScreenParent);
 
             LoginService ls = new LoginService();

@@ -42,4 +42,15 @@ public class MainScreenController implements Initializable {
         loginWindow.setScene(logout);
         loginWindow.show();
     }
+
+    public void orderBtnClicked(ActionEvent event) throws IOException {
+        Parent orderParent = FXMLLoader.load(getClass().getResource("/fxml/OrderScreen.fxml"));
+        Scene order = new Scene(orderParent);
+
+        // This line grabs the Stage information
+        Stage orderWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        orderWindow.setScene(order);
+        orderWindow.show();
+    }
 }
