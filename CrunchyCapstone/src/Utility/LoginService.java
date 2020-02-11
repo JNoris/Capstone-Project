@@ -1,4 +1,4 @@
-package Utility;
+package utility;
 
 public class LoginService {
     private boolean validPassword = false;
