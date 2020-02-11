@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="720.0" maxWidth="1280.0" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" spacing="50.0" style="-fx-background-color: #3A3A3A;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainScreenController">
+  <children>
+      <AnchorPane prefHeight="692.0" prefWidth="1276.0">
+         <children>
+            <HBox layoutX="834.0" layoutY="7.0" prefHeight="58.0" prefWidth="422.0" spacing="50.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#logoutBtnClicked" prefHeight="0.0" prefWidth="114.0" style="-fx-background-color: #6A0000;" text="Log Out" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Black" size="20.0" />
+                     </font>
+                  </Button>
+                  <Label prefHeight="44.0" prefWidth="133.0" text="12:47 PM" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Black" size="25.0" />
+                     </font>
+                  </Label>
+                  <Circle fill="#808080" radius="29.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: #777777;" />
+               </children>
+            </HBox>
+            <HBox layoutX="14.0" layoutY="10.0" prefHeight="45.0" prefWidth="679.0" spacing="50.0" />
+            <VBox layoutX="14.0" layoutY="15.0" prefHeight="654.0" prefWidth="650.0" spacing="20.0">
+               <children>
+                  <Label prefHeight="38.0" prefWidth="175.0" text="Search Item" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Black" size="25.0" />
+                     </font>
+                  </Label>
+                  <HBox prefHeight="72.0" prefWidth="650.0">
+                     <children>
+                        <AnchorPane prefHeight="60.0" prefWidth="653.0">
+                           <children>
+                              <TextField fx:id="searchField" layoutX="1.0" layoutY="9.0" prefHeight="43.0" prefWidth="441.0" style="-fx-background-color: #7F7F7F;" />
+                              <Circle fill="#7f7f7f" layoutX="536.0" layoutY="31.0" radius="24.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="#7f7f7f" layoutX="613.0" layoutY="31.0" radius="24.0" stroke="BLACK" strokeType="INSIDE" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </HBox>
+                  <ScrollPane fx:id="searchDisplay" prefHeight="507.0" prefWidth="650.0" style="-fx-background-color: #5F5F5F;" vbarPolicy="NEVER">
+                     <content>
+                        <VBox fx:id="resultContainer" prefHeight="512.0" prefWidth="637.0" style="-fx-background-color: #5F5F5F;">
+                           <children>
+                              <Button mnemonicParsing="false" prefHeight="56.0" prefWidth="637.0" style="-fx-background-color: #000004;">
+                                 <graphic>
+                                    <HBox prefHeight="52.0" prefWidth="637.0" spacing="50.0">
+                                       <children>
+                                          <Label text="Iron Man " textFill="WHITE">
+                                             <font>
+                                                <Font name="Arial Black" size="33.0" />
+                                             </font>
+                                          </Label>
+                                          <Label text="Volume #1" textFill="WHITE">
+                                             <font>
+                                                <Font name="Arial Black" size="33.0" />
+                                             </font>
+                                          </Label>
+                                          <Label text="\$7.99" textFill="WHITE">
+                                             <font>
+                                                <Font name="Arial Black" size="33.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </VBox>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </VBox>
+            <VBox layoutX="679.0" layoutY="115.0" prefHeight="557.0" prefWidth="561.0">
+               <children>
+                  <Pane prefHeight="558.0" prefWidth="561.0" style="-fx-background-color: #5F5F5F;">
+                     <children>
+                        <Label fx:id="saleIDDisplay" layoutX="14.0" layoutY="31.0" prefHeight="44.0" prefWidth="199.0" text="Sale Order#_" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Black" size="25.0" />
+                           </font>
+                        </Label>
+                        <Line endX="398.0" fill="#3f3f3f" layoutX="149.0" layoutY="374.0" startX="-130.0" />
+                        <Button layoutX="384.0" layoutY="453.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="153.0" style="-fx-background-color: #6A0000;" text="Change Price" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Black" size="15.0" />
+                           </font>
+                        </Button>
+                        <Button layoutX="384.0" layoutY="501.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="153.0" style="-fx-background-color: #03C04A;" text="Finish Order" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Black" size="15.0" />
+                           </font>
+                        </Button>
+                        <Button layoutX="383.0" layoutY="403.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="153.0" style="-fx-background-color: #4184A4;" text="Edit Order" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Black" size="15.0" />
+                           </font>
+                        </Button>
+                        <VBox fx:id="saleListDisplay" layoutX="16.0" layoutY="81.0" prefHeight="281.0" prefWidth="522.0">
+                           <children>
+                              <HBox prefHeight="43.0" prefWidth="522.0" spacing="10.0" style="-fx-border-color: #FFFFFF;">
+                                 <children>
+                                    <Label fx:id="itemNameDisplay" prefHeight="41.0" prefWidth="314.0" text="Iron Man" textFill="WHITE">
+                                       <font>
+                                          <Font name="Arial Black" size="25.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="itemQuantityDisplay" prefHeight="41.0" prefWidth="65.0" text="1" textFill="WHITE">
+                                       <font>
+                                          <Font name="Arial Black" size="25.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="itemPriceDisplay" prefHeight="41.0" prefWidth="115.0" text="\$199.99" textFill="WHITE">
+                                       <font>
+                                          <Font name="Arial Black" size="25.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <VBox layoutX="18.0" layoutY="381.0" prefHeight="165.0" prefWidth="199.0" spacing="20.0">
+                           <children>
+                              <Label fx:id="saleIDDisplay11" prefHeight="42.0" prefWidth="165.0" text="Subtotal" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Black" size="25.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="saleIDDisplay111" prefHeight="44.0" prefWidth="100.0" text="Tax" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Black" size="25.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="saleIDDisplay112" prefHeight="43.0" prefWidth="220.0" text="Final Price" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Black" size="25.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <VBox layoutX="217.0" layoutY="379.0" prefHeight="173.0" prefWidth="153.0" spacing="20.0">
+                           <children>
+                              <Label fx:id="subtotalDisplay" prefHeight="42.0" prefWidth="165.0" text="\$7.99" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Black" size="25.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="taxDisplay" prefHeight="44.0" prefWidth="100.0" text="\$1.00" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Black" size="25.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="finalPriceDisplay" prefHeight="43.0" prefWidth="220.0" text="\$8.99" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Black" size="25.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </Pane>
+               </children>
+            </VBox>
+         </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </AnchorPane>
+  </children>
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+</VBox>
