@@ -19,7 +19,7 @@ public class DatabaseManager {
 //        Class.forName("com.mysql.cj.jdbc.Driver");
 //        Connection con = DriverManager.getConnection("jdbc:mysql://remotemysql.com:3306/MkLN8tZlpQ?user=MkLN8tZlpQ&password=zlgBWqYw9d");
         Class.forName("com.mysql.cj.jdbc.Driver");
-        this.connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/captstone_test?user=root&password=password");
+        this.connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/capstone_test?user=root&password=password");
     }
     // Methods Accessors
     // Methods Mutators
