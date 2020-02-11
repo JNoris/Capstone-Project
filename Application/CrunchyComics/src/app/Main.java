@@ -7,8 +7,7 @@ import javafx.scene.Parent;
 import javafx.stage.Stage;
 
 /**
- * MainDriver - Starting point for the Crunchy Comics Point of Sale and
- * Inventory systems application.
+ * Main- Starting point for the Crunchy Comics UI
  *
  * @author Jatin Noris Buriac
  * @date February 3, 2020
