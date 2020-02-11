@@ -33,7 +33,7 @@ CREATE TABLE Refund(
 
 CREATE TABLE Transaction(
 	transactionID INT,
-	transaction_date DATE,
+	transaction_date DATETIME,
 	CONSTRAINT SYS_TRANSACTIONID_PK PRIMARY KEY(transactionID)
 );
 
