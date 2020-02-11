@@ -22,7 +22,7 @@ public final class ItemBroker {
     private DatabaseManager dbManager = null;
 
     public ItemBroker(DatabaseManager dbManager) {
-         EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "CrunchyComicsPU" );
+        EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "CrunchyComicsPU" );
         this.dbManager = dbManager;
         this.em = emfactory.createEntityManager();
     }
