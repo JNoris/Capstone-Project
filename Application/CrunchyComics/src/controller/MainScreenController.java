@@ -49,7 +49,7 @@ public class MainScreenController implements Initializable {
 
         // This line grabs the Stage information
         Stage orderWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        orderWindow.setFullScreen(true);
+
         orderWindow.setScene(order);
         orderWindow.show();
     }

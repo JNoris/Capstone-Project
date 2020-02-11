@@ -4,6 +4,7 @@ import broker.ItemBroker;
 import domain.*;
 import manager.DatabaseManager;
 import java.sql.SQLException;
+import javafx.application.Application;
 /**
  * MainDriver - Starting point for the Crunchy Comics Point of Sale and
  Inventory systems application.

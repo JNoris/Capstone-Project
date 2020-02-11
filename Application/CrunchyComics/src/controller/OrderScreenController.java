@@ -3,12 +3,7 @@ package controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import domain.Item;
-import broker.TransactionBroker;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -24,7 +19,6 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -46,34 +40,6 @@ import javafx.stage.Stage;
  * 
  */
 public class OrderScreenController implements Initializable {
-
-    @FXML
-    private VBox searchDisplay;
-    @FXML
-    private Label saleIDDisplay;
-    @FXML
-    private TextField searchField;
-    @FXML
-    private Label subtotalDisplay;
-    @FXML
-    private Label taxDisplay;
-    @FXML
-    private Label finalPriceDisplay;
-    @FXML
-    private Label itemNameDisplay;
-    @FXML
-    private Label itemPriceDisplay;
-    @FXML
-    private Label itemQuantityDisplay;
-    @FXML
-    private VBox itemListDisplay;
-    @FXML
-    private VBox resultContainer;
-
-    private Item item;
-    private TransactionBroker tb;
-    private Button result;
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // TODO Auto-generated method stub
@@ -107,61 +73,8 @@ public class OrderScreenController implements Initializable {
      * @param event
      * @throws IOException
      */
-    public void initiateSearch(ActionEvent event) throws IOException 
-    {
+    public void initiateSearch(ActionEvent event) throws IOException {
         // searchField is the fxid
-        result = new Button();
-        
-        HBox itemContainer = new HBox(50);
-        
-        EventHandler<ActionEvent> e = new EventHandler<ActionEvent>() { 
-            public void handle(ActionEvent e) 
-            { 
-                if(searchField.getText().equals(item.getName()))
-                {
-                    itemContainer.getChildren().addAll(new Label(item.getName()),
-                                                            new Label(Integer.toString(item.getItemID())),
-                                                                new Label(Float.toString(item.getPrice())),
-                                                                    result);
-                    //No idea how to add the button correctly
-                    
-                }
-            } 
-        }; 
 
-        /**
-         * When the enter key is pressed
-         */
-        searchField.setOnAction(e); 
-
-    }
-
-    /**
-     * Grab an item to the sale side
-     */
-    public void addItemToSale()
-    {
-        HBox itemContainer = new HBox(10);
-
-        /**
-         * Need a getSaleNumber for the broker
-         */
-        if(result.isPressed())
-        {
-            //saleIDDisplay.setText("Sale Order " +  tb.getSaleNumber());
-            itemNameDisplay.setText(item.getName());
-            itemPriceDisplay.setText(Float.toString(item.getPrice()));
-            itemQuantityDisplay.setText(Integer.toString(item.getQuantity()));
-
-            itemContainer.getChildren().addAll(new Label( item.getName() ), 
-                                            new Label( Float.toString(item.getPrice()) ),
-                                            new Label( Integer.toString( item.getQuantity() ) ));
-
-            /**
-             * Add the item container to the itemListDisplay
-             */
-            itemListDisplay.getChildren().addAll(itemContainer.getChildren());
-        }
-        
     }
 }
