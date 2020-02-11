@@ -1,15 +1,18 @@
 package app;
 
 import javafx.application.Application;
-// import javafx.event.ActionEvent;
-// import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.Parent;
-// import javafx.scene.control.Button;
-// import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
+/**
+ * MainDriver - Starting point for the Crunchy Comics Point of Sale and
+ * Inventory systems application.
+ *
+ * @author Jatin Noris Buriac
+ * @date February 3, 2020
+ */
 public class Main extends Application {
     public static void main(String[] args) throws Exception {
         launch(args);

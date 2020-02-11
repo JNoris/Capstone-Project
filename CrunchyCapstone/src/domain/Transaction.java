@@ -1,62 +1,107 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package domain;
 
-import java.util.ArrayList;
-import javafx.application.Application;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.geometry.Orientation;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-import javafx.scene.control.ListView;
+import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
-public class Transaction {
+/**
+ *
+ * @author 695553
+ */
+@Entity
+@Table(name = "transaction")
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "Transaction.findAll", query = "SELECT t FROM Transaction t")
+    , @NamedQuery(name = "Transaction.findByTransactionID", query = "SELECT t FROM Transaction t WHERE t.transactionID = :transactionID")
+    , @NamedQuery(name = "Transaction.findByTransactionDate", query = "SELECT t FROM Transaction t WHERE t.transactionDate = :transactionDate")})
+public class Transaction implements Serializable {
 
-    private ArrayList<Item> itemList = new ArrayList<Item>();
-    // ObservableList<String> itemList =
-    // FXCollections.<String>observableArrayList();
-    private int total;
-    private int quantity;
-    Item item;
-    private ListView itemListView = new ListView();
+    private static final long serialVersionUID = 1L;
+    @Id
+    @Basic(optional = false)
+    @Column(name = "transactionID")
+    private Integer transactionID;
+    @Column(name = "transaction_date")
+    @Temporal(TemporalType.DATE)
+    private Date transactionDate;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "transaction", fetch = FetchType.EAGER)
+    private List<TransactionItem> transactionItemList;
 
-    /**
-     * Temporary hardcoded data for Use Case #1
-     */
     public Transaction() {
     }
 
-    /**
-     * addItem adds an item and all it's essential information and loads all of it
-     * to the GUI
-     */
-    public void addItem() {
-        itemList.add(new Item(00000000, "Ice Ice Baby", 100.99, "It's an 'Ice Ice Baby'", 2000013293, "Drink", 8));
-        itemList.add(new Item(00000000, "Ice Ice Baby", 100.99, "It's an 'Ice Ice Baby'", 2000013293, "Drink", 8));
-        itemList.add(new Item(00000002, "Iced Tea", 1.99, "Iced Tea Drink from Nestea", 2000012693, "Drink", 20));
-        itemList.add(new Item(00000003, "Iron Man Vol 1", 9.99, "Original 1968 Iron Man Comic Vol #1", 161484100,
-                "Comic", 3));
-        itemList.add(new Item(00000004, "Iron Man Vol 2", 9.99, "Original 1969 Iron Man Comic Vol #2", 161484101,
-                "Comic", 1));
-        itemList.add(new Item(00000005, "Iron Man Vol 3", 9.99, "Original 1969 Iron Man Comic Vol #3", 161484102,
-                "Comic", 2));
-        itemList.add(item);
-        for (Item i : itemList) {
-            itemListView.getItems().add(itemList);
-            System.out.println(i);
-        }
+    public Transaction(Integer transactionID) {
+        this.transactionID = transactionID;
     }
 
-    public void removeFromList() {
-        itemList.remove(item);
-        for (Item i : itemList) {
-            System.out.println(i);
-        }
+    public Integer getTransactionID() {
+        return transactionID;
     }
+
+    public void setTransactionID(Integer transactionID) {
+        this.transactionID = transactionID;
+    }
+
+    public Date getTransactionDate() {
+        return transactionDate;
+    }
+
+    public void setTransactionDate(Date transactionDate) {
+        this.transactionDate = transactionDate;
+    }
+
+    @XmlTransient
+    public List<TransactionItem> getTransactionItemList() {
+        return transactionItemList;
+    }
+
+    public void setTransactionItemList(List<TransactionItem> transactionItemList) {
+        this.transactionItemList = transactionItemList;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (transactionID != null ? transactionID.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Transaction)) {
+            return false;
+        }
+        Transaction other = (Transaction) object;
+        if ((this.transactionID == null && other.transactionID != null) || (this.transactionID != null && !this.transactionID.equals(other.transactionID))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "broker.Transaction[ transactionID=" + transactionID + " ]";
+    }
+    
 }
