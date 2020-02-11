@@ -17,7 +17,7 @@ import javax.persistence.Query;
  *
  * @author 695553
  */
-public final class ItemBroker {
+public final class ItemBroker{
     private EntityManager em = null;
     private DatabaseManager dbManager = null;
 
