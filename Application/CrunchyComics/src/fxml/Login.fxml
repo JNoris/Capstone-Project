@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="720.0" maxWidth="1280.0" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #3A3A3A;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
+  <children>
+<AnchorPane id="Content" maxHeight="720.0" maxWidth="1280.0" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #3A3A3A;">
+  <children>
+          <Button fx:id="btnLogin" alignment="CENTER" layoutX="584.0" layoutY="416.0" mnemonicParsing="false" onAction="#loginEnterBtnClicked" prefHeight="32.0" prefWidth="170.0" style="-fx-background-radius: 5px; -fx-background-color: #03C04A;" text="Enter" textFill="WHITE">
+               <font>
+                  <Font name="Microsoft Sans Serif" size="14.0" />
+               </font>
+            </Button>
+            <Label alignment="CENTER" layoutX="308.0" layoutY="108.0" text="CRUNCHY COMICS" textFill="WHITE">
+               <font>
+                  <Font name="Arial Black" size="72.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER" layoutX="519.0" layoutY="374.0" prefHeight="30.0" prefWidth="300.0" style="-fx-background-color: #ffffff; -fx-border-color: #BEBFC1; -fx-background-radius: 5px; -fx-border-radius: 5px;">
+               <children>
+                  <PasswordField fx:id="passwordFieldInput" alignment="CENTER" prefHeight="30.0" prefWidth="150.0" promptText="Enter Password" style="-fx-background-color: transparent;" />
+               </children>
+               <padding>
+                  <Insets left="75.0" right="75.0" />
+               </padding>
+            </HBox>
+            <Label fx:id="errorMessage" alignment="CENTER" layoutX="584.0" layoutY="466.0" prefHeight="17.0" prefWidth="170.0" style="-fx-background-color: transparent; -fx-border-radius: 5px;" textFill="WHITE" />
+  </children>
+</AnchorPane>
+  </children>
+</VBox>
