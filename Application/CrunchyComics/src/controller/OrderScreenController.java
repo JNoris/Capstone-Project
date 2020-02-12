@@ -221,7 +221,12 @@ public class OrderScreenController implements Initializable {
             Label price = new Label(Float.toString(item.getPrice()));
             Label quantity = new Label(1 + "");
             Label id = new Label(item.getItemID() + "");
+            
             id.setPrefSize(0, 0);
+            id.setMaxWidth(0);
+            id.setMinWidth(0);                        
+            id.setMaxHeight(0);
+            id.setMinWidth(0);
 
             HBox itemContainer = new HBox(10);
             itemContainer.setPadding(new Insets(10, 10, 10, 10));
@@ -274,7 +279,17 @@ public class OrderScreenController implements Initializable {
         }
 //        total = Float.parseFloat(subtotalDisplay.getText());
 //        total = total + (item.getPrice());
-        subtotalDisplay.setText(total + "");
+        calculateTax(total);
+        subtotalDisplay.setText(String.format("%.2f", total));
     }
 
+    public void calculateTax(float value) {
+        float tax = value * 0.05f;
+        taxDisplay.setText(String.format("$%.2f", tax));
+        updateTotal(value + tax);
+    }
+
+    public void updateTotal(float value) {
+        finalPriceDisplay.setText(String.format("$%.2f", value));
+    }
 }
