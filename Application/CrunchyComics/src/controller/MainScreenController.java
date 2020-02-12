@@ -43,9 +43,6 @@ public class MainScreenController implements Initializable {
         loginWindow.show();
     }
 
-    /**
-     * Redirects user to Order Screen to fulfill a transaction
-     */
     public void orderBtnClicked(ActionEvent event) throws IOException {
         Parent orderParent = FXMLLoader.load(getClass().getResource("/fxml/OrderScreen.fxml"));
         Scene order = new Scene(orderParent);
