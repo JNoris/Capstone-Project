@@ -3,8 +3,11 @@ package controller;
 import broker.ItemBroker;
 import broker.TransactionBroker;
 import domain.Item;
+import domain.Transaction;
+import domain.TransactionItem;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -19,6 +22,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -33,6 +37,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -77,15 +84,21 @@ public class OrderScreenController implements Initializable {
     private TransactionBroker tb;
     private Button result;
     private ItemBroker itemBroker;
+    private Transaction transaction;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         itemBroker = new ItemBroker(DatabaseManager.getInstance());
         List<Item> items = itemBroker.getAllItems();
-        System.out.println("Items: " + items);
-        addItemToSale(items.get(0));     
-        addItemToSale(items.get(1));
-        addItemToSale(items.get(2));
+
+        for (Item item : items) {
+            addItemToSearch(item);
+        }
+        transaction = new Transaction();
+        transaction.setTransactionItemList(new ArrayList<TransactionItem>());
+//        addItemToSale(items.get(0));
+//        addItemToSale(items.get(1));
+//        addItemToSale(items.get(2));
 
     }
 
@@ -143,61 +156,125 @@ public class OrderScreenController implements Initializable {
 
     }
 
-    /**
-     * Grab an item to the sale side
-     */
-    public void addItemToSale(Item item) {
-        Label name = new Label(item.getName());
-        Label price = new Label(Float.toString(item.getPrice()));
-        Label quantity = new Label(Integer.toString(item.getQuantity()));
-        
-        HBox itemContainer = new HBox(10);
-        itemContainer.setPadding(new Insets(0,0,0,10));
-        
-        itemContainer.setMinWidth(522);
-        itemContainer.setMinHeight(43);
-        itemContainer.setPrefSize(522, 43);
-        
-        name.setMinHeight(41);
-        name.setMinWidth(314);
-        
-        price.setMinHeight(41);
-        price.setMinWidth(115);
-        
-        quantity.setMinHeight(41);
-        quantity.setMinWidth(65);
-        
+    public void addItemToSearch(Item item) {
+//        Button base = new Button();
+        HBox hbox = new HBox(20);
+        Label name = new Label();
+        Label price = new Label();
+        Label id = new Label();
+
+        name.setMaxHeight(100);
+        name.setMinWidth(500);
+        name.setMaxWidth(500);
+
+        price.setMaxHeight(100);
+        price.setMinWidth(100);
+        price.setMaxWidth(100);
+
         //label1.setTextFill(Color.web("#0076a3"));
         //label.setFont(new Font("Arial", 30));
         name.setTextFill(Color.web("#FFFFFF"));
         price.setTextFill(Color.web("#FFFFFF"));
-        quantity.setTextFill(Color.web("#FFFFFF"));
-        
-        name.setFont(new Font("Arial Black",25));
-        price.setFont(new Font("Arial Black",25));
-        quantity.setFont(new Font("Arial Black",25));
-        
-        
-        /**
-         * Need a getSaleNumber for the broker
-         */
-//        if(result.isPressed())
-//        {
-        //saleIDDisplay.setText("Sale Order " +  tb.getSaleNumber());
-       
-        
-        itemNameDisplay.setText(item.getName());
-        itemPriceDisplay.setText(Float.toString(item.getPrice()));
-        itemQuantityDisplay.setText(Integer.toString(item.getQuantity()));
+        name.setFont(new Font("Arial Black", 25));
+        price.setFont(new Font("Arial Black", 25));
 
-        itemContainer.getChildren().addAll(name, quantity,price);
+        id.setPrefSize(0, 0);
+        hbox.setPadding(new Insets(10, 10, 10, 10));
 
-        /**
-         * Add the item container to the itemListDisplay
-         */
-        saleListDisplay.getChildren().addAll(itemContainer);
-        System.out.println(saleListDisplay.getChildren());
-//        }
+        name.setText(item.getName());
+        price.setText(item.getPrice() + "");
+        id.setText(item.getItemID() + "");
+
+        hbox.getChildren().addAll(name, price);
+        hbox.setOnMouseClicked(new EventHandler() {
+            @Override
+            public void handle(Event event) {
+                System.out.println("HBox clicked.");
+                addItemToSale(itemBroker.getItemByID(Integer.parseInt(id.getText())));
+            }
+        });
+        resultContainer.getChildren().add(hbox);
+    }
+
+    /**
+     * Grab an item to the sale side
+     */
+    public void addItemToSale(Item item) {
+        boolean exist = false;
+        if (saleListDisplay.getChildren().size() > 0) {
+            for (Node n : saleListDisplay.getChildren()) {
+                HBox box = (HBox) n;
+                System.out.println(box.getChildren().get(1));
+                Label labelID = (Label) box.getChildren().get(0);
+                int id = Integer.parseInt(labelID.getText());
+                if (id == item.getItemID()) {
+                    exist = true;
+                    Label quantityLabel = (Label) box.getChildren().get(2);
+                    int quant = Integer.parseInt(quantityLabel.getText());
+                    quant++;
+                    quantityLabel.setText(quant + "");
+                }
+            }
+        }
+        if (!exist) {
+            Label name = new Label(item.getName());
+            Label price = new Label(Float.toString(item.getPrice()));
+            Label quantity = new Label(1 + "");
+            Label id = new Label(item.getItemID() + "");
+            id.setPrefSize(0, 0);
+
+            HBox itemContainer = new HBox(10);
+            itemContainer.setPadding(new Insets(10, 10, 10, 10));
+
+            itemContainer.setMinWidth(522);
+            itemContainer.setMinHeight(43);
+            itemContainer.setPrefSize(522, 43);
+
+            name.setMinHeight(41);
+            name.setMinWidth(320);
+            name.setMaxWidth(320);
+
+            price.setMinHeight(41);
+            price.setMinWidth(115);
+            price.setMaxWidth(115);
+
+            quantity.setMinHeight(41);
+            quantity.setMinWidth(65);
+            quantity.setMaxWidth(65);
+
+            //label1.setTextFill(Color.web("#0076a3"));
+            //label.setFont(new Font("Arial", 30));
+            name.setTextFill(Color.web("#FFFFFF"));
+            price.setTextFill(Color.web("#FFFFFF"));
+            quantity.setTextFill(Color.web("#FFFFFF"));
+
+            name.setFont(new Font("Arial Black", 25));
+            price.setFont(new Font("Arial Black", 25));
+            quantity.setFont(new Font("Arial Black", 25));
+
+            itemContainer.getChildren().addAll(id, name, quantity, price);
+
+            /**
+             * Add the item container to the itemListDisplay
+             */
+            saleListDisplay.getChildren().addAll(itemContainer);
+            System.out.println(saleListDisplay.getChildren());
+        }
+
+        TransactionItem tItem = new TransactionItem();
+        tItem.setItem(item);
+        transaction.getTransactionItemList().add(tItem);
+        calculateSubtotal(item);
+    }
+
+    public void calculateSubtotal(Item item) {
+        float total = 0f;
+        for (TransactionItem tItem : transaction.getTransactionItemList()) {
+            total += tItem.getItem().getPrice();
+        }
+//        total = Float.parseFloat(subtotalDisplay.getText());
+//        total = total + (item.getPrice());
+        subtotalDisplay.setText(total + "");
     }
 
 }
