@@ -12,7 +12,7 @@
 
 <VBox maxHeight="720.0" maxWidth="1280.0" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" spacing="50.0" style="-fx-background-color: #3A3A3A;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainScreenController">
   <children>
-      <AnchorPane prefHeight="720.0" prefWidth="1280.0">
+      <AnchorPane maxHeight="720.0" maxWidth="1280.0" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0">
          <children>
             <HBox layoutX="834.0" layoutY="-12.0" prefHeight="58.0" prefWidth="422.0" spacing="50.0">
                <children>

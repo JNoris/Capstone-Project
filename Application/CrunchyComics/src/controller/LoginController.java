@@ -61,7 +61,6 @@ public class LoginController implements Initializable {
 
                 // This line grabs the Stage information
                 Stage mainWindowScreen = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                mainWindowScreen.setFullScreen(true);
                 mainWindowScreen.setScene(main);
                 mainWindowScreen.show();
             } else {
