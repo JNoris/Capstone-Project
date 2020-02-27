@@ -101,7 +101,7 @@
                                     <Font name="Arial Black" size="25.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="saleIDDisplay111" prefHeight="44.0" prefWidth="100.0" text="Tax" textFill="WHITE">
+                              <Label fx:id="saleIDDisplay111" prefHeight="42.0" prefWidth="83.0" text="Tax" textFill="WHITE">
                                  <font>
                                     <Font name="Arial Black" size="25.0" />
                                  </font>
