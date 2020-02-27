@@ -197,7 +197,8 @@ public class OrderScreenController implements Initializable {
     }
 
     /**
-     * Grab an item to the sale side
+     * Grab an item to the sale side.
+     * 
      */
     public void addItemToSale(Item item) {
         boolean exist = false;
