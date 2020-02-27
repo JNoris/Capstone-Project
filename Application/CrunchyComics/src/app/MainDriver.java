@@ -20,6 +20,7 @@ public class MainDriver{
     //Methods Accessors
     public static void main(String[] args) throws Exception {
         try {
+            System.out.println("ASDSAD");
             DatabaseManager test = new DatabaseManager();
             System.out.println("Connection successful.");
             ItemBroker ib = new ItemBroker(test);
