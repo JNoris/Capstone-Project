@@ -10,11 +10,11 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="720.0" prefWidth="1280.0" spacing="50.0" style="-fx-background-color: #3A3A3A;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainScreenController">
+<VBox maxHeight="720.0" maxWidth="1280.0" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" spacing="50.0" style="-fx-background-color: #3A3A3A;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainScreenController">
   <children>
-      <AnchorPane prefHeight="716.0" prefWidth="1248.0">
+      <AnchorPane maxHeight="720.0" maxWidth="1280.0" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0">
          <children>
-            <HBox layoutX="982.0" layoutY="-5.0" prefHeight="58.0" prefWidth="422.0" spacing="50.0">
+            <HBox layoutX="834.0" layoutY="-12.0" prefHeight="58.0" prefWidth="422.0" spacing="50.0">
                <children>
                   <Button mnemonicParsing="false" onAction="#logoutBtnClicked" prefHeight="0.0" prefWidth="114.0" style="-fx-background-color: #6A0000;" text="Log Out" textFill="WHITE">
                      <font>
@@ -29,7 +29,7 @@
                   <Circle fill="#808080" radius="29.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: #777777;" />
                </children>
             </HBox>
-            <HBox layoutX="14.0" layoutY="10.0" prefHeight="73.0" prefWidth="679.0" spacing="50.0">
+            <HBox layoutX="-2.0" layoutY="5.0" prefHeight="73.0" prefWidth="651.0" spacing="20.0">
                <children>
                   <Button mnemonicParsing="false" onAction="#orderBtnClicked" prefHeight="93.0" prefWidth="312.0" style="-fx-padding: 10; -fx-background-color: #8E8E8E;" text="Order Entry " textFill="#006a00">
                      <font>
@@ -43,7 +43,7 @@
                   </Button>
                </children>
             </HBox>
-            <VBox layoutX="54.0" layoutY="122.0" prefHeight="547.0" prefWidth="610.0">
+            <VBox layoutX="22.0" layoutY="110.0" prefHeight="547.0" prefWidth="610.0">
                <children>
                   <Label prefHeight="38.0" prefWidth="162.0" text="Daily Sales" textFill="WHITE">
                      <font>
@@ -53,7 +53,7 @@
                   <Pane prefHeight="509.0" prefWidth="610.0" style="-fx-background-color: #5F5F5F;" />
                </children>
             </VBox>
-            <VBox layoutX="757.0" layoutY="62.0" prefHeight="607.0" prefWidth="650.0">
+            <VBox layoutX="667.0" layoutY="51.0" prefHeight="607.0" prefWidth="554.0">
                <children>
                   <Label prefHeight="44.0" prefWidth="107.0" text="Orders" textFill="WHITE">
                      <font>
