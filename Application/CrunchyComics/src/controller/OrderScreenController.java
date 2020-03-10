@@ -95,7 +95,7 @@ public class OrderScreenController implements Initializable {
             addItemToSearch(item);
         }
         transaction = new Transaction();
-        transaction.setTransactionItemList(new ArrayList<TransactionItem>());
+        transaction.setTransactionItemList(new ArrayList<>());
 //        addItemToSale(items.get(0));
 //        addItemToSale(items.get(1));
 //        addItemToSale(items.get(2));
@@ -127,6 +127,7 @@ public class OrderScreenController implements Initializable {
      * underneath in the results pane.
      *
      * @param event
+     * @param item
      * @throws IOException
      */
     public void initiateSearch(ActionEvent event, Item item) throws IOException {
@@ -198,6 +199,7 @@ public class OrderScreenController implements Initializable {
 
     /**
      * Grab an item to the sale side
+     * @param item
      */
     public void addItemToSale(Item item) {
         boolean exist = false;
