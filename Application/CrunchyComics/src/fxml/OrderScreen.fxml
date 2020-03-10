@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -13,7 +19,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="720.0" maxWidth="1280.0" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" spacing="50.0" style="-fx-background-color: #3A3A3A;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainScreenController">
+<VBox maxHeight="720.0" maxWidth="1280.0" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" spacing="50.0" style="-fx-background-color: #3A3A3A;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.OrderScreenController">
   <children>
       <AnchorPane prefHeight="692.0" prefWidth="1276.0">
          <children>
@@ -53,33 +59,7 @@
                   </HBox>
                   <ScrollPane fx:id="searchDisplay" prefHeight="507.0" prefWidth="650.0" style="-fx-background-color: #5F5F5F;" vbarPolicy="NEVER">
                      <content>
-                        <VBox fx:id="resultContainer" prefHeight="512.0" prefWidth="637.0" style="-fx-background-color: #5F5F5F;">
-                           <children>
-                              <Button mnemonicParsing="false" prefHeight="56.0" prefWidth="637.0" style="-fx-background-color: #000004;">
-                                 <graphic>
-                                    <HBox prefHeight="52.0" prefWidth="637.0" spacing="50.0">
-                                       <children>
-                                          <Label text="Iron Man " textFill="WHITE">
-                                             <font>
-                                                <Font name="Arial Black" size="33.0" />
-                                             </font>
-                                          </Label>
-                                          <Label text="Volume #1" textFill="WHITE">
-                                             <font>
-                                                <Font name="Arial Black" size="33.0" />
-                                             </font>
-                                          </Label>
-                                          <Label text="\$7.99" textFill="WHITE">
-                                             <font>
-                                                <Font name="Arial Black" size="33.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </HBox>
-                                 </graphic>
-                              </Button>
-                           </children>
-                        </VBox>
+                        <VBox fx:id="resultContainer" prefHeight="512.0" prefWidth="637.0" spacing="5.0" style="-fx-background-color: #5F5F5F;" />
                      </content>
                   </ScrollPane>
                </children>
@@ -88,7 +68,7 @@
                <children>
                   <Pane prefHeight="558.0" prefWidth="561.0" style="-fx-background-color: #5F5F5F;">
                      <children>
-                        <Label fx:id="saleIDDisplay" layoutX="14.0" layoutY="31.0" prefHeight="44.0" prefWidth="199.0" text="Sale Order#_" textFill="WHITE">
+                        <Label fx:id="saleIDDisplay" layoutX="7.0" layoutY="31.0" prefHeight="44.0" prefWidth="206.0" text="Sale Order#_" textFill="WHITE">
                            <font>
                               <Font name="Arial Black" size="25.0" />
                            </font>
@@ -109,35 +89,14 @@
                               <Font name="Arial Black" size="15.0" />
                            </font>
                         </Button>
-                        <VBox fx:id="saleListDisplay" layoutX="16.0" layoutY="81.0" prefHeight="281.0" prefWidth="522.0">
-                           <children>
-                              <HBox prefHeight="43.0" prefWidth="522.0" spacing="10.0" style="-fx-border-color: #FFFFFF;">
-                                 <children>
-                                    <Label fx:id="itemNameDisplay" prefHeight="41.0" prefWidth="314.0" text="Iron Man" textFill="WHITE">
-                                       <font>
-                                          <Font name="Arial Black" size="25.0" />
-                                       </font>
-                                    </Label>
-                                    <Label fx:id="itemQuantityDisplay" prefHeight="41.0" prefWidth="65.0" text="1" textFill="WHITE">
-                                       <font>
-                                          <Font name="Arial Black" size="25.0" />
-                                       </font>
-                                    </Label>
-                                    <Label fx:id="itemPriceDisplay" prefHeight="41.0" prefWidth="115.0" text="\$199.99" textFill="WHITE">
-                                       <font>
-                                          <Font name="Arial Black" size="25.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                                 <padding>
-                                    <Insets left="10.0" />
-                                 </padding>
-                              </HBox>
-                           </children>
-                        </VBox>
+                        <ScrollPane hbarPolicy="NEVER" layoutY="75.0" prefHeight="294.0" prefWidth="561.0" style="-fx-background-color: #5F5F5F;" vbarPolicy="ALWAYS">
+                           <content>
+                              <VBox fx:id="saleListDisplay" prefHeight="292.0" prefWidth="545.0" style="-fx-background-color: #5F5F5F;" />
+                           </content>
+                        </ScrollPane>
                         <VBox layoutX="18.0" layoutY="381.0" prefHeight="165.0" prefWidth="199.0" spacing="20.0">
                            <children>
-                              <Label fx:id="saleIDDisplay11" prefHeight="42.0" prefWidth="165.0" text="Subtotal" textFill="WHITE">
+                              <Label fx:id="saleIDDisplay11" prefHeight="41.0" prefWidth="200.0" text="Subtotal       $" textFill="WHITE">
                                  <font>
                                     <Font name="Arial Black" size="25.0" />
                                  </font>
@@ -156,17 +115,17 @@
                         </VBox>
                         <VBox layoutX="217.0" layoutY="379.0" prefHeight="173.0" prefWidth="153.0" spacing="20.0">
                            <children>
-                              <Label fx:id="subtotalDisplay" prefHeight="42.0" prefWidth="165.0" text="\$7.99" textFill="WHITE">
+                              <Label fx:id="subtotalDisplay" prefHeight="42.0" prefWidth="165.0" text="0.00" textFill="WHITE">
                                  <font>
                                     <Font name="Arial Black" size="25.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="taxDisplay" prefHeight="44.0" prefWidth="100.0" text="\$1.00" textFill="WHITE">
+                              <Label fx:id="taxDisplay" prefHeight="44.0" prefWidth="100.0" text="0.00" textFill="WHITE">
                                  <font>
                                     <Font name="Arial Black" size="25.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="finalPriceDisplay" prefHeight="43.0" prefWidth="220.0" text="\$8.99" textFill="WHITE">
+                              <Label fx:id="finalPriceDisplay" prefHeight="43.0" prefWidth="220.0" text="0.00" textFill="WHITE">
                                  <font>
                                     <Font name="Arial Black" size="25.0" />
                                  </font>
