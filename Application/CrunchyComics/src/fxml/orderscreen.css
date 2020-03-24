@@ -8,3 +8,11 @@ and open the template in the editor.
     Author     : 746299
 */
 
+.settingsButton{ 
+    -fx-background-color: transparent;
+}
+
+.settingsButton:hover{
+    -fx-border-width: 5;
+    -fx-border-color: #006A00;
+}

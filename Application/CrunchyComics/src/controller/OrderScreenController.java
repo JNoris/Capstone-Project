@@ -37,12 +37,14 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import manager.DatabaseManager;
@@ -80,6 +82,12 @@ public class OrderScreenController implements Initializable {
     private VBox saleListDisplay;
     @FXML
     private VBox resultContainer;
+    @FXML
+    private Circle searchCircle;
+    @FXML
+    private Circle filterCircle;
+    @FXML
+    private Label settingsCircle;
 
     private TransactionBroker tb;
     private Button result;
@@ -183,10 +191,10 @@ public class OrderScreenController implements Initializable {
         hbox.setPadding(new Insets(10, 10, 10, 10));
 
         name.setText(item.getName());
-        price.setText(item.getPrice() + "");
+        price.setText("$"+item.getPrice() + "");
         id.setText(item.getItemID() + "");
 
-        hbox.getChildren().addAll(name, price);
+        hbox.getChildren().addAll(name,price);
         hbox.setOnMouseClicked(new EventHandler() {
             @Override
             public void handle(Event event) {
@@ -294,4 +302,22 @@ public class OrderScreenController implements Initializable {
     public void updateTotal(float value) {
         finalPriceDisplay.setText(String.format("$%.2f", value));
     }
+    
+    /**public void initializePictures(){
+        searchCircle.setStroke(Color.BLACK);
+        filterCircle.setStroke(Color.BLACK);
+        settingsCircle.setStroke(Color.BLACK);
+        
+        Image imSearch = new Image("/fxml/searchImage.png",false);
+        Image imFilter = new Image("/fxml/filterArrow.png",false);
+        Image imSettings = new Image("/fxml/settingsIcon.png",false);
+        
+        
+        
+        //img.getScaledInstance(newWidth, -1, Image. SCALE_SMOOTH), x, y, this
+        
+        searchCircle.setFill(new ImagePattern(imSearch));
+        filterCircle.setFill(new ImagePattern(imFilter));
+        settingsCircle.setFill(new ImagePattern(imSettings));
+    }*/
 }
