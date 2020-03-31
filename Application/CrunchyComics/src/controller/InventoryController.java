@@ -17,11 +17,7 @@ import javafx.event.*;
 
 /**
  *
- * @author Noris. UMM I MEAN: CAPSTONE GROUP, OF COURSE, TIS NOT MY WORK BUT OUR
- *         WORK.
- * 
- * @Notes Please make sure to correct this code. This is not by any means the
- *        working version.
+ * @author Capstone Group
  * 
  */
 public class InventoryController implements Initializable {
