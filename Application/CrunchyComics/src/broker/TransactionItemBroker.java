@@ -20,7 +20,7 @@ import manager.DatabaseManager;
  * @author 749295
  */
 public class TransactionItemBroker {
-     private EntityManager em = null;
+    private EntityManager em = null;
     private DatabaseManager dbManager = null;
 
     public TransactionItemBroker(DatabaseManager dbManager) {
@@ -71,4 +71,5 @@ public class TransactionItemBroker {
         
         return (TransactionItem)results.get(0);
     }
+       
 }
