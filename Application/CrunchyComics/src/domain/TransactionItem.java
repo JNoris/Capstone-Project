@@ -32,6 +32,10 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "TransactionItem.findByPrice", query = "SELECT t FROM TransactionItem t WHERE t.price = :price")})
 public class TransactionItem implements Serializable {
 
+    @Basic(optional = false)
+    @Column(name = "sold_price")
+    private float soldPrice;
+
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected TransactionItemPK transactionItemPK;
@@ -116,6 +120,14 @@ public class TransactionItem implements Serializable {
     @Override
     public String toString() {
         return "broker.TransactionItem[ transactionItemPK=" + transactionItemPK + " ]";
+    }
+
+    public float getSoldPrice() {
+        return soldPrice;
+    }
+
+    public void setSoldPrice(float soldPrice) {
+        this.soldPrice = soldPrice;
     }
     
 }

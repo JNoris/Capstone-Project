@@ -33,6 +33,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Comic.findByIsbn", query = "SELECT c FROM Comic c WHERE c.isbn = :isbn")})
 public class Comic implements Serializable {
 
+    @Column(name = "publisher")
+    private String publisher;
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -128,6 +131,14 @@ public class Comic implements Serializable {
     @Override
     public String toString() {
         return "broker.Comic[ itemID=" + itemID + " ]";
+    }
+
+    public String getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
     }
     
 }

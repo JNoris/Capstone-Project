@@ -32,6 +32,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "OrderItem.findByPurchasePrice", query = "SELECT o FROM OrderItem o WHERE o.purchasePrice = :purchasePrice")})
 public class OrderItem implements Serializable {
 
+    @Column(name = "orderQuantity")
+    private Integer orderQuantity;
+
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected OrderItemPK orderItemPK;
@@ -116,6 +119,14 @@ public class OrderItem implements Serializable {
     @Override
     public String toString() {
         return "broker.OrderItem[ orderItemPK=" + orderItemPK + " ]";
+    }
+
+    public Integer getOrderQuantity() {
+        return orderQuantity;
+    }
+
+    public void setOrderQuantity(Integer orderQuantity) {
+        this.orderQuantity = orderQuantity;
     }
     
 }
