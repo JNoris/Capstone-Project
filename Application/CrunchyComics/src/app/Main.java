@@ -10,7 +10,8 @@ import javafx.stage.Stage;
  * Main- Starting point for the Crunchy Comics UI
  *
  * @author Jatin Noris Buriac
- * @date February 3, 2020
+ * 
+ * @date Feb 03, 2020
  */
 public class Main extends Application {
     public static void main(String[] args) throws Exception {
