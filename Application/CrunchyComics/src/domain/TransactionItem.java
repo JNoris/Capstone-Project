@@ -29,10 +29,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "TransactionItem.findAll", query = "SELECT t FROM TransactionItem t")
     , @NamedQuery(name = "TransactionItem.findByItemID", query = "SELECT t FROM TransactionItem t WHERE t.transactionItemPK.itemID = :itemID")
     , @NamedQuery(name = "TransactionItem.findByTransactionID", query = "SELECT t FROM TransactionItem t WHERE t.transactionItemPK.transactionID = :transactionID")
-    , @NamedQuery(name = "TransactionItem.findTransactionItem", query = "SELECT t FROM TransactionItem t WHERE t.transactionItemPK.transactionID = :transactionID AND t.transactionItemPK.itemID = :itemID")
-    , @NamedQuery(name = "TransactionItem.findByPrice", query = "SELECT t FROM TransactionItem t WHERE t.price = :price")})
     , @NamedQuery(name = "TransactionItem.findBySoldPrice", query = "SELECT t FROM TransactionItem t WHERE t.soldPrice = :soldPrice")})
->>>>>>> Vinny
+
 public class TransactionItem implements Serializable {
 
     private static final long serialVersionUID = 1L;
