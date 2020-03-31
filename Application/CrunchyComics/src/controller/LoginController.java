@@ -48,7 +48,10 @@ public class LoginController implements Initializable {
 
     /**
      * When this method is called by clicking "Enter" in Login (assuming correct
-     * credentials inputted), it will change the Scene to Main Screen
+     * credentials inputted), it will change the Scene to Main Screen <<<<<<<
+     * Updated upstream =======
+     * 
+     * @param event >>>>>>> Stashed changes
      */
     public void loginEnterBtnClicked(ActionEvent event) {
         try {
