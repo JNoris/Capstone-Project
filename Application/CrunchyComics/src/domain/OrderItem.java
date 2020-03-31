@@ -20,7 +20,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author 695553
+ * @author Vinicius Smith
  */
 @Entity
 @Table(name = "order_item")
@@ -29,11 +29,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "OrderItem.findAll", query = "SELECT o FROM OrderItem o")
     , @NamedQuery(name = "OrderItem.findByItemID", query = "SELECT o FROM OrderItem o WHERE o.orderItemPK.itemID = :itemID")
     , @NamedQuery(name = "OrderItem.findByOrderNo", query = "SELECT o FROM OrderItem o WHERE o.orderItemPK.orderNo = :orderNo")
-    , @NamedQuery(name = "OrderItem.findByPurchasePrice", query = "SELECT o FROM OrderItem o WHERE o.purchasePrice = :purchasePrice")})
+    , @NamedQuery(name = "OrderItem.findByPurchasePrice", query = "SELECT o FROM OrderItem o WHERE o.purchasePrice = :purchasePrice")
+    , @NamedQuery(name = "OrderItem.findByOrderQuantity", query = "SELECT o FROM OrderItem o WHERE o.orderQuantity = :orderQuantity")})
 public class OrderItem implements Serializable {
-
-    @Column(name = "orderQuantity")
-    private Integer orderQuantity;
 
     private static final long serialVersionUID = 1L;
     @EmbeddedId
@@ -41,6 +39,8 @@ public class OrderItem implements Serializable {
     @Basic(optional = false)
     @Column(name = "purchase_price")
     private float purchasePrice;
+    @Column(name = "orderQuantity")
+    private Integer orderQuantity;
     @JoinColumn(name = "itemID", referencedColumnName = "itemID", insertable = false, updatable = false)
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Item item;
@@ -78,6 +78,14 @@ public class OrderItem implements Serializable {
 
     public void setPurchasePrice(float purchasePrice) {
         this.purchasePrice = purchasePrice;
+    }
+
+    public Integer getOrderQuantity() {
+        return orderQuantity;
+    }
+
+    public void setOrderQuantity(Integer orderQuantity) {
+        this.orderQuantity = orderQuantity;
     }
 
     public Item getItem() {
@@ -118,15 +126,7 @@ public class OrderItem implements Serializable {
 
     @Override
     public String toString() {
-        return "broker.OrderItem[ orderItemPK=" + orderItemPK + " ]";
-    }
-
-    public Integer getOrderQuantity() {
-        return orderQuantity;
-    }
-
-    public void setOrderQuantity(Integer orderQuantity) {
-        this.orderQuantity = orderQuantity;
+        return "domain.OrderItem[ orderItemPK=" + orderItemPK + " ]";
     }
     
 }

@@ -20,7 +20,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author 695553
+ * @author Vinicius Smith
  */
 @Entity
 @Table(name = "comic")
@@ -30,11 +30,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Comic.findByItemID", query = "SELECT c FROM Comic c WHERE c.itemID = :itemID")
     , @NamedQuery(name = "Comic.findByAuthor", query = "SELECT c FROM Comic c WHERE c.author = :author")
     , @NamedQuery(name = "Comic.findByVolume", query = "SELECT c FROM Comic c WHERE c.volume = :volume")
-    , @NamedQuery(name = "Comic.findByIsbn", query = "SELECT c FROM Comic c WHERE c.isbn = :isbn")})
+    , @NamedQuery(name = "Comic.findByIsbn", query = "SELECT c FROM Comic c WHERE c.isbn = :isbn")
+    , @NamedQuery(name = "Comic.findByPublisher", query = "SELECT c FROM Comic c WHERE c.publisher = :publisher")})
 public class Comic implements Serializable {
-
-    @Column(name = "publisher")
-    private String publisher;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -50,6 +48,8 @@ public class Comic implements Serializable {
     @Basic(optional = false)
     @Column(name = "isbn")
     private String isbn;
+    @Column(name = "publisher")
+    private String publisher;
     @JoinColumn(name = "itemID", referencedColumnName = "itemID", insertable = false, updatable = false)
     @OneToOne(optional = false, fetch = FetchType.EAGER)
     private Item item;
@@ -100,6 +100,14 @@ public class Comic implements Serializable {
         this.isbn = isbn;
     }
 
+    public String getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
+    }
+
     public Item getItem() {
         return item;
     }
@@ -130,15 +138,7 @@ public class Comic implements Serializable {
 
     @Override
     public String toString() {
-        return "broker.Comic[ itemID=" + itemID + " ]";
-    }
-
-    public String getPublisher() {
-        return publisher;
-    }
-
-    public void setPublisher(String publisher) {
-        this.publisher = publisher;
+        return "domain.Comic[ itemID=" + itemID + " ]";
     }
     
 }

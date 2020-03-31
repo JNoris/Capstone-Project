@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author 695553
+ * @author Vinicius Smith
  */
 @Entity
 @Table(name = "transaction")
@@ -42,7 +42,7 @@ public class Transaction implements Serializable {
     @Column(name = "transactionID")
     private Integer transactionID;
     @Column(name = "transaction_date")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date transactionDate;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "transaction", fetch = FetchType.EAGER)
     private List<TransactionItem> transactionItemList;
@@ -101,7 +101,7 @@ public class Transaction implements Serializable {
 
     @Override
     public String toString() {
-        return "broker.Transaction[ transactionID=" + transactionID + " ]";
+        return "domain.Transaction[ transactionID=" + transactionID + " ]";
     }
     
 }

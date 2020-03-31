@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package domain;
 
 import java.io.Serializable;
@@ -26,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author 695553
+ * @author Vinicius Smith
  */
 @Entity
 @Table(name = "item")
@@ -61,9 +60,6 @@ public class Item implements Serializable {
     @JoinColumn(name = "item_type", referencedColumnName = "item_type")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Type itemType;
-    @JoinColumn(name = "vendorID", referencedColumnName = "vendorID")
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
-    private Vendor vendorID;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "item", fetch = FetchType.EAGER)
     private List<OrderItem> orderItemList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "item", fetch = FetchType.EAGER)
@@ -140,14 +136,6 @@ public class Item implements Serializable {
         this.itemType = itemType;
     }
 
-    public Vendor getVendorID() {
-        return vendorID;
-    }
-
-    public void setVendorID(Vendor vendorID) {
-        this.vendorID = vendorID;
-    }
-
     @XmlTransient
     public List<OrderItem> getOrderItemList() {
         return orderItemList;
@@ -196,7 +184,7 @@ public class Item implements Serializable {
 
     @Override
     public String toString() {
-        return "broker.Item[ itemID=" + itemID + " ]";
+        return "domain.Item[ itemID=" + itemID + " ]";
     }
-
+    
 }

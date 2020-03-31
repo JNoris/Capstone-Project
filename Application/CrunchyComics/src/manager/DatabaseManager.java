@@ -31,12 +31,15 @@ public class DatabaseManager {
                 .getConnection("jdbc:mysql://localhost:3306/capstone_test?user=root&password=password");
     }
 
-    public static DatabaseManager getInstance() {
-        if (dbManager == null) {
-            try {
+//    public static DatabaseManager getInstance() {
+//        if (dbManager == null) {
+//            try {
+//                
+//            }
     public static EntityManager getEntityManager(){
         return em;
     }
+    
     public static DatabaseManager getInstance(){
         if(dbManager == null){
             try{

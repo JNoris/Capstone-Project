@@ -8,7 +8,6 @@ package domain;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -22,7 +21,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author 695553
+ * @author Vinicius Smith
  */
 @Entity
 @Table(name = "vendor")
@@ -33,9 +32,6 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Vendor.findByVendorName", query = "SELECT v FROM Vendor v WHERE v.vendorName = :vendorName")})
 public class Vendor implements Serializable {
 
-    @OneToMany(mappedBy = "vendorID", fetch = FetchType.EAGER)
-    private List<Orders> ordersList;
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -44,8 +40,8 @@ public class Vendor implements Serializable {
     @Basic(optional = false)
     @Column(name = "vendor_name")
     private String vendorName;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vendorID", fetch = FetchType.EAGER)
-    private List<Item> itemList;
+    @OneToMany(mappedBy = "vendorID", fetch = FetchType.EAGER)
+    private List<Orders> ordersList;
 
     public Vendor() {
     }
@@ -76,12 +72,12 @@ public class Vendor implements Serializable {
     }
 
     @XmlTransient
-    public List<Item> getItemList() {
-        return itemList;
+    public List<Orders> getOrdersList() {
+        return ordersList;
     }
 
-    public void setItemList(List<Item> itemList) {
-        this.itemList = itemList;
+    public void setOrdersList(List<Orders> ordersList) {
+        this.ordersList = ordersList;
     }
 
     @Override
@@ -106,16 +102,7 @@ public class Vendor implements Serializable {
 
     @Override
     public String toString() {
-        return "broker.Vendor[ vendorID=" + vendorID + " ]";
-    }
-
-    @XmlTransient
-    public List<Orders> getOrdersList() {
-        return ordersList;
-    }
-
-    public void setOrdersList(List<Orders> ordersList) {
-        this.ordersList = ordersList;
+        return "domain.Vendor[ vendorID=" + vendorID + " ]";
     }
     
 }
