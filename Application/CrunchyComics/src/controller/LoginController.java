@@ -17,8 +17,7 @@ import javafx.event.*;
 
 /**
  *
- * @author Noris. UMM I MEAN: CAPSTONE GROUP, OF COURSE, TIS NOT MY WORK BUT OUR
- *         WORK.
+ * @author Noris
  * 
  * @Notes Please make sure to correct this code. Namely: Password as well as
  *        validation.
