@@ -88,7 +88,7 @@ public class OrderScreenController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        itemBroker = new ItemBroker(DatabaseManager.getInstance());
+        itemBroker = new ItemBroker(DatabaseManager.getInstance(), DatabaseManager.getEntityManager());
         List<Item> items = itemBroker.getAllItems();
 
         for (Item item : items) {
@@ -96,6 +96,7 @@ public class OrderScreenController implements Initializable {
         }
         transaction = new Transaction();
         transaction.setTransactionItemList(new ArrayList<TransactionItem>());
+        
 //        addItemToSale(items.get(0));
 //        addItemToSale(items.get(1));
 //        addItemToSale(items.get(2));
@@ -198,7 +199,7 @@ public class OrderScreenController implements Initializable {
 
     /**
      * Grab an item to the sale side.
-     * 
+     *
      */
     public void addItemToSale(Item item) {
         boolean exist = false;
@@ -222,10 +223,10 @@ public class OrderScreenController implements Initializable {
             Label price = new Label(Float.toString(item.getPrice()));
             Label quantity = new Label(1 + "");
             Label id = new Label(item.getItemID() + "");
-            
+
             id.setPrefSize(0, 0);
             id.setMaxWidth(0);
-            id.setMinWidth(0);                        
+            id.setMinWidth(0);
             id.setMaxHeight(0);
             id.setMinWidth(0);
 

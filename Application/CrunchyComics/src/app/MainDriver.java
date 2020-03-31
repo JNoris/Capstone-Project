@@ -6,8 +6,7 @@ import manager.DatabaseManager;
 import java.sql.SQLException;
 import javafx.application.Application;
 /**
- * MainDriver - Starting point for the Crunchy Comics Point of Sale and
- Inventory systems application.
+ * MainDriver - Test point for components that doesn't require the UI.
  *
  * @author Vinicius Smith Goulart
  * @date January 23, 2020
@@ -19,16 +18,16 @@ public class MainDriver{
     //Constructors
     //Methods Accessors
     public static void main(String[] args) throws Exception {
-        try {
-            System.out.println("ASDSAD");
-            DatabaseManager test = new DatabaseManager();
-            System.out.println("Connection successful.");
-            ItemBroker ib = new ItemBroker(test);
-           Item item = ib.getItemByID(1);
-            System.out.println(item.getName());
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+//        try {
+////            System.out.println("ASDSAD");
+////            DatabaseManager test = new DatabaseManager();
+////            System.out.println("Connection successful.");
+////            ItemBroker ib = new ItemBroker(test);
+////           Item item = ib.getItemByID(1);
+////            System.out.println(item.getName());
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
     }
     //Methods Mutators
     //Methods Operational

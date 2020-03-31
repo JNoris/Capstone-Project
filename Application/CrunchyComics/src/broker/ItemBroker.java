@@ -19,12 +19,11 @@ import javax.persistence.Query;
  */
 public final class ItemBroker {
     private EntityManager em = null;
-    private DatabaseManager dbManager = null;
-
-    public ItemBroker(DatabaseManager dbManager) {
-         EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "CrunchyComicsPU" );
-        this.dbManager = dbManager;
-        this.em = emfactory.createEntityManager();
+    
+    public ItemBroker(DatabaseManager dbManager, EntityManager em) {
+//        EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "CrunchyComicsPU" );
+//        System.out.println("Creating factory... done");
+        this.em = em;
     }
     
     public Item getItemByID(int id){
