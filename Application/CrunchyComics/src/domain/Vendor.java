@@ -33,6 +33,9 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Vendor.findByVendorName", query = "SELECT v FROM Vendor v WHERE v.vendorName = :vendorName")})
 public class Vendor implements Serializable {
 
+    @OneToMany(mappedBy = "vendorID", fetch = FetchType.EAGER)
+    private List<Orders> ordersList;
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -104,6 +107,15 @@ public class Vendor implements Serializable {
     @Override
     public String toString() {
         return "broker.Vendor[ vendorID=" + vendorID + " ]";
+    }
+
+    @XmlTransient
+    public List<Orders> getOrdersList() {
+        return ordersList;
+    }
+
+    public void setOrdersList(List<Orders> ordersList) {
+        this.ordersList = ordersList;
     }
     
 }
