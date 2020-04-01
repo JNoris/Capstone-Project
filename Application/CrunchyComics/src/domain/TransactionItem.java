@@ -29,6 +29,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "TransactionItem.findAll", query = "SELECT t FROM TransactionItem t")
     , @NamedQuery(name = "TransactionItem.findByItemID", query = "SELECT t FROM TransactionItem t WHERE t.transactionItemPK.itemID = :itemID")
     , @NamedQuery(name = "TransactionItem.findByTransactionID", query = "SELECT t FROM TransactionItem t WHERE t.transactionItemPK.transactionID = :transactionID")
+    , @NamedQuery(name = "TransactionItem.findByQuantity", query = "SELECT t FROM TransactionItem t WHERE t.transactionItemPK.quantity = :quantity")
     , @NamedQuery(name = "TransactionItem.findBySoldPrice", query = "SELECT t FROM TransactionItem t WHERE t.soldPrice = :soldPrice")})
 public class TransactionItem implements Serializable {
 
@@ -57,8 +58,8 @@ public class TransactionItem implements Serializable {
         this.soldPrice = soldPrice;
     }
 
-    public TransactionItem(int itemID, int transactionID) {
-        this.transactionItemPK = new TransactionItemPK(itemID, transactionID);
+    public TransactionItem(int itemID, int transactionID, int quantity) {
+        this.transactionItemPK = new TransactionItemPK(itemID, transactionID, quantity);
     }
 
     public TransactionItemPK getTransactionItemPK() {

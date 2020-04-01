@@ -221,6 +221,17 @@ public class OrderScreenController implements Initializable {
                 if (id == item.getItemID()) {
                     exist = true;
                     Label quantityLabel = (Label) box.getChildren().get(2);
+
+                    //Update TransactionItem quantity.
+                    for (TransactionItem ti : transaction.getTransactionItemList()) {
+                        if (ti.getTransactionItemPK().getItemID() == id //Compare Item IDs.
+                                && ti.getTransactionItemPK().getTransactionID() == transaction.getTransactionID() //Compare Transaction IDs.
+                                && ti.getTransactionItemPK().getQuantity() == Integer.parseInt(quantityLabel.getText())) { //Compare quantities.
+                            ti.getTransactionItemPK().setQuantity(ti.getTransactionItemPK().getQuantity() + 1);
+                        }
+                    }
+
+                    //Update quantity in the UI.
                     int quant = Integer.parseInt(quantityLabel.getText());
                     quant++;
                     quantityLabel.setText(quant + "");
@@ -284,14 +295,14 @@ public class OrderScreenController implements Initializable {
              */
             saleListDisplay.getChildren().addAll(itemContainer);
             System.out.println(saleListDisplay.getChildren());
-        }
 
-        //Create a TransactionItem
-        TransactionItem tItem = new TransactionItem(item.getItemID(), transaction.getTransactionID());
-        tItem.setItem(item);
-        tItem.setSoldPrice(item.getPrice()); //Sets price of the item as the original price of the item.
-        transaction.getTransactionItemList().add(tItem);
-        calculateSubtotal(item);
+            //Create a TransactionItem
+            TransactionItem tItem = new TransactionItem(item.getItemID(), transaction.getTransactionID(), 1);
+            tItem.setItem(item);
+            tItem.setSoldPrice(item.getPrice()); //Sets price of the item as the original price of the item.
+            transaction.getTransactionItemList().add(tItem);
+            calculateSubtotal(item);
+        }
     }
 
     public void calculateSubtotal(Item item) {
@@ -316,7 +327,7 @@ public class OrderScreenController implements Initializable {
     public void searchItems() {
         resultContainer.getChildren().clear();
         List<Item> items = itemBroker.getMatchingItems(searchField.getText());
-        for (Item i : items){
+        for (Item i : items) {
             addItemToSearch(i);
         }
     }
