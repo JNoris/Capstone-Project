@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import manager.ControllerManager;
 import manager.DatabaseManager;
 
 /**
@@ -43,7 +44,8 @@ public class Main extends Application {
         stage.setOnShown((WindowEvent event) -> {
             controller.initializeApp();
         });
-
+        
+        ControllerManager.getInstance().setWindow(stage);
         stage.setScene(splashScene);
         stage.show();
 

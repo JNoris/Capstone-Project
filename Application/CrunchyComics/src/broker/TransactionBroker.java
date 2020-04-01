@@ -10,6 +10,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import manager.DatabaseManager;
 import domain.*;
+import javax.persistence.Query;
 
 /**
  *
@@ -25,7 +26,22 @@ public class TransactionBroker {
         this.dbManager = dbManager;
         this.em = emfactory.createEntityManager();
     }
+    /**
+     * Inserts a Transaction object and TransationItem list to the database.
+     * @param transaction - Transaction object to be persisted.
+     */
     public void insert(Transaction transaction){
+        em.getTransaction().begin();
         em.persist(transaction);
+        em.getTransaction().commit();
+        System.out.println("Transaction added.");
+    }
+    /**
+     * Gets the highest transaction ID from the database.
+     * @return The highest transaction ID.
+     */
+    public int getHighestID(){
+        Query q = em.createNamedQuery("Transaction.getHighestIndex");
+        return (int) q.getResultList().get(0);
     }
 }
