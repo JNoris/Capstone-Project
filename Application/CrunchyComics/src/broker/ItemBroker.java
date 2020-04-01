@@ -18,32 +18,42 @@ import javax.persistence.Query;
  * @author 695553
  */
 public final class ItemBroker {
+
     private EntityManager em = null;
-    
+
     public ItemBroker(DatabaseManager dbManager, EntityManager em) {
 //        EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "CrunchyComicsPU" );
 //        System.out.println("Creating factory... done");
         this.em = em;
     }
-    
-    public Item getItemByID(int id){
+
+    public Item getItemByID(int id) {
         Query q = em.createNamedQuery("Item.findByItemID");
         q.setParameter("itemID", id);
         List results = q.getResultList();
-        
-        return (Item)results.get(0);
+
+        return (Item) results.get(0);
     }
-    public Item getItemByUPC(int upc){
+
+    public Item getItemByUPC(int upc) {
         Query q = em.createNamedQuery("Item.findByItemID");
-        q.setParameter("upc", upc);   
+        q.setParameter("upc", upc);
         List results = q.getResultList();
-        
-        return (Item)results.get(0);
+
+        return (Item) results.get(0);
     }
-    public List<Item> getAllItems(){
+
+    public List<Item> getAllItems() {
         Query q = em.createNamedQuery("Item.findAll");
         List results = q.getResultList();
-        
+
+        return results;
+    }
+    
+    public List<Item> getMatchingItems(String toMatch){
+        Query q = em.createNamedQuery("Item.findByMatchingName");
+        q.setParameter("name", toMatch);
+        List results = q.getResultList();
         return results;
     }
 }

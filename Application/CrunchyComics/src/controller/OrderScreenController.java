@@ -314,11 +314,16 @@ public class OrderScreenController implements Initializable {
     }
 
     public void searchItems() {
-        System.out.println("Keypressed");
+        resultContainer.getChildren().clear();
+        List<Item> items = itemBroker.getMatchingItems(searchField.getText());
+        for (Item i : items){
+            addItemToSearch(i);
+        }
     }
-    
+
     /**
-     * When the Finish Order is clicked this method called. It checks if the transaction list is not empty. 
+     * When the Finish Order is clicked this method called. It checks if the
+     * transaction list is not empty.
      */
     public void completeTransaction() {
         //Check if there is anything on the transaction list.
@@ -331,11 +336,7 @@ public class OrderScreenController implements Initializable {
         transaction.setTransactionDate(new Date());
 
         tb.insert(transaction);
-        //Get the controller for the MainScreen.
-        MainScreenController c = (MainScreenController) ((FXMLLoader) ControllerManager.getInstance().getMainScreen().getUserData()).getController();
-        //Updates the transactions in the MainScreen.
-        c.showTransactions();
-        
+
         returnToMainScreen();
     }
 
@@ -343,8 +344,12 @@ public class OrderScreenController implements Initializable {
      * This method changes the screen to the MainScreen.
      */
     public void returnToMainScreen() {
+        //Get the controller for the MainScreen.
+        MainScreenController c = (MainScreenController) ((FXMLLoader) ControllerManager.getInstance().getMainScreen().getUserData()).getController();
+        //Updates the transactions in the MainScreen.
+        c.showTransactions();
         //Set scene to main screen.
         ControllerManager.getInstance().getWindow().setScene(ControllerManager.getInstance().getMainScreen());
-        
+
     }
 }

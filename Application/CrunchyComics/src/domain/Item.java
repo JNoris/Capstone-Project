@@ -36,6 +36,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Item.findByDescription", query = "SELECT i FROM Item i WHERE i.description = :description")
     , @NamedQuery(name = "Item.findByPrice", query = "SELECT i FROM Item i WHERE i.price = :price")
     , @NamedQuery(name = "Item.findByName", query = "SELECT i FROM Item i WHERE i.name = :name")
+    , @NamedQuery(name = "Item.findByMatchingName", query = "SELECT i FROM Item i WHERE LOWER(i.name) LIKE CONCAT('%',LOWER(:name),'%')")
     , @NamedQuery(name = "Item.findByQuantity", query = "SELECT i FROM Item i WHERE i.quantity = :quantity")
     , @NamedQuery(name = "Item.findByUpc", query = "SELECT i FROM Item i WHERE i.upc = :upc")})
 public class Item implements Serializable {
