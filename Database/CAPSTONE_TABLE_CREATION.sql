@@ -37,7 +37,8 @@ CREATE TABLE Refund(
 
 CREATE TABLE Transaction(
 	transactionID INT,
-	transaction_date DATETIME,
+	transaction_date DATETIME NOT NULL,
+	final_price FLOAT (6,2) NOT NULL,
 	CONSTRAINT SYS_TRANSACTIONID_PK PRIMARY KEY(transactionID)
 );
 

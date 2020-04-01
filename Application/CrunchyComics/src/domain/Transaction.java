@@ -37,6 +37,11 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Transaction.getHighestIndex", query = "SELECT MAX(t.transactionID) FROM Transaction t")})
 public class Transaction implements Serializable {
 
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Basic(optional = false)
+    @Column(name = "final_price")
+    private float finalPrice;
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -55,13 +60,14 @@ public class Transaction implements Serializable {
         this.transactionID = transactionID;
     }
 
-    public float getTotalPrice(){
-        float total = 0f;
-        for (TransactionItem i : transactionItemList){
-            total += i.getSoldPrice();
-        }
-        return total;
-    }
+//    public float getTotalPrice() {
+//        float total = 0f;
+//        for (TransactionItem i : transactionItemList) {
+//            total += i.getSoldPrice();
+//        }
+//        return total;
+//    }
+
     public Integer getTransactionID() {
         return transactionID;
     }
@@ -110,6 +116,18 @@ public class Transaction implements Serializable {
     @Override
     public String toString() {
         return "domain.Transaction[ transactionID=" + transactionID + " ]";
+    }
+
+    public void setFinalPrice(Float finalPrice) {
+        this.finalPrice = finalPrice;
+    }
+
+    public float getFinalPrice() {
+        return finalPrice;
+    }
+
+    public void setFinalPrice(float finalPrice) {
+        this.finalPrice = finalPrice;
     }
 
 }

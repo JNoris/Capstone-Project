@@ -84,7 +84,7 @@ public class MainScreenController implements Initializable {
     public void addOrderToMainScreen(Transaction t) {
         HBox transactionContainer = new HBox(10);
         Label itemName = new Label("Transaction #" + t.getTransactionID() + "");
-        Label itemPrice = new Label("$" + String.format("%.2f", t.getTotalPrice()) + "");
+        Label itemPrice = new Label("$" + String.format("%.2f", t.getFinalPrice()) + "");
 
         transactionContainer.setMinWidth(563);
         transactionContainer.setMinHeight(45);

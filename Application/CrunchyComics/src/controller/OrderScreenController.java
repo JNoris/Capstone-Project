@@ -50,6 +50,7 @@ import javafx.stage.Popup;
 import javafx.stage.Stage;
 import manager.ControllerManager;
 import manager.DatabaseManager;
+import ui.TransactionUIElement;
 
 /**
  *
@@ -228,87 +229,41 @@ public class OrderScreenController implements Initializable {
                                 && ti.getTransactionItemPK().getTransactionID() == transaction.getTransactionID() //Compare Transaction IDs.
                                 && ti.getTransactionItemPK().getQuantity() == Integer.parseInt(quantityLabel.getText())) { //Compare quantities.
                             ti.getTransactionItemPK().setQuantity(ti.getTransactionItemPK().getQuantity() + 1);
+
+                            //Update quantity in the UI.
+                            int quant = Integer.parseInt(quantityLabel.getText());
+                            quant++;
+                            quantityLabel.setText(quant + "");
+                            calculateSubtotal(item);
+
+                            return;
                         }
                     }
-
-                    //Update quantity in the UI.
-                    int quant = Integer.parseInt(quantityLabel.getText());
-                    quant++;
-                    quantityLabel.setText(quant + "");
                 }
             }
         }
         if (!exist) {
-            Label name = new Label(item.getName());
-            Label price = new Label(Float.toString(item.getPrice()));
-            Label quantity = new Label(1 + "");
-            Label id = new Label(item.getItemID() + "");
-
-            id.setPrefSize(0, 0);
-            id.setMaxWidth(0);
-            id.setMinWidth(0);
-            id.setMaxHeight(0);
-            id.setMinWidth(0);
-
-            HBox itemContainer = new HBox(10);
-            itemContainer.setPadding(new Insets(10, 10, 10, 10));
-
-            itemContainer.setMinWidth(522);
-            itemContainer.setMinHeight(43);
-            itemContainer.setPrefSize(522, 43);
-
-            itemContainer.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event) {
-                    Popup popup = new Popup();
-                    popup.getContent().add(new Label(item.getName()));
-                    popup.show(ControllerManager.getInstance().getWindow());
-                }
-            });
-
-            name.setMinHeight(41);
-            name.setMinWidth(320);
-            name.setMaxWidth(320);
-
-            price.setMinHeight(41);
-            price.setMinWidth(115);
-            price.setMaxWidth(115);
-
-            quantity.setMinHeight(41);
-            quantity.setMinWidth(65);
-            quantity.setMaxWidth(65);
-
-            //label1.setTextFill(Color.web("#0076a3"));
-            //label.setFont(new Font("Arial", 30));
-            name.setTextFill(Color.web("#FFFFFF"));
-            price.setTextFill(Color.web("#FFFFFF"));
-            quantity.setTextFill(Color.web("#FFFFFF"));
-
-            name.setFont(new Font("Arial Black", 25));
-            price.setFont(new Font("Arial Black", 25));
-            quantity.setFont(new Font("Arial Black", 25));
-
-            itemContainer.getChildren().addAll(id, name, quantity, price);
-
+            TransactionUIElement t = new TransactionUIElement(item);
             /**
              * Add the item container to the itemListDisplay
              */
-            saleListDisplay.getChildren().addAll(itemContainer);
-            System.out.println(saleListDisplay.getChildren());
+            saleListDisplay.getChildren().addAll(t);
+//            System.out.println(saleListDisplay.getChildren());
 
             //Create a TransactionItem
             TransactionItem tItem = new TransactionItem(item.getItemID(), transaction.getTransactionID(), 1);
             tItem.setItem(item);
             tItem.setSoldPrice(item.getPrice()); //Sets price of the item as the original price of the item.
             transaction.getTransactionItemList().add(tItem);
-            calculateSubtotal(item);
         }
+
+        calculateSubtotal(item);
     }
 
     public void calculateSubtotal(Item item) {
         float total = 0f;
         for (TransactionItem tItem : transaction.getTransactionItemList()) {
-            total += tItem.getItem().getPrice();
+            total += tItem.getSoldPrice() * tItem.getTransactionItemPK().getQuantity();
         }
         calculateTax(total);
         subtotalDisplay.setText(String.format("%.2f", total));
@@ -321,7 +276,7 @@ public class OrderScreenController implements Initializable {
     }
 
     public void updateTotal(float value) {
-        finalPriceDisplay.setText(String.format("$%.2f", value));
+        finalPriceDisplay.setText(String.format("%.2f", value));
     }
 
     public void searchItems() {
@@ -345,7 +300,7 @@ public class OrderScreenController implements Initializable {
 
         //Set transaction date.
         transaction.setTransactionDate(new Date());
-
+        transaction.setFinalPrice(Float.parseFloat(finalPriceDisplay.getText()));
         tb.insert(transaction);
 
         returnToMainScreen();
