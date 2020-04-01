@@ -5,9 +5,11 @@ import broker.TransactionBroker;
 import domain.Item;
 import domain.Transaction;
 import domain.TransactionItem;
+import domain.TransactionItemPK;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -45,6 +47,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import manager.ControllerManager;
 import manager.DatabaseManager;
 
 /**
@@ -89,18 +92,23 @@ public class OrderScreenController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         itemBroker = new ItemBroker(DatabaseManager.getInstance(), DatabaseManager.getEntityManager());
+        tb = new TransactionBroker(DatabaseManager.getInstance());
+
         List<Item> items = itemBroker.getAllItems();
 
         for (Item item : items) {
             addItemToSearch(item);
         }
+
+        //Create new transaction object.
         transaction = new Transaction();
         transaction.setTransactionItemList(new ArrayList<TransactionItem>());
-        
+        //Set transaction date
+        transaction.setTransactionID(tb.getHighestID() + 1);
+
 //        addItemToSale(items.get(0));
 //        addItemToSale(items.get(1));
 //        addItemToSale(items.get(2));
-
     }
 
     /**
@@ -190,7 +198,7 @@ public class OrderScreenController implements Initializable {
         hbox.setOnMouseClicked(new EventHandler() {
             @Override
             public void handle(Event event) {
-                System.out.println("HBox clicked.");
+//                System.out.println("HBox clicked.");
                 addItemToSale(itemBroker.getItemByID(Integer.parseInt(id.getText())));
             }
         });
@@ -206,7 +214,7 @@ public class OrderScreenController implements Initializable {
         if (saleListDisplay.getChildren().size() > 0) {
             for (Node n : saleListDisplay.getChildren()) {
                 HBox box = (HBox) n;
-                System.out.println(box.getChildren().get(1));
+//                System.out.println(box.getChildren().get(1));
                 Label labelID = (Label) box.getChildren().get(0);
                 int id = Integer.parseInt(labelID.getText());
                 if (id == item.getItemID()) {
@@ -268,8 +276,10 @@ public class OrderScreenController implements Initializable {
             System.out.println(saleListDisplay.getChildren());
         }
 
-        TransactionItem tItem = new TransactionItem();
+        //Create a TransactionItem
+        TransactionItem tItem = new TransactionItem(item.getItemID(), transaction.getTransactionID());
         tItem.setItem(item);
+        tItem.setSoldPrice(item.getPrice()); //Sets price of the item as the original price of the item.
         transaction.getTransactionItemList().add(tItem);
         calculateSubtotal(item);
     }
@@ -293,5 +303,26 @@ public class OrderScreenController implements Initializable {
 
     public void updateTotal(float value) {
         finalPriceDisplay.setText(String.format("$%.2f", value));
+    }
+
+    public void searchItems() {
+        System.out.println("Keypressed");
+    }
+
+    public void completeTransaction() {
+        //Check if there is anything on the transaction list.
+        if (transaction.getTransactionItemList().size() == 0) {
+            cancelTransactionBtnClicked();
+            return;
+        }
+
+        //Set transaction date.
+        transaction.setTransactionDate(new Date());
+
+        tb.insert(transaction);
+    }
+
+    public void cancelTransactionBtnClicked() {
+        ControllerManager.getInstance().getWindow().setScene(ControllerManager.getInstance().getMainScreen());
     }
 }
