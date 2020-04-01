@@ -24,8 +24,12 @@ public class ControllerManager {
 
     private ControllerManager() {
         try {
-            this.mainScreen = new Scene((Parent)FXMLLoader.load(getClass().getResource("/fxml/MainScreen.fxml")));
-            this.loginScreen = new Scene((Parent)FXMLLoader.load(getClass().getResource("/fxml/Login.fxml")));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/MainScreen.fxml"));
+            this.mainScreen = new Scene((Parent)loader.load());
+            this.mainScreen.setUserData(loader);
+            
+            loader = new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
+            this.loginScreen = new Scene((Parent)loader.load(getClass().getResource("/fxml/Login.fxml")));
         } catch (IOException e) {
             e.printStackTrace();
             System.exit(-1);

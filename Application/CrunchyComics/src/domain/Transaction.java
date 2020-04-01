@@ -55,6 +55,13 @@ public class Transaction implements Serializable {
         this.transactionID = transactionID;
     }
 
+    public float getTotalPrice(){
+        float total = 0f;
+        for (TransactionItem i : transactionItemList){
+            total += i.getSoldPrice();
+        }
+        return total;
+    }
     public Integer getTransactionID() {
         return transactionID;
     }

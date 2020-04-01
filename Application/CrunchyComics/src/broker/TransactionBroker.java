@@ -10,6 +10,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import manager.DatabaseManager;
 import domain.*;
+import java.util.List;
 import javax.persistence.Query;
 
 /**
@@ -44,4 +45,10 @@ public class TransactionBroker {
         Query q = em.createNamedQuery("Transaction.getHighestIndex");
         return (int) q.getResultList().get(0);
     }
+    
+    public List<Transaction> getAllTransactions(){
+        Query q = em.createNamedQuery("Transaction.findAll");
+        return (List<Transaction>)q.getResultList();
+    }
+    
 }

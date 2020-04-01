@@ -46,6 +46,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.stage.Popup;
 import javafx.stage.Stage;
 import manager.ControllerManager;
 import manager.DatabaseManager;
@@ -245,6 +246,15 @@ public class OrderScreenController implements Initializable {
             itemContainer.setMinHeight(43);
             itemContainer.setPrefSize(522, 43);
 
+            itemContainer.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    Popup popup = new Popup();
+                    popup.getContent().add(new Label(item.getName()));
+                    popup.show(ControllerManager.getInstance().getWindow());
+                }
+            });
+
             name.setMinHeight(41);
             name.setMinWidth(320);
             name.setMaxWidth(320);
@@ -289,8 +299,6 @@ public class OrderScreenController implements Initializable {
         for (TransactionItem tItem : transaction.getTransactionItemList()) {
             total += tItem.getItem().getPrice();
         }
-//        total = Float.parseFloat(subtotalDisplay.getText());
-//        total = total + (item.getPrice());
         calculateTax(total);
         subtotalDisplay.setText(String.format("%.2f", total));
     }
@@ -308,11 +316,14 @@ public class OrderScreenController implements Initializable {
     public void searchItems() {
         System.out.println("Keypressed");
     }
-
+    
+    /**
+     * When the Finish Order is clicked this method called. It checks if the transaction list is not empty. 
+     */
     public void completeTransaction() {
         //Check if there is anything on the transaction list.
         if (transaction.getTransactionItemList().size() == 0) {
-            cancelTransactionBtnClicked();
+            returnToMainScreen();
             return;
         }
 
@@ -320,9 +331,20 @@ public class OrderScreenController implements Initializable {
         transaction.setTransactionDate(new Date());
 
         tb.insert(transaction);
+        //Get the controller for the MainScreen.
+        MainScreenController c = (MainScreenController) ((FXMLLoader) ControllerManager.getInstance().getMainScreen().getUserData()).getController();
+        //Updates the transactions in the MainScreen.
+        c.showTransactions();
+        
+        returnToMainScreen();
     }
 
-    public void cancelTransactionBtnClicked() {
+    /**
+     * This method changes the screen to the MainScreen.
+     */
+    public void returnToMainScreen() {
+        //Set scene to main screen.
         ControllerManager.getInstance().getWindow().setScene(ControllerManager.getInstance().getMainScreen());
+        
     }
 }
