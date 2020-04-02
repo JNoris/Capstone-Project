@@ -1,13 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.Insets ?>
+<?import javafx.scene.control.Button ?>
+<?import javafx.scene.control.Label ?>
+<?import javafx.scene.control.Tab ?>
+<?import javafx.scene.control.TabPane ?>
+<?import javafx.scene.layout.AnchorPane ?>
+<?import javafx.scene.layout.VBox ?>
+<?import javafx.scene.layout.HBox ?>
+<?import javafx.scene.text.Font ?>
 
 <VBox maxHeight="720.0" maxWidth="1280.0" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" spacing="50.0" style="-fx-background-color: #3A3A3A;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ManagementController">
    <children>
@@ -60,7 +61,8 @@
                                     <Font name="Arial Black" size="20.0" />
                                  </font>
                               </Button>
-                           </children></AnchorPane>
+                           </children>
+                        </AnchorPane>
                      </content>
                   </Tab>
                   <Tab text="Inventory">
@@ -92,7 +94,8 @@
                                     <Font name="Arial Black" size="20.0" />
                                  </font>
                               </Button>
-                           </children></AnchorPane>
+                           </children>
+                        </AnchorPane>
                      </content>
                   </Tab>
                </tabs>
