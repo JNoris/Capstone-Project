@@ -54,7 +54,7 @@ public class LoginController implements Initializable {
      */
     public void loginEnterBtnClicked(ActionEvent event) {
         try {
-            Parent mainScreenParent = FXMLLoader.load(getClass().getResource("/fxml/MainScreen.fxml"));
+            Parent mainScreenParent = FXMLLoader.load(getClass().getResource("/fxml/MainScreenNORMAL.fxml"));
             Scene main = new Scene(mainScreenParent);
 
             LoginService ls = new LoginService();

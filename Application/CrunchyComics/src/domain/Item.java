@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package domain;
 
 import java.io.Serializable;
@@ -26,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author 695553
+ * @author Vinicius Smith
  */
 @Entity
 @Table(name = "item")
@@ -37,6 +36,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Item.findByDescription", query = "SELECT i FROM Item i WHERE i.description = :description")
     , @NamedQuery(name = "Item.findByPrice", query = "SELECT i FROM Item i WHERE i.price = :price")
     , @NamedQuery(name = "Item.findByName", query = "SELECT i FROM Item i WHERE i.name = :name")
+    , @NamedQuery(name = "Item.findByMatchingName", query = "SELECT i FROM Item i WHERE LOWER(i.name) LIKE CONCAT('%',LOWER(:name),'%')")
     , @NamedQuery(name = "Item.findByQuantity", query = "SELECT i FROM Item i WHERE i.quantity = :quantity")
     , @NamedQuery(name = "Item.findByUpc", query = "SELECT i FROM Item i WHERE i.upc = :upc")})
 public class Item implements Serializable {
@@ -61,9 +61,6 @@ public class Item implements Serializable {
     @JoinColumn(name = "item_type", referencedColumnName = "item_type")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Type itemType;
-    @JoinColumn(name = "vendorID", referencedColumnName = "vendorID")
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
-    private Vendor vendorID;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "item", fetch = FetchType.EAGER)
     private List<OrderItem> orderItemList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "item", fetch = FetchType.EAGER)
@@ -140,14 +137,6 @@ public class Item implements Serializable {
         this.itemType = itemType;
     }
 
-    public Vendor getVendorID() {
-        return vendorID;
-    }
-
-    public void setVendorID(Vendor vendorID) {
-        this.vendorID = vendorID;
-    }
-
     @XmlTransient
     public List<OrderItem> getOrderItemList() {
         return orderItemList;
@@ -196,7 +185,7 @@ public class Item implements Serializable {
 
     @Override
     public String toString() {
-        return "broker.Item[ itemID=" + itemID + " ]";
+        return "domain.Item[ itemID=" + itemID + " ]";
     }
-
+    
 }
