@@ -131,6 +131,7 @@ public class OrderScreenController implements Initializable {
         loginWindow.show();
     }
 
+    //TODO: Not used so delete eventually.
     /**
      * When TextField searchField is initiated (by clicking on the search field
      * in the order screen), whatever is typed in the field will call
@@ -155,7 +156,6 @@ public class OrderScreenController implements Initializable {
                             new Label(Float.toString(item.getPrice())),
                             result);
                     //No idea how to add the button correctly
-
                 }
             }
         };
@@ -243,18 +243,17 @@ public class OrderScreenController implements Initializable {
             }
         }
         if (!exist) {
-            TransactionUIElement t = new TransactionUIElement(item);
-            /**
-             * Add the item container to the itemListDisplay
-             */
-            saleListDisplay.getChildren().addAll(t);
-//            System.out.println(saleListDisplay.getChildren());
 
+//            System.out.println(saleListDisplay.getChildren());
             //Create a TransactionItem
             TransactionItem tItem = new TransactionItem(item.getItemID(), transaction.getTransactionID(), 1);
             tItem.setItem(item);
             tItem.setSoldPrice(item.getPrice()); //Sets price of the item as the original price of the item.
             transaction.getTransactionItemList().add(tItem);
+
+            TransactionUIElement t = new TransactionUIElement(tItem);
+            saleListDisplay.getChildren().addAll(t);
+
         }
 
         calculateSubtotal(item);
@@ -317,5 +316,17 @@ public class OrderScreenController implements Initializable {
         //Set scene to main screen.
         ControllerManager.getInstance().getWindow().setScene(ControllerManager.getInstance().getMainScreen());
 
+    }
+
+    //Pop up
+    public void createPopup(TransactionItem item) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/OrderScreenItemPopup.fxml"));
+        Popup popup = new Popup();
+        try {
+            popup.getContent().add((Parent) loader.load());
+            popup.show(ControllerManager.getInstance().getMainScreen().getWindow());
+        } catch (IOException e) {
+            System.exit(0);
+        }
     }
 }

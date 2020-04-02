@@ -5,9 +5,14 @@
  */
 package ui;
 
+import controller.TransactionUIElementController;
 import domain.Item;
+import domain.TransactionItem;
+import java.io.IOException;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -24,17 +29,18 @@ public class TransactionUIElement extends HBox {
 
     private Label name;
     private Label quantity;
-
-    
     private Label id;
     private Label price;
+    private TransactionItem transactionItem;
 
-    public TransactionUIElement(Item item) {
-        this.name = new Label(item.getName());
-        this.price = new Label(Float.toString(item.getPrice()));
+    public TransactionUIElement(TransactionItem item) {
+        this.transactionItem = item;
+        this.name = new Label(item.getItem().getName());
+        this.price = new Label(Float.toString(item.getSoldPrice()));
         this.quantity = new Label(1 + "");
-        this.id = new Label(item.getItemID() + "");
+        this.id = new Label(item.getItem().getItemID() + "");
 
+        //Make ID invisible
         id.setPrefSize(0, 0);
         id.setMaxWidth(0);
         id.setMinWidth(0);
@@ -52,9 +58,7 @@ public class TransactionUIElement extends HBox {
         this.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                Popup popup = new Popup();
-                popup.getContent().add(new Label(item.getName()));
-                popup.show(ControllerManager.getInstance().getWindow());
+                createPopup(TransactionUIElement.this.transactionItem);
             }
         });
 
@@ -82,8 +86,7 @@ public class TransactionUIElement extends HBox {
 
         this.getChildren().addAll(id, name, quantity, price);
     }
-    
-    
+
     public String getName() {
         return name.getText();
     }
@@ -99,5 +102,19 @@ public class TransactionUIElement extends HBox {
     public float getPrice() {
         return Float.parseFloat(price.getText());
     }
-    
+
+    //Pop up
+    public void createPopup(TransactionItem item) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/OrderScreenItemPopup.fxml"));
+        Popup popup = new Popup();
+        try {
+            TransactionUIElementController controller = new TransactionUIElementController();
+            loader.setController(controller);
+            popup.getContent().add((Parent) loader.load());
+            popup.show(ControllerManager.getInstance().getWindow());
+            controller.fill(item);
+        } catch (IOException e) {
+            System.exit(0);
+        }
+    }
 }

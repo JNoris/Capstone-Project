@@ -45,9 +45,8 @@ public class Main extends Application {
             controller.initializeApp();
         });
         
-        ControllerManager.getInstance().setWindow(stage);
         stage.setScene(splashScene);
         stage.show();
-
+        ControllerManager.getInstance().setWindow(stage);
     }
 }

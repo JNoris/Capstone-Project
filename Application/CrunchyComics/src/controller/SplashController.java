@@ -36,6 +36,7 @@ public class SplashController {
         try {
             Parent loginScreen = FXMLLoader.load(getClass().getResource("/fxml/Login.fxml"));
             Stage stage = (Stage) mainPane.getScene().getWindow();
+            
             stage.setScene(new Scene(loginScreen));
             stage.show();
         } catch (IOException e) {
