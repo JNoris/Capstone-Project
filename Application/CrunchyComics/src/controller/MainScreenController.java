@@ -1,7 +1,11 @@
 package controller;
 
+import broker.TransactionBroker;
+import domain.Transaction;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,15 +20,16 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import manager.DatabaseManager;
 
 /**
  *
  * @author Noris. UMM I MEAN: CAPSTONE GROUP, OF COURSE, TIS NOT MY WORK BUT OUR
- *         WORK.
- * 
+ * WORK.
+ *
  * @Notes Please make sure to correct this code. Namely: Password as well as
- *        validation.
- * 
+ * validation.
+ *
  */
 public class MainScreenController implements Initializable {
 
@@ -35,11 +40,30 @@ public class MainScreenController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         // TODO Auto-generated method stub
         addOrderToMainScreen();
+    private VBox mainScreenDisplay;
+
+    private List<Transaction> transactions;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        System.out.println("Initializing MainScreenController");
+        showTransactions();
+    }
+
+    public void showTransactions() {
+        mainScreenDisplay.getChildren().clear();
+
+        TransactionBroker tb = new TransactionBroker(DatabaseManager.getInstance());
+        transactions = tb.getAllTransactions();
+
+        for (int i = transactions.size() - 1; i >= 0; i--) {
+            addOrderToMainScreen(transactions.get(i));
+        }
     }
 
     /**
-     * This method is called by clicking "Logout" and will redirect user to login
-     * screen
+     * This method is called by clicking "Logout" and will redirect user to
+     * login screen
      */
     public void logoutBtnClicked(ActionEvent event) throws IOException {
         Parent loginParent = FXMLLoader.load(getClass().getResource("/fxml/Login.fxml"));
@@ -79,6 +103,22 @@ public class MainScreenController implements Initializable {
         itemPrice.setMinHeight(45);
         itemPrice.setMinWidth(112);
         
+
+    public void addOrderToMainScreen(Transaction t) {
+        HBox transactionContainer = new HBox(10);
+        Label itemName = new Label("Transaction #" + t.getTransactionID() + "");
+        Label itemPrice = new Label("$" + String.format("%.2f", t.getFinalPrice()) + "");
+
+        transactionContainer.setMinWidth(563);
+        transactionContainer.setMinHeight(45);
+        transactionContainer.setPrefSize(563, 45);
+
+        itemName.setMinHeight(45);
+        itemName.setMinWidth(410);
+
+        itemPrice.setMinHeight(45);
+        itemPrice.setMinWidth(112);
+
         itemName.setTextFill(Color.web("#D3D1D1"));
         itemPrice.setTextFill(Color.web("#D3D1D1"));
 
@@ -89,6 +129,11 @@ public class MainScreenController implements Initializable {
         
         
         transactionContainer.getChildren().addAll(itemName,itemPrice);
+        mainScreenDisplay.getChildren().addAll(transactionContainer);
+    }
+}
+
+        transactionContainer.getChildren().addAll(itemName, itemPrice);
         mainScreenDisplay.getChildren().addAll(transactionContainer);
     }
 }

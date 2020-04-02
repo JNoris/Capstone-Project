@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author 695553
+ * @author Vinicius Smith
  */
 @Entity
 @Table(name = "transaction")
@@ -33,8 +33,14 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Transaction.findAll", query = "SELECT t FROM Transaction t")
     , @NamedQuery(name = "Transaction.findByTransactionID", query = "SELECT t FROM Transaction t WHERE t.transactionID = :transactionID")
-    , @NamedQuery(name = "Transaction.findByTransactionDate", query = "SELECT t FROM Transaction t WHERE t.transactionDate = :transactionDate")})
+    , @NamedQuery(name = "Transaction.findByTransactionDate", query = "SELECT t FROM Transaction t WHERE t.transactionDate = :transactionDate")
+    , @NamedQuery(name = "Transaction.getHighestIndex", query = "SELECT MAX(t.transactionID) FROM Transaction t")})
 public class Transaction implements Serializable {
+
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Basic(optional = false)
+    @Column(name = "final_price")
+    private float finalPrice;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -42,7 +48,7 @@ public class Transaction implements Serializable {
     @Column(name = "transactionID")
     private Integer transactionID;
     @Column(name = "transaction_date")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date transactionDate;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "transaction", fetch = FetchType.EAGER)
     private List<TransactionItem> transactionItemList;
@@ -53,6 +59,14 @@ public class Transaction implements Serializable {
     public Transaction(Integer transactionID) {
         this.transactionID = transactionID;
     }
+
+//    public float getTotalPrice() {
+//        float total = 0f;
+//        for (TransactionItem i : transactionItemList) {
+//            total += i.getSoldPrice();
+//        }
+//        return total;
+//    }
 
     public Integer getTransactionID() {
         return transactionID;
@@ -101,7 +115,19 @@ public class Transaction implements Serializable {
 
     @Override
     public String toString() {
-        return "broker.Transaction[ transactionID=" + transactionID + " ]";
+        return "domain.Transaction[ transactionID=" + transactionID + " ]";
     }
-    
+
+    public void setFinalPrice(Float finalPrice) {
+        this.finalPrice = finalPrice;
+    }
+
+    public float getFinalPrice() {
+        return finalPrice;
+    }
+
+    public void setFinalPrice(float finalPrice) {
+        this.finalPrice = finalPrice;
+    }
+
 }
