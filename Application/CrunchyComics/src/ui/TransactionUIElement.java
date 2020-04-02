@@ -156,6 +156,11 @@ public class TransactionUIElement extends HBox {
         }
     }
 
+    public void selfDelete() {
+        controller.getTransaction().getTransactionItemList().remove(this.transactionItem);
+        controller.removeFromSale(this);
+    }
+
     public boolean equals(TransactionUIElement other) {
         if (this.transactionItem.getTransactionItemPK().equals(other.getTransactionItem().getTransactionItemPK())) {
             return true;

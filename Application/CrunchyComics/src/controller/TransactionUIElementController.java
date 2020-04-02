@@ -111,7 +111,8 @@ public class TransactionUIElementController implements Initializable {
 
 
     public void requestDeleteItem() {
-
+        node.selfDelete();
+        closePopup();
     }
 
     public void closePopup() {

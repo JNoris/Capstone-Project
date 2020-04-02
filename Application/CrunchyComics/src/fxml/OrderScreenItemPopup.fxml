@@ -138,7 +138,7 @@
             <Button minWidth="75.0" mnemonicParsing="false" onMouseReleased="#closePopup" text="Cancel" />
             <VBox alignment="BOTTOM_RIGHT" prefHeight="91.0" prefWidth="228.0">
                <children>
-                  <Button minWidth="75.0" mnemonicParsing="false" text="Delete">
+                  <Button minWidth="75.0" mnemonicParsing="false" onMouseReleased="#requestDeleteItem" text="Delete">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
