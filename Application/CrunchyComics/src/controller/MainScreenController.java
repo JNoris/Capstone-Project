@@ -43,6 +43,10 @@ public class MainScreenController implements Initializable {
         loginWindow.show();
     }
 
+    /**
+     * This method is called when user clicks on the "Order Entry" button on the
+     * main screen, this button will redirect you to the order screen.
+     */
     public void orderBtnClicked(ActionEvent event) throws IOException {
         Parent orderParent = FXMLLoader.load(getClass().getResource("/fxml/OrderScreen.fxml"));
         Scene order = new Scene(orderParent);
