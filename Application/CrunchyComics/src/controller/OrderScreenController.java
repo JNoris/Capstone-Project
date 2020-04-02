@@ -49,11 +49,10 @@ import manager.DatabaseManager;
 
 /**
  *
- * @author Noris. UMM I MEAN: CAPSTONE GROUP, OF COURSE, TIS NOT MY WORK BUT OUR
- * WORK.
+ * @author Noris.
  *
  * @Notes Please make sure to correct this code. Namely: Password as well as
- * validation.
+ *        validation.
  *
  */
 public class OrderScreenController implements Initializable {
@@ -96,9 +95,9 @@ public class OrderScreenController implements Initializable {
         }
         transaction = new Transaction();
         transaction.setTransactionItemList(new ArrayList<TransactionItem>());
-//        addItemToSale(items.get(0));
-//        addItemToSale(items.get(1));
-//        addItemToSale(items.get(2));
+        // addItemToSale(items.get(0));
+        // addItemToSale(items.get(1));
+        // addItemToSale(items.get(2));
 
     }
 
@@ -121,8 +120,8 @@ public class OrderScreenController implements Initializable {
     }
 
     /**
-     * When TextField searchField is initiated (by clicking on the search field
-     * in the order screen), whatever is typed in the field will call
+     * When TextField searchField is initiated (by clicking on the search field in
+     * the order screen), whatever is typed in the field will call
      * textfield.getText(); which grabs the fields input and outputs query
      * underneath in the results pane.
      *
@@ -140,10 +139,9 @@ public class OrderScreenController implements Initializable {
             public void handle(ActionEvent e) {
                 if (searchField.getText().equals(item.getName())) {
                     itemContainer.getChildren().addAll(new Label(item.getName()),
-                            new Label(Integer.toString(item.getItemID())),
-                            new Label(Float.toString(item.getPrice())),
+                            new Label(Integer.toString(item.getItemID())), new Label(Float.toString(item.getPrice())),
                             result);
-                    //No idea how to add the button correctly
+                    // No idea how to add the button correctly
 
                 }
             }
@@ -157,7 +155,7 @@ public class OrderScreenController implements Initializable {
     }
 
     public void addItemToSearch(Item item) {
-//        Button base = new Button();
+        // Button base = new Button();
         HBox hbox = new HBox(20);
         Label name = new Label();
         Label price = new Label();
@@ -171,8 +169,8 @@ public class OrderScreenController implements Initializable {
         price.setMinWidth(100);
         price.setMaxWidth(100);
 
-        //label1.setTextFill(Color.web("#0076a3"));
-        //label.setFont(new Font("Arial", 30));
+        // label1.setTextFill(Color.web("#0076a3"));
+        // label.setFont(new Font("Arial", 30));
         name.setTextFill(Color.web("#FFFFFF"));
         price.setTextFill(Color.web("#FFFFFF"));
         name.setFont(new Font("Arial Black", 25));
@@ -221,10 +219,10 @@ public class OrderScreenController implements Initializable {
             Label price = new Label(Float.toString(item.getPrice()));
             Label quantity = new Label(1 + "");
             Label id = new Label(item.getItemID() + "");
-            
+
             id.setPrefSize(0, 0);
             id.setMaxWidth(0);
-            id.setMinWidth(0);                        
+            id.setMinWidth(0);
             id.setMaxHeight(0);
             id.setMinWidth(0);
 
@@ -247,8 +245,8 @@ public class OrderScreenController implements Initializable {
             quantity.setMinWidth(65);
             quantity.setMaxWidth(65);
 
-            //label1.setTextFill(Color.web("#0076a3"));
-            //label.setFont(new Font("Arial", 30));
+            // label1.setTextFill(Color.web("#0076a3"));
+            // label.setFont(new Font("Arial", 30));
             name.setTextFill(Color.web("#FFFFFF"));
             price.setTextFill(Color.web("#FFFFFF"));
             quantity.setTextFill(Color.web("#FFFFFF"));
@@ -277,8 +275,8 @@ public class OrderScreenController implements Initializable {
         for (TransactionItem tItem : transaction.getTransactionItemList()) {
             total += tItem.getItem().getPrice();
         }
-//        total = Float.parseFloat(subtotalDisplay.getText());
-//        total = total + (item.getPrice());
+        // total = Float.parseFloat(subtotalDisplay.getText());
+        // total = total + (item.getPrice());
         calculateTax(total);
         subtotalDisplay.setText(String.format("%.2f", total));
     }
