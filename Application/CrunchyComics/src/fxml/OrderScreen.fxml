@@ -47,18 +47,7 @@
                         <AnchorPane prefHeight="60.0" prefWidth="653.0">
                            <children>
                               <TextField fx:id="searchField" layoutX="1.0" layoutY="9.0" prefHeight="43.0" prefWidth="441.0" style="-fx-background-color: #7F7F7F;" />
-                              <Circle fill="#7f7f7f" layoutX="536.0" layoutY="31.0" radius="24.0" stroke="BLACK" strokeType="INSIDE" />
-                              <ImageView fitHeight="44.0" fitWidth="44.0" layoutX="516.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../res/OrderScreen/searchImage.png.jpg" />
-                                 </image>
-                              </ImageView>
-                              <Circle fill="#7f7f7f" layoutX="613.0" layoutY="31.0" radius="24.0" stroke="BLACK" strokeType="INSIDE" />
-                              <ImageView fitHeight="36.0" fitWidth="50.0" layoutX="589.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../res/OrderScreen/filterArrow.png.jpg" />
-                                 </image>
-                              </ImageView>
+                              <Button layoutX="467.0" layoutY="18.0" mnemonicParsing="false" style="-fx-background-radius: 100;" text="Search" />
                            </children>
                         </AnchorPane>
                      </children>
