@@ -51,5 +51,4 @@ public class ManagementController implements Initializable {
         mainScreenWindow.setScene(main);
         mainScreenWindow.show();
     }
-
 }
