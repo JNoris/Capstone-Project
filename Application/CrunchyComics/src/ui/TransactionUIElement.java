@@ -39,7 +39,7 @@ public class TransactionUIElement extends HBox {
         this.transactionItem = item;
         this.controller = controller;
         this.name = new Label(item.getItem().getName());
-        this.price = new Label(Float.toString(item.getSoldPrice() * item.getTransactionItemPK().getQuantity()));
+        this.price = new Label(Float.toString(item.getTransactionItemPK().getSoldPrice() * item.getTransactionItemPK().getQuantity()));
         this.quantity = new Label(1 + "");
         this.id = new Label(item.getItem().getItemID() + "");
 
@@ -105,17 +105,18 @@ public class TransactionUIElement extends HBox {
     public float getPrice() {
         return Float.parseFloat(price.getText());
     }
-    
-    public TransactionItem getTransactionItem(){
+
+    public TransactionItem getTransactionItem() {
         return transactionItem;
     }
-    
+
     /**
-     * Refreshes the UI elements information with updated information from the TransactionItem object.
+     * Refreshes the UI elements information with updated information from the
+     * TransactionItem object.
      */
-    public void refresh(){
+    public void refresh() {
         this.quantity.setText(transactionItem.getTransactionItemPK().getQuantity() + "");
-        this.price.setText(transactionItem.getSoldPrice() * transactionItem.getTransactionItemPK().getQuantity() + "");
+        this.price.setText(transactionItem.getTransactionItemPK().getSoldPrice() * transactionItem.getTransactionItemPK().getQuantity() + "");
         this.controller.calculateSubtotal();
     }
 
@@ -134,5 +135,26 @@ public class TransactionUIElement extends HBox {
         } catch (IOException e) {
             System.exit(0);
         }
+    }
+
+    public TransactionUIElement lookForDuplicate() {
+        System.out.println("Looking for duplicate...");
+        for (TransactionUIElement other : controller.getAllSaleElements()) {
+            if (this.equals(other) && other != this) {
+                System.out.println("Found duplicate");
+                //Add current this quantity to the other quantity
+                //refresh() other
+                //Remove this.TransactionUI from transactionList
+                //Remove this from UI
+            }
+        }
+        return null;
+    }
+
+    public boolean equals(TransactionUIElement other) {
+        if (this.transactionItem.getTransactionItemPK().equals(other.getTransactionItem().getTransactionItemPK())) {
+            return true;
+        }
+        return false;
     }
 }

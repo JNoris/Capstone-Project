@@ -26,14 +26,18 @@ public class TransactionItemPK implements Serializable {
     @Basic(optional = false)
     @Column(name = "quantity")
     private int quantity;
+    @Basic(optional = false)
+    @Column(name = "sold_price")
+    private float soldPrice;
 
     public TransactionItemPK() {
     }
 
-    public TransactionItemPK(int itemID, int transactionID, int quantity) {
+    public TransactionItemPK(int itemID, int transactionID, int quantity, float soldPrice) {
         this.itemID = itemID;
         this.transactionID = transactionID;
         this.quantity = quantity;
+        this.soldPrice = soldPrice;
     }
 
     public int getItemID() {
@@ -60,12 +64,21 @@ public class TransactionItemPK implements Serializable {
         this.quantity = quantity;
     }
 
+    public float getSoldPrice() {
+        return soldPrice;
+    }
+
+    public void setSoldPrice(float soldPrice) {
+        this.soldPrice = soldPrice;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
         hash += (int) itemID;
         hash += (int) transactionID;
         hash += (int) quantity;
+        hash += (int) soldPrice;
         return hash;
     }
 
@@ -85,12 +98,15 @@ public class TransactionItemPK implements Serializable {
         if (this.quantity != other.quantity) {
             return false;
         }
+        if (this.soldPrice != other.soldPrice) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "domain.TransactionItemPK[ itemID=" + itemID + ", transactionID=" + transactionID + ", quantity=" + quantity + " ]";
+        return "domain.TransactionItemPK[ itemID=" + itemID + ", transactionID=" + transactionID + ", quantity=" + quantity + ", soldPrice=" + soldPrice + " ]";
     }
     
 }
