@@ -137,18 +137,23 @@ public class TransactionUIElement extends HBox {
         }
     }
 
-    public TransactionUIElement lookForDuplicate() {
+    public void fixDuplicates() {
         System.out.println("Looking for duplicate...");
         for (TransactionUIElement other : controller.getAllSaleElements()) {
             if (this.equals(other) && other != this) {
                 System.out.println("Found duplicate");
                 //Add current this quantity to the other quantity
+                other.getTransactionItem().getTransactionItemPK().setQuantity(this.transactionItem.getTransactionItemPK().getQuantity()
+                        + other.getTransactionItem().getTransactionItemPK().getQuantity());
                 //refresh() other
+                other.refresh();
                 //Remove this.TransactionUI from transactionList
-                //Remove this from UI
+                controller.getTransaction().getTransactionItemList().remove(this.transactionItem);
+                //Remove this TransactionUIElement from UI
+                controller.removeFromSale(this);
+                return;
             }
         }
-        return null;
     }
 
     public boolean equals(TransactionUIElement other) {

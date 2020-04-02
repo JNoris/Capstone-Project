@@ -103,10 +103,12 @@ public class TransactionUIElementController implements Initializable {
         node.refresh();
         
         //Look for duplicate
-        node.lookForDuplicate();
+        node.fixDuplicates();
         
         closePopup();
     }
+    
+
 
     public void requestDeleteItem() {
 

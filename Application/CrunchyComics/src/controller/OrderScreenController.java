@@ -333,4 +333,13 @@ public class OrderScreenController implements Initializable {
             System.exit(0);
         }
     }
+
+    public void removeFromSale(TransactionUIElement e) {
+        saleListDisplay.getChildren().remove(e);
+        calculateSubtotal();
+    }
+
+    public Transaction getTransaction() {
+        return this.transaction;
+    }
 }
