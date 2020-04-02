@@ -213,57 +213,54 @@ public class OrderScreenController implements Initializable {
         boolean exist = false;
         if (saleListDisplay.getChildren().size() > 0) {
             for (Node n : saleListDisplay.getChildren()) {
-                HBox box = (HBox) n;
-                // System.out.println(box.getChildren().get(1));
-                Label labelID = (Label) box.getChildren().get(0);
-                int id = Integer.parseInt(labelID.getText());
-                if (id == item.getItemID()) {
-                    exist = true;
-                    Label quantityLabel = (Label) box.getChildren().get(2);
+                TransactionUIElement e = (TransactionUIElement) n;
+                for (TransactionItem t : transaction.getTransactionItemList()) {
+                    if (e.getTransactionItem().getItem() == item) {
+                        if (e.getTransactionItem().getTransactionItemPK().getSoldPrice() == item.getPrice()) {
+                            System.out.println("Updating existing line.");
+                            exist = true;
 
-                    // Update TransactionItem quantity.
-                    for (TransactionItem ti : transaction.getTransactionItemList()) {
-                        if (ti.getTransactionItemPK().getItemID() == id // Compare Item IDs.
-                                && ti.getTransactionItemPK().getTransactionID() == transaction.getTransactionID() // Compare
-                                                                                                                  // Transaction
-                                                                                                                  // IDs.
-                                && ti.getTransactionItemPK().getQuantity() == Integer
-                                        .parseInt(quantityLabel.getText())) { // Compare quantities.
-                            ti.getTransactionItemPK().setQuantity(ti.getTransactionItemPK().getQuantity() + 1);
-
-                            // Update quantity in the UI.
-                            int quant = Integer.parseInt(quantityLabel.getText());
-                            quant++;
-                            quantityLabel.setText(quant + "");
-                            calculateSubtotal(item);
-
+                            e.getTransactionItem().getTransactionItemPK()
+                                    .setQuantity(e.getTransactionItem().getTransactionItemPK().getQuantity() + 1);
+                            e.refresh();
+                            System.out.println(e.getTransactionItem());
+                            calculateSubtotal();
                             return;
                         }
+                        //// System.out.println("TransactionItem exists.");
+                        // exist = true;
+                        //
+                        // t.getTransactionItemPK().setQuantity(t.getTransactionItemPK().getQuantity() +
+                        //// 1);
+                        // e.refresh();
+                        //
+                        // calculateSubtotal();
+                        // return;
+
                     }
                 }
             }
         }
         if (!exist) {
-
-            // System.out.println(saleListDisplay.getChildren());
+            System.out.println("Creating new line.");
             // Create a TransactionItem
-            TransactionItem tItem = new TransactionItem(item.getItemID(), transaction.getTransactionID(), 1);
+            TransactionItem tItem = new TransactionItem(item.getItemID(), transaction.getTransactionID(), 1,
+                    item.getPrice());
             tItem.setItem(item);
-            tItem.setSoldPrice(item.getPrice()); // Sets price of the item as the original price of the item.
+            tItem.getTransactionItemPK().setSoldPrice(item.getPrice()); // Sets price of the item as the original price
+                                                                        // of the item.
             transaction.getTransactionItemList().add(tItem);
 
-            TransactionUIElement t = new TransactionUIElement(tItem);
+            TransactionUIElement t = new TransactionUIElement(tItem, this);
             saleListDisplay.getChildren().addAll(t);
-
         }
-
-        calculateSubtotal(item);
+        calculateSubtotal();
     }
 
-    public void calculateSubtotal(Item item) {
+    public void calculateSubtotal() {
         float total = 0f;
         for (TransactionItem tItem : transaction.getTransactionItemList()) {
-            total += tItem.getSoldPrice() * tItem.getTransactionItemPK().getQuantity();
+            total += tItem.getTransactionItemPK().getSoldPrice() * tItem.getTransactionItemPK().getQuantity();
         }
         calculateTax(total);
         subtotalDisplay.setText(String.format("%.2f", total));
@@ -320,6 +317,14 @@ public class OrderScreenController implements Initializable {
 
     }
 
+    public ArrayList<TransactionUIElement> getAllSaleElements() {
+        ArrayList<TransactionUIElement> list = new ArrayList<TransactionUIElement>();
+        for (Node n : saleListDisplay.getChildren()) {
+            list.add((TransactionUIElement) n);
+        }
+        return list;
+    }
+
     // Pop up
     public void createPopup(TransactionItem item) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/OrderScreenItemPopup.fxml"));
@@ -330,5 +335,14 @@ public class OrderScreenController implements Initializable {
         } catch (IOException e) {
             System.exit(0);
         }
+    }
+
+    public void removeFromSale(TransactionUIElement e) {
+        saleListDisplay.getChildren().remove(e);
+        calculateSubtotal();
+    }
+
+    public Transaction getTransaction() {
+        return this.transaction;
     }
 }

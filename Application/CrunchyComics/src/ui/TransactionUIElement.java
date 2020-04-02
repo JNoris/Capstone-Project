@@ -5,6 +5,7 @@
  */
 package ui;
 
+import controller.OrderScreenController;
 import controller.TransactionUIElementController;
 import domain.Item;
 import domain.TransactionItem;
@@ -32,11 +33,13 @@ public class TransactionUIElement extends HBox {
     private Label id;
     private Label price;
     private TransactionItem transactionItem;
+    private OrderScreenController controller;
 
-    public TransactionUIElement(TransactionItem item) {
+    public TransactionUIElement(TransactionItem item, OrderScreenController controller) {
         this.transactionItem = item;
+        this.controller = controller;
         this.name = new Label(item.getItem().getName());
-        this.price = new Label(Float.toString(item.getSoldPrice()));
+        this.price = new Label(Float.toString(item.getTransactionItemPK().getSoldPrice() * item.getTransactionItemPK().getQuantity()));
         this.quantity = new Label(1 + "");
         this.id = new Label(item.getItem().getItemID() + "");
 
@@ -103,6 +106,20 @@ public class TransactionUIElement extends HBox {
         return Float.parseFloat(price.getText());
     }
 
+    public TransactionItem getTransactionItem() {
+        return transactionItem;
+    }
+
+    /**
+     * Refreshes the UI elements information with updated information from the
+     * TransactionItem object.
+     */
+    public void refresh() {
+        this.quantity.setText(transactionItem.getTransactionItemPK().getQuantity() + "");
+        this.price.setText(transactionItem.getTransactionItemPK().getSoldPrice() * transactionItem.getTransactionItemPK().getQuantity() + "");
+        this.controller.calculateSubtotal();
+    }
+
     //Pop up
     public void createPopup(TransactionItem item) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/OrderScreenItemPopup.fxml"));
@@ -113,8 +130,36 @@ public class TransactionUIElement extends HBox {
             popup.getContent().add((Parent) loader.load());
             popup.show(ControllerManager.getInstance().getWindow());
             controller.fill(item);
+            controller.setPopup(popup);
+            controller.setNode(this);
         } catch (IOException e) {
             System.exit(0);
         }
+    }
+
+    public void fixDuplicates() {
+        System.out.println("Looking for duplicate...");
+        for (TransactionUIElement other : controller.getAllSaleElements()) {
+            if (this.equals(other) && other != this) {
+                System.out.println("Found duplicate");
+                //Add current this quantity to the other quantity
+                other.getTransactionItem().getTransactionItemPK().setQuantity(this.transactionItem.getTransactionItemPK().getQuantity()
+                        + other.getTransactionItem().getTransactionItemPK().getQuantity());
+                //refresh() other
+                other.refresh();
+                //Remove this.TransactionUI from transactionList
+                controller.getTransaction().getTransactionItemList().remove(this.transactionItem);
+                //Remove this TransactionUIElement from UI
+                controller.removeFromSale(this);
+                return;
+            }
+        }
+    }
+
+    public boolean equals(TransactionUIElement other) {
+        if (this.transactionItem.getTransactionItemPK().equals(other.getTransactionItem().getTransactionItemPK())) {
+            return true;
+        }
+        return false;
     }
 }

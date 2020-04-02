@@ -6,8 +6,6 @@
 package domain;
 
 import java.io.Serializable;
-import javax.persistence.Basic;
-import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -30,15 +28,12 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "TransactionItem.findByItemID", query = "SELECT t FROM TransactionItem t WHERE t.transactionItemPK.itemID = :itemID")
     , @NamedQuery(name = "TransactionItem.findByTransactionID", query = "SELECT t FROM TransactionItem t WHERE t.transactionItemPK.transactionID = :transactionID")
     , @NamedQuery(name = "TransactionItem.findByQuantity", query = "SELECT t FROM TransactionItem t WHERE t.transactionItemPK.quantity = :quantity")
-    , @NamedQuery(name = "TransactionItem.findBySoldPrice", query = "SELECT t FROM TransactionItem t WHERE t.soldPrice = :soldPrice")})
+    , @NamedQuery(name = "TransactionItem.findBySoldPrice", query = "SELECT t FROM TransactionItem t WHERE t.transactionItemPK.soldPrice = :soldPrice")})
 public class TransactionItem implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected TransactionItemPK transactionItemPK;
-    @Basic(optional = false)
-    @Column(name = "sold_price")
-    private float soldPrice;
     @JoinColumn(name = "transactionID", referencedColumnName = "transactionID", insertable = false, updatable = false)
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Transaction transaction;
@@ -53,13 +48,8 @@ public class TransactionItem implements Serializable {
         this.transactionItemPK = transactionItemPK;
     }
 
-    public TransactionItem(TransactionItemPK transactionItemPK, float soldPrice) {
-        this.transactionItemPK = transactionItemPK;
-        this.soldPrice = soldPrice;
-    }
-
-    public TransactionItem(int itemID, int transactionID, int quantity) {
-        this.transactionItemPK = new TransactionItemPK(itemID, transactionID, quantity);
+    public TransactionItem(int itemID, int transactionID, int quantity, float soldPrice) {
+        this.transactionItemPK = new TransactionItemPK(itemID, transactionID, quantity, soldPrice);
     }
 
     public TransactionItemPK getTransactionItemPK() {
@@ -68,14 +58,6 @@ public class TransactionItem implements Serializable {
 
     public void setTransactionItemPK(TransactionItemPK transactionItemPK) {
         this.transactionItemPK = transactionItemPK;
-    }
-
-    public float getSoldPrice() {
-        return soldPrice;
-    }
-
-    public void setSoldPrice(float soldPrice) {
-        this.soldPrice = soldPrice;
     }
 
     public Transaction getTransaction() {
