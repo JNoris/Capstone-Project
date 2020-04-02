@@ -213,31 +213,20 @@ public class OrderScreenController implements Initializable {
      */
     public void addItemToSale(Item item) {
         boolean exist = false;
+        //TODO: Rewrite this for loop with the new class in mind.
         if (saleListDisplay.getChildren().size() > 0) {
             for (Node n : saleListDisplay.getChildren()) {
-                HBox box = (HBox) n;
-//                System.out.println(box.getChildren().get(1));
-                Label labelID = (Label) box.getChildren().get(0);
-                int id = Integer.parseInt(labelID.getText());
-                if (id == item.getItemID()) {
-                    exist = true;
-                    Label quantityLabel = (Label) box.getChildren().get(2);
+                TransactionUIElement e = (TransactionUIElement) n;
+                for (TransactionItem t : transaction.getTransactionItemList()) {
+                    if (e.getTransactionItem().getItem() == item) {
+                        System.out.println("TransactionItem exists.");
+                        exist = true;
 
-                    //Update TransactionItem quantity.
-                    for (TransactionItem ti : transaction.getTransactionItemList()) {
-                        if (ti.getTransactionItemPK().getItemID() == id //Compare Item IDs.
-                                && ti.getTransactionItemPK().getTransactionID() == transaction.getTransactionID() //Compare Transaction IDs.
-                                && ti.getTransactionItemPK().getQuantity() == Integer.parseInt(quantityLabel.getText())) { //Compare quantities.
-                            ti.getTransactionItemPK().setQuantity(ti.getTransactionItemPK().getQuantity() + 1);
+                        t.getTransactionItemPK().setQuantity(t.getTransactionItemPK().getQuantity() + 1);
+                        e.refresh();
 
-                            //Update quantity in the UI.
-                            int quant = Integer.parseInt(quantityLabel.getText());
-                            quant++;
-                            quantityLabel.setText(quant + "");
-                            calculateSubtotal(item);
-
-                            return;
-                        }
+                        calculateSubtotal();
+                        return;
                     }
                 }
             }
@@ -251,15 +240,15 @@ public class OrderScreenController implements Initializable {
             tItem.setSoldPrice(item.getPrice()); //Sets price of the item as the original price of the item.
             transaction.getTransactionItemList().add(tItem);
 
-            TransactionUIElement t = new TransactionUIElement(tItem);
+            TransactionUIElement t = new TransactionUIElement(tItem, this);
             saleListDisplay.getChildren().addAll(t);
 
         }
 
-        calculateSubtotal(item);
+        calculateSubtotal();
     }
 
-    public void calculateSubtotal(Item item) {
+    public void calculateSubtotal() {
         float total = 0f;
         for (TransactionItem tItem : transaction.getTransactionItemList()) {
             total += tItem.getSoldPrice() * tItem.getTransactionItemPK().getQuantity();

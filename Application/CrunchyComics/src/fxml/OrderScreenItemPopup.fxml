@@ -135,7 +135,7 @@
       </VBox>
       <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Button minWidth="75.0" mnemonicParsing="false" text="Cancel" />
+            <Button minWidth="75.0" mnemonicParsing="false" onMouseReleased="#closePopup" text="Cancel" />
             <VBox alignment="BOTTOM_RIGHT" prefHeight="91.0" prefWidth="228.0">
                <children>
                   <Button minWidth="75.0" mnemonicParsing="false" text="Delete">
@@ -143,7 +143,7 @@
                         <Insets />
                      </VBox.margin>
                   </Button>
-                  <Button minWidth="75.0" mnemonicParsing="false" text="Confirm">
+                  <Button minWidth="75.0" mnemonicParsing="false" onMouseReleased="#applyChanges" text="Confirm">
                      <VBox.margin>
                         <Insets top="5.0" />
                      </VBox.margin>

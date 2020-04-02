@@ -5,6 +5,7 @@
  */
 package ui;
 
+import controller.OrderScreenController;
 import controller.TransactionUIElementController;
 import domain.Item;
 import domain.TransactionItem;
@@ -32,11 +33,13 @@ public class TransactionUIElement extends HBox {
     private Label id;
     private Label price;
     private TransactionItem transactionItem;
+    private OrderScreenController controller;
 
-    public TransactionUIElement(TransactionItem item) {
+    public TransactionUIElement(TransactionItem item, OrderScreenController controller) {
         this.transactionItem = item;
+        this.controller = controller;
         this.name = new Label(item.getItem().getName());
-        this.price = new Label(Float.toString(item.getSoldPrice()));
+        this.price = new Label(Float.toString(item.getSoldPrice() * item.getTransactionItemPK().getQuantity()));
         this.quantity = new Label(1 + "");
         this.id = new Label(item.getItem().getItemID() + "");
 
@@ -102,6 +105,19 @@ public class TransactionUIElement extends HBox {
     public float getPrice() {
         return Float.parseFloat(price.getText());
     }
+    
+    public TransactionItem getTransactionItem(){
+        return transactionItem;
+    }
+    
+    /**
+     * Refreshes the UI elements information with updated information from the TransactionItem object.
+     */
+    public void refresh(){
+        this.quantity.setText(transactionItem.getTransactionItemPK().getQuantity() + "");
+        this.price.setText(transactionItem.getSoldPrice() * transactionItem.getTransactionItemPK().getQuantity() + "");
+        this.controller.calculateSubtotal();
+    }
 
     //Pop up
     public void createPopup(TransactionItem item) {
@@ -113,6 +129,8 @@ public class TransactionUIElement extends HBox {
             popup.getContent().add((Parent) loader.load());
             popup.show(ControllerManager.getInstance().getWindow());
             controller.fill(item);
+            controller.setPopup(popup);
+            controller.setNode(this);
         } catch (IOException e) {
             System.exit(0);
         }

@@ -18,6 +18,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
+import javafx.stage.Popup;
+import ui.TransactionUIElement;
 
 /**
  *
@@ -25,6 +27,9 @@ import javafx.scene.control.ToggleGroup;
  */
 public class TransactionUIElementController implements Initializable {
 
+    private Popup popup;
+    private TransactionUIElement node;
+    
     @FXML
     private Label itemName;
     @FXML
@@ -79,5 +84,30 @@ public class TransactionUIElementController implements Initializable {
         itemName.setText(item.getItem().getName());
         itemOriginalPrice.setText(String.format("%.2f", item.getItem().getPrice()));
         itemQuantity.setText(item.getTransactionItemPK().getQuantity() + "");
+    }
+    
+    public void applyChanges(){
+        if(discountEnableCheck.isSelected()){
+            //Apply discount
+        }
+        node.getTransactionItem().getTransactionItemPK().setQuantity(Integer.parseInt(itemQuantity.getText()));
+        node.refresh();
+        closePopup();
+    }
+    
+    public void requestDeleteItem(){
+        
+    }
+    
+    public void closePopup(){
+        this.popup.hide();
+    }
+
+    public void setPopup(Popup popup) {
+        this.popup = popup;
+    }
+    
+    public void setNode(TransactionUIElement node){
+        this.node = node;
     }
 }
