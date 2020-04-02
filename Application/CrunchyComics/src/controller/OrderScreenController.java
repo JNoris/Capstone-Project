@@ -39,12 +39,14 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
@@ -55,10 +57,10 @@ import ui.TransactionUIElement;
 /**
  *
  * @author Noris. UMM I MEAN: CAPSTONE GROUP, OF COURSE, TIS NOT MY WORK BUT OUR
- * WORK.
+ *         WORK.
  *
  * @Notes Please make sure to correct this code. Namely: Password as well as
- * validation.
+ *        validation.
  *
  */
 public class OrderScreenController implements Initializable {
@@ -85,6 +87,12 @@ public class OrderScreenController implements Initializable {
     private VBox saleListDisplay;
     @FXML
     private VBox resultContainer;
+    @FXML
+    private Circle searchCircle;
+    @FXML
+    private Circle filterCircle;
+    @FXML
+    private Label settingsCircle;
 
     private TransactionBroker tb;
     private Button result;
@@ -102,15 +110,16 @@ public class OrderScreenController implements Initializable {
             addItemToSearch(item);
         }
 
-        //Create new transaction object.
+        // Create new transaction object.
         transaction = new Transaction();
+        transaction.setTransactionItemList(new ArrayList<>());
         transaction.setTransactionItemList(new ArrayList<TransactionItem>());
-        //Set transaction date
+        // Set transaction date
         transaction.setTransactionID(tb.getHighestID() + 1);
 
-//        addItemToSale(items.get(0));
-//        addItemToSale(items.get(1));
-//        addItemToSale(items.get(2));
+        // addItemToSale(items.get(0));
+        // addItemToSale(items.get(1));
+        // addItemToSale(items.get(2));
     }
 
     /**
@@ -131,14 +140,15 @@ public class OrderScreenController implements Initializable {
         loginWindow.show();
     }
 
-    //TODO: Not used so delete eventually.
+    // TODO: Not used so delete eventually.
     /**
-     * When TextField searchField is initiated (by clicking on the search field
-     * in the order screen), whatever is typed in the field will call
+     * When TextField searchField is initiated (by clicking on the search field in
+     * the order screen), whatever is typed in the field will call
      * textfield.getText(); which grabs the fields input and outputs query
      * underneath in the results pane.
      *
      * @param event
+     * @param item
      * @throws IOException
      */
     public void initiateSearch(ActionEvent event, Item item) throws IOException {
@@ -152,10 +162,9 @@ public class OrderScreenController implements Initializable {
             public void handle(ActionEvent e) {
                 if (searchField.getText().equals(item.getName())) {
                     itemContainer.getChildren().addAll(new Label(item.getName()),
-                            new Label(Integer.toString(item.getItemID())),
-                            new Label(Float.toString(item.getPrice())),
+                            new Label(Integer.toString(item.getItemID())), new Label(Float.toString(item.getPrice())),
                             result);
-                    //No idea how to add the button correctly
+                    // No idea how to add the button correctly
                 }
             }
         };
@@ -168,7 +177,7 @@ public class OrderScreenController implements Initializable {
     }
 
     public void addItemToSearch(Item item) {
-//        Button base = new Button();
+        // Button base = new Button();
         HBox hbox = new HBox(20);
         Label name = new Label();
         Label price = new Label();
@@ -182,8 +191,8 @@ public class OrderScreenController implements Initializable {
         price.setMinWidth(100);
         price.setMaxWidth(100);
 
-        //label1.setTextFill(Color.web("#0076a3"));
-        //label.setFont(new Font("Arial", 30));
+        // label1.setTextFill(Color.web("#0076a3"));
+        // label.setFont(new Font("Arial", 30));
         name.setTextFill(Color.web("#FFFFFF"));
         price.setTextFill(Color.web("#FFFFFF"));
         name.setFont(new Font("Arial Black", 25));
@@ -193,14 +202,14 @@ public class OrderScreenController implements Initializable {
         hbox.setPadding(new Insets(10, 10, 10, 10));
 
         name.setText(item.getName());
-        price.setText(item.getPrice() + "");
+        price.setText("$" + item.getPrice() + "");
         id.setText(item.getItemID() + "");
 
         hbox.getChildren().addAll(name, price);
         hbox.setOnMouseClicked(new EventHandler() {
             @Override
             public void handle(Event event) {
-//                System.out.println("HBox clicked.");
+                // System.out.println("HBox clicked.");
                 addItemToSale(itemBroker.getItemByID(Integer.parseInt(id.getText())));
             }
         });
@@ -208,7 +217,9 @@ public class OrderScreenController implements Initializable {
     }
 
     /**
-     * Grab an item to the sale side.
+     * Grab an item to the sale side
+     * 
+     * @param item Grab an item to the sale side.
      *
      */
     public void addItemToSale(Item item) {
@@ -222,20 +233,22 @@ public class OrderScreenController implements Initializable {
                             System.out.println("Updating existing line.");
                             exist = true;
 
-                            e.getTransactionItem().getTransactionItemPK().setQuantity(e.getTransactionItem().getTransactionItemPK().getQuantity() + 1);
+                            e.getTransactionItem().getTransactionItemPK()
+                                    .setQuantity(e.getTransactionItem().getTransactionItemPK().getQuantity() + 1);
                             e.refresh();
                             System.out.println(e.getTransactionItem());
                             calculateSubtotal();
                             return;
                         }
-////                        System.out.println("TransactionItem exists.");
-//                        exist = true;
-//
-//                        t.getTransactionItemPK().setQuantity(t.getTransactionItemPK().getQuantity() + 1);
-//                        e.refresh();
-//
-//                        calculateSubtotal();
-//                        return;
+                        //// System.out.println("TransactionItem exists.");
+                        // exist = true;
+                        //
+                        // t.getTransactionItemPK().setQuantity(t.getTransactionItemPK().getQuantity() +
+                        //// 1);
+                        // e.refresh();
+                        //
+                        // calculateSubtotal();
+                        // return;
 
                     }
                 }
@@ -243,10 +256,12 @@ public class OrderScreenController implements Initializable {
         }
         if (!exist) {
             System.out.println("Creating new line.");
-            //Create a TransactionItem
-            TransactionItem tItem = new TransactionItem(item.getItemID(), transaction.getTransactionID(), 1, item.getPrice());
+            // Create a TransactionItem
+            TransactionItem tItem = new TransactionItem(item.getItemID(), transaction.getTransactionID(), 1,
+                    item.getPrice());
             tItem.setItem(item);
-            tItem.getTransactionItemPK().setSoldPrice(item.getPrice()); //Sets price of the item as the original price of the item.
+            tItem.getTransactionItemPK().setSoldPrice(item.getPrice()); // Sets price of the item as the original price
+                                                                        // of the item.
             transaction.getTransactionItemList().add(tItem);
 
             TransactionUIElement t = new TransactionUIElement(tItem, this);
@@ -287,13 +302,13 @@ public class OrderScreenController implements Initializable {
      * transaction list is not empty.
      */
     public void completeTransaction() {
-        //Check if there is anything on the transaction list.
+        // Check if there is anything on the transaction list.
         if (transaction.getTransactionItemList().size() == 0) {
             returnToMainScreen();
             return;
         }
 
-        //Set transaction date.
+        // Set transaction date.
         transaction.setTransactionDate(new Date());
         transaction.setFinalPrice(Float.parseFloat(finalPriceDisplay.getText()));
         tb.insert(transaction);
@@ -305,11 +320,12 @@ public class OrderScreenController implements Initializable {
      * This method changes the screen to the MainScreen.
      */
     public void returnToMainScreen() {
-        //Get the controller for the MainScreen.
-        MainScreenController c = (MainScreenController) ((FXMLLoader) ControllerManager.getInstance().getMainScreen().getUserData()).getController();
-        //Updates the transactions in the MainScreen.
+        // Get the controller for the MainScreen.
+        MainScreenController c = (MainScreenController) ((FXMLLoader) ControllerManager.getInstance().getMainScreen()
+                .getUserData()).getController();
+        // Updates the transactions in the MainScreen.
         c.showTransactions();
-        //Set scene to main screen.
+        // Set scene to main screen.
         ControllerManager.getInstance().getWindow().setScene(ControllerManager.getInstance().getMainScreen());
 
     }
@@ -322,7 +338,7 @@ public class OrderScreenController implements Initializable {
         return list;
     }
 
-    //Pop up
+    // Pop up
     public void createPopup(TransactionItem item) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/OrderScreenItemPopup.fxml"));
         Popup popup = new Popup();
@@ -334,12 +350,20 @@ public class OrderScreenController implements Initializable {
         }
     }
 
-    public void removeFromSale(TransactionUIElement e) {
-        saleListDisplay.getChildren().remove(e);
-        calculateSubtotal();
-    }
-
-    public Transaction getTransaction() {
-        return this.transaction;
-    }
+    /**
+     * public void initializePictures(){ searchCircle.setStroke(Color.BLACK);
+     * filterCircle.setStroke(Color.BLACK); settingsCircle.setStroke(Color.BLACK);
+     * 
+     * Image imSearch = new Image("/fxml/searchImage.png",false); Image imFilter =
+     * new Image("/fxml/filterArrow.png",false); Image imSettings = new
+     * Image("/fxml/settingsIcon.png",false);
+     * 
+     * 
+     * 
+     * //img.getScaledInstance(newWidth, -1, Image. SCALE_SMOOTH), x, y, this
+     * 
+     * searchCircle.setFill(new ImagePattern(imSearch)); filterCircle.setFill(new
+     * ImagePattern(imFilter)); settingsCircle.setFill(new
+     * ImagePattern(imSettings)); }
+     */
 }

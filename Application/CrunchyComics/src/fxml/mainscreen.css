@@ -1,0 +1,71 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Mar 10, 2020, 1:22:10 AM
+    Author     : 746299
+*/
+
+.orderButton{
+    -fx-background-color:#8E8E8E;
+    -fx-background-radius:10;
+    -fx-border-width: 5;
+    -fx-border-radius: 10;
+    -fx-padding: 10;
+    -fx-border-color:transparent;
+}
+.orderButton:hover{
+    -fx-text-fill: #1FFF00;
+    -fx-background-color:transparent;
+    -fx-border-color:#1FFF00;
+}
+
+.managementButton{
+    -fx-padding: 10;
+    -fx-background-color: #8E8E8E;
+    -fx-background-radius:10;
+    -fx-border-width: 5;
+    -fx-border-radius:10;
+    -fx-padding: 10;
+    -fx-border-color:transparent;
+}
+
+.managementButton:hover{
+    -fx-text-fill:#1FFF00;
+    -fx-background-color:transparent;
+    -fx-border-color:#1FFF00;
+}
+
+.logoutButton{
+    -fx-background-color:#6A0000;
+    -fx-padding:2;
+    -fx-background-radius:10;
+    -fx-border-width: 5;
+    -fx-border-radius:10;
+    -fx-border-color:transparent;
+    -fx-text-fill:white;
+}
+
+.logoutButton:hover{
+    -fx-border-color:#FF0000;
+    -fx-background-color:transparent;
+    -fx-text-fill: #FF0000;
+}
+
+/*Need Settings Button css*/
+
+.settingsButton{
+    -fx-padding:2;
+    -fx-background-color: #8E8E8E;
+    -fx-background-radius:10;
+    -fx-border-width:5;
+    -fx-border-radius:10;
+    -fx-border-color:transparent;
+}
+
+.settingsButton:hover{
+    -fx-border-color:#1FFF00;
+    -fx-background-color:transparent;
+}

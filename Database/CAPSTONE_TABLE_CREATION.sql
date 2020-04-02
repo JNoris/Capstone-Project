@@ -37,6 +37,7 @@ CREATE TABLE Refund(
 
 CREATE TABLE Transaction(
 	transactionID INT,
+	transaction_date DATE,
 	transaction_date DATETIME NOT NULL,
 	final_price FLOAT (6,2) NOT NULL,
 	CONSTRAINT SYS_TRANSACTIONID_PK PRIMARY KEY(transactionID)
@@ -45,6 +46,7 @@ CREATE TABLE Transaction(
 CREATE TABLE Item(
 	itemID INT,
 	item_type VARCHAR(10) NOT NULL,
+	vendorID INT NOT NULL,
 	-- vendorID INT NOT NULL, -- REMOVE LINE, ADD TO ORDERS
 	description VARCHAR(50) NULL,
 	price FLOAT(6,2) NOT NULL,
@@ -52,15 +54,15 @@ CREATE TABLE Item(
 	quantity INT,
 	upc VARCHAR(17),
 	CONSTRAINT SYS_ITEMID_PK PRIMARY KEY(itemID),
+	CONSTRAINT SYS_VENDORTYPE_FK2 FOREIGN KEY(vendorID) REFERENCES Vendor(vendorID)
 	CONSTRAINT SYS_ITEMTYPE_FK1 FOREIGN KEY(item_type) REFERENCES Type(item_type)
-	-- CONSTRAINT SYS_VENDORTYPE_FK1 FOREIGN KEY(vendorID) REFERENCES Vendor(vendorID)
 );
 
-CREATE TABLE Comic(
 	itemID INT,
 	author VARCHAR(20) NOT NULL,
 	volume INT NOT NULL,
 	isbn VARCHAR(13) NOT NULL,
+    publisher VARCHAR(20),
 	publisher VARCHAR(15),
     CONSTRAINT SYS_COMICITEMID_PK PRIMARY KEY(itemID),
 	CONSTRAINT SYS_COMICITEMID_FK FOREIGN KEY(itemID) REFERENCES Item(itemID)
@@ -68,6 +70,8 @@ CREATE TABLE Comic(
 
 CREATE TABLE Order_Item(
 	itemID INT,
+	order_no INT NOT NULL,
+	purchase_price FLOAT(6,2) NOT NULL,
 	order_no INT,
 	purchase_price FLOAT(6,2) NOT NULL,
 	orderQuantity INT,

@@ -20,13 +20,20 @@ public class DatabaseManager {
     // Constants
     // Attributes
     private Connection connection = null;
+
     // Constructors
     public DatabaseManager() throws Exception {
-//        Class.forName("com.mysql.cj.jdbc.Driver");
-//        Connection con = DriverManager.getConnection("jdbc:mysql://remotemysql.com:3306/MkLN8tZlpQ?user=MkLN8tZlpQ&password=zlgBWqYw9d");
+        // Class.forName("com.mysql.cj.jdbc.Driver");
+        // Connection con =
+        // DriverManager.getConnection("jdbc:mysql://remotemysql.com:3306/MkLN8tZlpQ?user=MkLN8tZlpQ&password=zlgBWqYw9d");
         Class.forName("com.mysql.cj.jdbc.Driver");
-        this.connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/capstone_test?user=root&password=password");
+        this.connection = DriverManager
+                .getConnection("jdbc:mysql://localhost:3306/capstone_test?user=root&password=password");
     }
+
+    public static DatabaseManager getInstance() {
+        if (dbManager == null) {
+            try {
     public static EntityManager getEntityManager(){
         return em;
     }
@@ -36,13 +43,13 @@ public class DatabaseManager {
                 dbManager = new DatabaseManager();
                 em =  Persistence.createEntityManagerFactory( "CrunchyComicsPU" ).createEntityManager();
                 return dbManager;
-            }catch(Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
                 System.exit(0); //TODO: Handle this error better.
                 return null;
-                //TODO: Remove singleton.
+                // TODO: Remove singleton.
             }
-        }else{
+        } else {
             return dbManager;
         }
     }

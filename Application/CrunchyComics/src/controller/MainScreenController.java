@@ -34,6 +34,12 @@ import manager.DatabaseManager;
 public class MainScreenController implements Initializable {
 
     @FXML
+    VBox mainScreenDisplay;
+    
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        // TODO Auto-generated method stub
+        addOrderToMainScreen();
     private VBox mainScreenDisplay;
 
     private List<Transaction> transactions;
@@ -80,6 +86,23 @@ public class MainScreenController implements Initializable {
         orderWindow.setScene(order);
         orderWindow.show();
     }
+    
+    public void addOrderToMainScreen()
+    {
+        HBox transactionContainer = new HBox(10);
+        Label itemName = new Label("Ex");
+        Label itemPrice = new Label("1");
+        
+        transactionContainer.setMinWidth(563);
+        transactionContainer.setMinHeight(45);
+        transactionContainer.setPrefSize(563, 45);
+        
+        itemName.setMinHeight(45);
+        itemName.setMinWidth(439);
+        
+        itemPrice.setMinHeight(45);
+        itemPrice.setMinWidth(112);
+        
 
     public void addOrderToMainScreen(Transaction t) {
         HBox transactionContainer = new HBox(10);
@@ -101,6 +124,14 @@ public class MainScreenController implements Initializable {
 
         itemName.setFont(new Font("Arial Black", 25));
         itemPrice.setFont(new Font("Arial Black", 25));
+        
+        
+        
+        
+        transactionContainer.getChildren().addAll(itemName,itemPrice);
+        mainScreenDisplay.getChildren().addAll(transactionContainer);
+    }
+}
 
         transactionContainer.getChildren().addAll(itemName, itemPrice);
         mainScreenDisplay.getChildren().addAll(transactionContainer);
