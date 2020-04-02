@@ -14,6 +14,7 @@ and open the template in the editor.
     -fx-border-width: 5;
     -fx-border-radius: 10;
     -fx-padding: 10;
+    -fx-border-color:transparent;
 }
 .orderButton:hover{
     -fx-text-fill: #1FFF00;
@@ -24,8 +25,47 @@ and open the template in the editor.
 .managementButton{
     -fx-padding: 10;
     -fx-background-color: #8E8E8E;
-    -fx-border-width:5;
+    -fx-background-radius:10;
+    -fx-border-width: 5;
     -fx-border-radius:10;
-    -fx-padding:10;
+    -fx-padding: 10;
+    -fx-border-color:transparent;
 }
 
+.managementButton:hover{
+    -fx-text-fill:#1FFF00;
+    -fx-background-color:transparent;
+    -fx-border-color:#1FFF00;
+}
+
+.logoutButton{
+    -fx-background-color:#6A0000;
+    -fx-padding:2;
+    -fx-background-radius:10;
+    -fx-border-width: 5;
+    -fx-border-radius:10;
+    -fx-border-color:transparent;
+    -fx-text-fill:white;
+}
+
+.logoutButton:hover{
+    -fx-border-color:#FF0000;
+    -fx-background-color:transparent;
+    -fx-text-fill: #FF0000;
+}
+
+/*Need Settings Button css*/
+
+.settingsButton{
+    -fx-padding:2;
+    -fx-background-color: #8E8E8E;
+    -fx-background-radius:10;
+    -fx-border-width:5;
+    -fx-border-radius:10;
+    -fx-border-color:transparent;
+}
+
+.settingsButton:hover{
+    -fx-border-color:#1FFF00;
+    -fx-background-color:transparent;
+}

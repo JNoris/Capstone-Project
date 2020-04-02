@@ -17,7 +17,7 @@
          <children>
             <HBox layoutX="798.0" layoutY="-6.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="420.0" spacing="55.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#logoutBtnClicked" prefHeight="0.0" prefWidth="114.0" style="-fx-background-color: #6A0000;" text="Log Out" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#logoutBtnClicked" prefHeight="0.0" prefWidth="114.0" styleClass="logoutButton" stylesheets="@mainscreen.css" text="Log Out" textFill="WHITE">
                      <font>
                         <Font name="Arial Black" size="20.0" />
                      </font>
@@ -37,7 +37,7 @@
                         <Font name="Arial Black" size="35.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="93.0" prefWidth="312.0" style="-fx-padding: 10; -fx-background-color: #8E8E8E;" styleClass="managementButton" stylesheets="@mainscreen.css" text="Management" textFill="#006a00">
+                  <Button mnemonicParsing="false" prefHeight="93.0" prefWidth="312.0" styleClass="managementButton" stylesheets="@mainscreen.css" text="Management" textFill="#006a00">
                      <font>
                         <Font name="Arial Black" size="35.0" />
                      </font>
