@@ -17,8 +17,7 @@ import javafx.event.*;
 
 /**
  *
- * @author Noris. UMM I MEAN: CAPSTONE GROUP, OF COURSE, TIS NOT MY WORK BUT OUR
- *         WORK.
+ * @author Noris.
  * 
  * @Notes This is probably the most incomplete GUI as of Feb 17th. Change the
  *        font to Arial Black, set a divider between tabs and the content they
@@ -52,4 +51,5 @@ public class ManagementController implements Initializable {
         mainScreenWindow.setScene(main);
         mainScreenWindow.show();
     }
+
 }
