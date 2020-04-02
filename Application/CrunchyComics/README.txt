@@ -1,1 +1,0 @@
-Noris's Project structure, mostly this is the UI thus far.
