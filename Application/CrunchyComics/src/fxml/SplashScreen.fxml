@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<BorderPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="480.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SplashController">
+   <center>
+      <Text fill="#ff8c00" strokeType="OUTSIDE" strokeWidth="0.0" text="Crunchy Comics&#10;&#10;" textAlignment="CENTER" wrappingWidth="339.796875" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Text>
+   </center>
+   <bottom>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Loading" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="30.0" />
+         </BorderPane.margin>
+      </Text>
+   </bottom>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+</BorderPane>

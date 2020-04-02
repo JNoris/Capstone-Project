@@ -20,7 +20,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author 695553
+ * @author Vinicius Smith
  */
 @Entity
 @Table(name = "transaction_item")
@@ -29,21 +29,22 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "TransactionItem.findAll", query = "SELECT t FROM TransactionItem t")
     , @NamedQuery(name = "TransactionItem.findByItemID", query = "SELECT t FROM TransactionItem t WHERE t.transactionItemPK.itemID = :itemID")
     , @NamedQuery(name = "TransactionItem.findByTransactionID", query = "SELECT t FROM TransactionItem t WHERE t.transactionItemPK.transactionID = :transactionID")
-    , @NamedQuery(name = "TransactionItem.findByPrice", query = "SELECT t FROM TransactionItem t WHERE t.price = :price")})
+    , @NamedQuery(name = "TransactionItem.findByQuantity", query = "SELECT t FROM TransactionItem t WHERE t.transactionItemPK.quantity = :quantity")
+    , @NamedQuery(name = "TransactionItem.findBySoldPrice", query = "SELECT t FROM TransactionItem t WHERE t.soldPrice = :soldPrice")})
 public class TransactionItem implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected TransactionItemPK transactionItemPK;
     @Basic(optional = false)
-    @Column(name = "price")
-    private float price;
-    @JoinColumn(name = "itemID", referencedColumnName = "itemID", insertable = false, updatable = false)
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
-    private Item item;
+    @Column(name = "sold_price")
+    private float soldPrice;
     @JoinColumn(name = "transactionID", referencedColumnName = "transactionID", insertable = false, updatable = false)
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Transaction transaction;
+    @JoinColumn(name = "itemID", referencedColumnName = "itemID", insertable = false, updatable = false)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    private Item item;
 
     public TransactionItem() {
     }
@@ -52,13 +53,13 @@ public class TransactionItem implements Serializable {
         this.transactionItemPK = transactionItemPK;
     }
 
-    public TransactionItem(TransactionItemPK transactionItemPK, float price) {
+    public TransactionItem(TransactionItemPK transactionItemPK, float soldPrice) {
         this.transactionItemPK = transactionItemPK;
-        this.price = price;
+        this.soldPrice = soldPrice;
     }
 
-    public TransactionItem(int itemID, int transactionID) {
-        this.transactionItemPK = new TransactionItemPK(itemID, transactionID);
+    public TransactionItem(int itemID, int transactionID, int quantity) {
+        this.transactionItemPK = new TransactionItemPK(itemID, transactionID, quantity);
     }
 
     public TransactionItemPK getTransactionItemPK() {
@@ -69,20 +70,12 @@ public class TransactionItem implements Serializable {
         this.transactionItemPK = transactionItemPK;
     }
 
-    public float getPrice() {
-        return price;
+    public float getSoldPrice() {
+        return soldPrice;
     }
 
-    public void setPrice(float price) {
-        this.price = price;
-    }
-
-    public Item getItem() {
-        return item;
-    }
-
-    public void setItem(Item item) {
-        this.item = item;
+    public void setSoldPrice(float soldPrice) {
+        this.soldPrice = soldPrice;
     }
 
     public Transaction getTransaction() {
@@ -91,6 +84,14 @@ public class TransactionItem implements Serializable {
 
     public void setTransaction(Transaction transaction) {
         this.transaction = transaction;
+    }
+
+    public Item getItem() {
+        return item;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
     }
 
     @Override
@@ -115,7 +116,7 @@ public class TransactionItem implements Serializable {
 
     @Override
     public String toString() {
-        return "broker.TransactionItem[ transactionItemPK=" + transactionItemPK + " ]";
+        return "domain.TransactionItem[ transactionItemPK=" + transactionItemPK + " ]";
     }
     
 }

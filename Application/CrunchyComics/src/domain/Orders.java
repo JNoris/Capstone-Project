@@ -6,6 +6,7 @@
 package domain;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -13,23 +14,29 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author 695553
+ * @author Vinicius Smith
  */
 @Entity
 @Table(name = "orders")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Orders.findAll", query = "SELECT o FROM Orders o")
-    , @NamedQuery(name = "Orders.findByOrderNo", query = "SELECT o FROM Orders o WHERE o.orderNo = :orderNo")})
+    , @NamedQuery(name = "Orders.findByOrderNo", query = "SELECT o FROM Orders o WHERE o.orderNo = :orderNo")
+    , @NamedQuery(name = "Orders.findByOrderDate", query = "SELECT o FROM Orders o WHERE o.orderDate = :orderDate")
+    , @NamedQuery(name = "Orders.findByArrivalDate", query = "SELECT o FROM Orders o WHERE o.arrivalDate = :arrivalDate")})
 public class Orders implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -37,8 +44,17 @@ public class Orders implements Serializable {
     @Basic(optional = false)
     @Column(name = "order_no")
     private Integer orderNo;
+    @Column(name = "orderDate")
+    @Temporal(TemporalType.DATE)
+    private Date orderDate;
+    @Column(name = "arrivalDate")
+    @Temporal(TemporalType.DATE)
+    private Date arrivalDate;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "orders", fetch = FetchType.EAGER)
     private List<OrderItem> orderItemList;
+    @JoinColumn(name = "VendorID", referencedColumnName = "vendorID")
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Vendor vendorID;
 
     public Orders() {
     }
@@ -55,6 +71,22 @@ public class Orders implements Serializable {
         this.orderNo = orderNo;
     }
 
+    public Date getOrderDate() {
+        return orderDate;
+    }
+
+    public void setOrderDate(Date orderDate) {
+        this.orderDate = orderDate;
+    }
+
+    public Date getArrivalDate() {
+        return arrivalDate;
+    }
+
+    public void setArrivalDate(Date arrivalDate) {
+        this.arrivalDate = arrivalDate;
+    }
+
     @XmlTransient
     public List<OrderItem> getOrderItemList() {
         return orderItemList;
@@ -62,6 +94,14 @@ public class Orders implements Serializable {
 
     public void setOrderItemList(List<OrderItem> orderItemList) {
         this.orderItemList = orderItemList;
+    }
+
+    public Vendor getVendorID() {
+        return vendorID;
+    }
+
+    public void setVendorID(Vendor vendorID) {
+        this.vendorID = vendorID;
     }
 
     @Override
@@ -86,7 +126,7 @@ public class Orders implements Serializable {
 
     @Override
     public String toString() {
-        return "broker.Orders[ orderNo=" + orderNo + " ]";
+        return "domain.Orders[ orderNo=" + orderNo + " ]";
     }
     
 }

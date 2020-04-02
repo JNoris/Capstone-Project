@@ -12,7 +12,7 @@ import javax.persistence.Embeddable;
 
 /**
  *
- * @author 695553
+ * @author Vinicius Smith
  */
 @Embeddable
 public class TransactionItemPK implements Serializable {
@@ -23,13 +23,17 @@ public class TransactionItemPK implements Serializable {
     @Basic(optional = false)
     @Column(name = "transactionID")
     private int transactionID;
+    @Basic(optional = false)
+    @Column(name = "quantity")
+    private int quantity;
 
     public TransactionItemPK() {
     }
 
-    public TransactionItemPK(int itemID, int transactionID) {
+    public TransactionItemPK(int itemID, int transactionID, int quantity) {
         this.itemID = itemID;
         this.transactionID = transactionID;
+        this.quantity = quantity;
     }
 
     public int getItemID() {
@@ -48,11 +52,20 @@ public class TransactionItemPK implements Serializable {
         this.transactionID = transactionID;
     }
 
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
         hash += (int) itemID;
         hash += (int) transactionID;
+        hash += (int) quantity;
         return hash;
     }
 
@@ -69,12 +82,15 @@ public class TransactionItemPK implements Serializable {
         if (this.transactionID != other.transactionID) {
             return false;
         }
+        if (this.quantity != other.quantity) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "broker.TransactionItemPK[ itemID=" + itemID + ", transactionID=" + transactionID + " ]";
+        return "domain.TransactionItemPK[ itemID=" + itemID + ", transactionID=" + transactionID + ", quantity=" + quantity + " ]";
     }
     
 }

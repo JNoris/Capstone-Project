@@ -17,7 +17,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author 695553
+ * @author Vinicius Smith
  */
 @Entity
 @Table(name = "refund")
@@ -92,7 +92,7 @@ public class Refund implements Serializable {
 
     @Override
     public String toString() {
-        return "broker.Refund[ refundID=" + refundID + " ]";
+        return "domain.Refund[ refundID=" + refundID + " ]";
     }
     
 }

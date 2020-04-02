@@ -12,7 +12,7 @@ import javax.persistence.Embeddable;
 
 /**
  *
- * @author 695553
+ * @author Vinicius Smith
  */
 @Embeddable
 public class OrderItemPK implements Serializable {
@@ -74,7 +74,7 @@ public class OrderItemPK implements Serializable {
 
     @Override
     public String toString() {
-        return "broker.OrderItemPK[ itemID=" + itemID + ", orderNo=" + orderNo + " ]";
+        return "domain.OrderItemPK[ itemID=" + itemID + ", orderNo=" + orderNo + " ]";
     }
     
 }

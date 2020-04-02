@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author 695553
+ * @author Vinicius Smith
  */
 @Entity
 @Table(name = "type")
@@ -86,7 +86,7 @@ public class Type implements Serializable {
 
     @Override
     public String toString() {
-        return "broker.Type[ itemType=" + itemType + " ]";
+        return "domain.Type[ itemType=" + itemType + " ]";
     }
     
 }
