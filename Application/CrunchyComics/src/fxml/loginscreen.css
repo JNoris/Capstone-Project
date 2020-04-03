@@ -8,3 +8,31 @@ and open the template in the editor.
     Author     : 746299
 */
 
+.enterButton{
+    -fx-background-color: #006A00;
+    -fx-background-radius: 10;
+    -fx-border-width: 5;
+    -fx-border-radius: 10;
+    -fx-padding: 0.5;
+    -fx-border-color: transparent;
+    
+}
+
+.enterButton:hover{
+    -fx-border-color:#1FFF00;
+    -fx-text-fill: #1FFF00;
+    -fx-background-color: transparent;
+}
+
+.passwordField{
+    -fx-background-color: #8E8E8E;
+    -fx-background-radius: 10;
+    -fx-border-radius:10;
+    -fx-border-width:5;
+    -fx-prompt-text-fill: white;
+}
+
+.passwordField:focused{
+    -fx-background-color: white;
+    -fx-text-alignment: center;
+}
