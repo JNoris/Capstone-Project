@@ -18,7 +18,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -62,11 +61,7 @@ public class Item implements Serializable {
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Type itemType;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "item", fetch = FetchType.EAGER)
-    private List<OrderItem> orderItemList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "item", fetch = FetchType.EAGER)
     private List<TransactionItem> transactionItemList;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "item", fetch = FetchType.EAGER)
-    private Comic comic;
 
     public Item() {
     }
@@ -138,29 +133,12 @@ public class Item implements Serializable {
     }
 
     @XmlTransient
-    public List<OrderItem> getOrderItemList() {
-        return orderItemList;
-    }
-
-    public void setOrderItemList(List<OrderItem> orderItemList) {
-        this.orderItemList = orderItemList;
-    }
-
-    @XmlTransient
     public List<TransactionItem> getTransactionItemList() {
         return transactionItemList;
     }
 
     public void setTransactionItemList(List<TransactionItem> transactionItemList) {
         this.transactionItemList = transactionItemList;
-    }
-
-    public Comic getComic() {
-        return comic;
-    }
-
-    public void setComic(Comic comic) {
-        this.comic = comic;
     }
 
     @Override
@@ -187,5 +165,5 @@ public class Item implements Serializable {
     public String toString() {
         return "domain.Item[ itemID=" + itemID + " ]";
     }
-    
+
 }

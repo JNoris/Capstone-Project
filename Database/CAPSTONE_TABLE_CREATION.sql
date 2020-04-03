@@ -85,7 +85,7 @@ CREATE TABLE Transaction_Item(
 	transactionID INT NOT NULL,
 	quantity INT NOT NULL,
 	sold_price FLOAT(6,2) NOT NULL,
-    CONSTRAINT SYS_TRANSITEM_PK PRIMARY KEY(itemID, transactionID, quantity),
+    CONSTRAINT SYS_TRANSITEM_PK PRIMARY KEY(itemID, transactionID, quantity, sold_price),
 	CONSTRAINT SYS_TRANSACTIONITEMID_FK FOREIGN KEY(itemID) REFERENCES Item(itemID),
 	CONSTRAINT SYS_TRANSACTIONID_FK FOREIGN KEY(transactionID) REFERENCES Transaction(TransactionID)
 );

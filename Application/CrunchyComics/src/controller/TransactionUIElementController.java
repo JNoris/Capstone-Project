@@ -15,15 +15,21 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
+import javafx.stage.Popup;
+import ui.TransactionUIElement;
 
 /**
  *
  * @author Vinicius Smith
  */
 public class TransactionUIElementController implements Initializable {
+
+    private Popup popup;
+    private TransactionUIElement node;
 
     @FXML
     private Label itemName;
@@ -70,14 +76,54 @@ public class TransactionUIElementController implements Initializable {
             }
         });
     }
-    
+
     /**
      * Fills fields with the information from a TrasactionItem.
+     *
      * @param item - target TransactionItem
      */
     public void fill(TransactionItem item) {
         itemName.setText(item.getItem().getName());
         itemOriginalPrice.setText(String.format("%.2f", item.getItem().getPrice()));
         itemQuantity.setText(item.getTransactionItemPK().getQuantity() + "");
+    }
+
+    public void applyChanges() {
+        node.getTransactionItem().getTransactionItemPK().setQuantity(Integer.parseInt(itemQuantity.getText()));
+
+        //Apply discount if enabled
+        if (discountEnableCheck.isSelected()) {
+            String selectedToggle = ((RadioButton) discount.getSelectedToggle()).getText();
+            if (selectedToggle.equals("Flat")) {
+                node.getTransactionItem().getTransactionItemPK().setSoldPrice(node.getTransactionItem().getTransactionItemPK().getSoldPrice() - Float.parseFloat(discountFlatAmount.getText()));
+            } else {
+
+            }
+        }
+        node.refresh();
+        
+        //Look for duplicate
+        node.fixDuplicates();
+        
+        closePopup();
+    }
+    
+
+
+    public void requestDeleteItem() {
+        node.selfDelete();
+        closePopup();
+    }
+
+    public void closePopup() {
+        this.popup.hide();
+    }
+
+    public void setPopup(Popup popup) {
+        this.popup = popup;
+    }
+
+    public void setNode(TransactionUIElement node) {
+        this.node = node;
     }
 }
