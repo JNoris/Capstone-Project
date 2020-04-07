@@ -16,6 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javax.annotation.PostConstruct;
+import manager.ControllerManager;
 import manager.DatabaseManager;
 
 /**
@@ -36,8 +37,9 @@ public class SplashController {
         try {
             Parent loginScreen = FXMLLoader.load(getClass().getResource("/fxml/Login.fxml"));
             Stage stage = (Stage) mainPane.getScene().getWindow();
-            
-            stage.setScene(new Scene(loginScreen));
+
+//            stage.setScene(new Scene(loginScreen));
+            stage.setScene(ControllerManager.getInstance().getLoginScreen());
             stage.show();
         } catch (IOException e) {
             System.err.println("Login FXML not found! Error: " + e.getMessage());

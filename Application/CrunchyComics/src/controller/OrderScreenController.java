@@ -90,6 +90,7 @@ public class OrderScreenController implements Initializable {
     private Button result;
     private ItemBroker itemBroker;
     private Transaction transaction;
+//    private Popup popup;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -121,8 +122,9 @@ public class OrderScreenController implements Initializable {
      * @throws IOException
      */
     public void logoutBtnClicked(ActionEvent event) throws IOException {
-        Parent loginParent = FXMLLoader.load(getClass().getResource("/fxml/Login.fxml"));
-        Scene logout = new Scene(loginParent);
+//        Parent loginParent = FXMLLoader.load(getClass().getResource("/fxml/Login.fxml"));
+//        Scene logout = new Scene(loginParent);
+        Scene logout = ControllerManager.getInstance().getLoginScreen();
 
         // This line grabs the Stage information
         Stage loginWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -310,7 +312,7 @@ public class OrderScreenController implements Initializable {
         //Updates the transactions in the MainScreen.
         c.showTransactions();
         //Set scene to main screen.
-        ControllerManager.getInstance().getWindow().setScene(ControllerManager.getInstance().getMainScreen());
+        ControllerManager.getInstance().changeScene(ControllerManager.getInstance().getMainScreen());
 
     }
 
@@ -323,12 +325,26 @@ public class OrderScreenController implements Initializable {
     }
 
     //Pop up
-    public void createPopup(TransactionItem item) {
+    public void createPopup(TransactionUIElement element, TransactionItem item) {
+        if (ControllerManager.getInstance().getPopup() != null) {
+            System.out.println("Hiding old popup");
+            ControllerManager.getInstance().getPopup().hide();
+        }
+        System.out.println("Creating popup");
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/OrderScreenItemPopup.fxml"));
         Popup popup = new Popup();
+        ControllerManager.getInstance().setPopup(popup);
         try {
+//            itemPopup.getContent().add((Parent) loader.load());
+//            itemPopup.show(ControllerManager.getInstance().getMainScreen().getWindow());
+            TransactionUIElementController controller = new TransactionUIElementController();
+            loader.setController(controller);
             popup.getContent().add((Parent) loader.load());
-            popup.show(ControllerManager.getInstance().getMainScreen().getWindow());
+            popup.show(ControllerManager.getInstance().getWindow());
+            controller.fill(item);
+            controller.setPopup(popup);
+            controller.setNode(element);
         } catch (IOException e) {
             System.exit(0);
         }
