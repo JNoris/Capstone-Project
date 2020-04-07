@@ -110,9 +110,12 @@ public class MainScreenController implements Initializable {
 
         itemName.setFont(new Font("Arial Black", 25));
         itemPrice.setFont(new Font("Arial Black", 25));
-
-        transactionContainer.getChildren().addAll(itemName, itemPrice);
+        
+        transactionContainer.getChildren().addAll(itemName, itemPrice);       
         mainScreenDisplay.getChildren().addAll(transactionContainer);
     }
 
 }
+
+    
+

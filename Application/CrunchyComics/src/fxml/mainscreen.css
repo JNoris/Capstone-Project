@@ -56,16 +56,18 @@ and open the template in the editor.
 
 /*Need Settings Button css*/
 
-.settingsButton{
-    -fx-padding:2;
+.settingsButton{ 
     -fx-background-color: #8E8E8E;
-    -fx-background-radius:10;
-    -fx-border-width:5;
-    -fx-border-radius:10;
+    -fx-border-width: 5;
     -fx-border-color:transparent;
+    -fx-border-radius:30;
+    -fx-background-radius: 30;
 }
 
+.settingsImage:hover{
+    -fx-opacity:0;
+}
 .settingsButton:hover{
-    -fx-border-color:#1FFF00;
+    -fx-border-color: #1FFF00;
     -fx-background-color:transparent;
 }

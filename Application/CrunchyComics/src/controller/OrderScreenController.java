@@ -175,7 +175,10 @@ public class OrderScreenController implements Initializable {
         Label name = new Label();
         Label price = new Label();
         Label id = new Label();
-
+        
+        hbox.getStylesheets().add("/fxml/orderscreen.css");
+        hbox.getStyleClass().add("searchBox");
+        
         name.setMaxHeight(100);
         name.setMinWidth(500);
         name.setMaxWidth(500);
@@ -241,8 +244,10 @@ public class OrderScreenController implements Initializable {
             tItem.setItem(item);
             tItem.getTransactionItemPK().setSoldPrice(item.getPrice()); //Sets price of the item as the original price of the item.
             transaction.getTransactionItemList().add(tItem);
-
+            
             TransactionUIElement t = new TransactionUIElement(tItem, this);
+            t.getStylesheets().add("/fxml/orderscreen.css");
+            t.getStyleClass().add("transactionItem");
             saleListDisplay.getChildren().addAll(t);
         }
         calculateSubtotal();
@@ -254,15 +259,17 @@ public class OrderScreenController implements Initializable {
             total += tItem.getTransactionItemPK().getSoldPrice() * tItem.getTransactionItemPK().getQuantity();
         }
         calculateTax(total);
-        subtotalDisplay.setText(String.format("%.2f", total));
+        subtotalDisplay.setText(String.format("$%.2f", total));
     }
 
+    //Issues Here ($)
     public void calculateTax(float value) {
         float tax = value * 0.05f;
-        taxDisplay.setText(String.format("$%.2f", tax));
+        taxDisplay.setText(String.format("%.2f", tax));
         updateTotal(value + tax);
     }
-
+    
+    //Issues with $ here
     public void updateTotal(float value) {
         finalPriceDisplay.setText(String.format("%.2f", value));
     }

@@ -7,156 +7,215 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 
-
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="360.0" prefWidth="280.0" style="-fx-background-color: #00FF00;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label text="Sale Item Control" textAlignment="CENTER">
-         <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </padding>
-      </Label>
-      <HBox prefHeight="31.0" prefWidth="280.0">
+      <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0">
          <children>
-            <HBox prefHeight="100.0" prefWidth="137.0">
+            <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.8" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #000000;">
                <children>
-                  <Label text="Name:">
-                     <opaqueInsets>
-                        <Insets right="50.0" />
-                     </opaqueInsets>
-                     <padding>
-                        <Insets right="5.0" />
-                     </padding>
-                  </Label>
-                  <Label fx:id="itemName" maxWidth="84.0" prefHeight="17.0" prefWidth="84.0" text="Item_Name" />
+                  <Pane opacity="0.35" prefHeight="720.0" prefWidth="1280.0" />
                </children>
-               <padding>
-                  <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-               </padding>
-            </HBox>
-            <HBox prefHeight="100.0" prefWidth="156.0">
+            </VBox>
+            <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="356.0" prefWidth="283.0" style="-fx-background-color: #6A6A6A;" styleClass="saleItemControlPopup" stylesheets="@orderscreen.css">
                <children>
-                  <Label text="Original Price:">
-                     <padding>
-                        <Insets right="5.0" />
-                     </padding>
-                  </Label>
-                  <Label fx:id="itemOriginalPrice" text="\$0.00" />
-               </children>
-               <padding>
-                  <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-               </padding>
-            </HBox>
-         </children>
-      </HBox>
-      <HBox prefHeight="27.0" prefWidth="280.0">
-         <children>
-            <Label text="Quantity:" />
-            <TextField fx:id="itemQuantity" alignment="CENTER" prefHeight="25.0" prefWidth="36.0" />
-         </children>
-         <VBox.margin>
-            <Insets />
-         </VBox.margin>
-         <padding>
-            <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-         </padding>
-      </HBox>
-      <VBox prefHeight="200.0" prefWidth="100.0">
-         <children>
-            <CheckBox fx:id="discountEnableCheck" mnemonicParsing="false" text="Discount">
-               <padding>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </padding>
-            </CheckBox>
-            <HBox prefHeight="52.0" prefWidth="280.0">
-               <children>
-                  <VBox prefHeight="200.0" prefWidth="100.0">
+                  <AnchorPane prefHeight="351.0" prefWidth="279.0">
                      <children>
-                        <RadioButton mnemonicParsing="false" text="Flat">
+                        <Label layoutX="70.0" layoutY="1.0" prefHeight="32.0" prefWidth="154.0" text="Sale Item Control" textAlignment="CENTER" textFill="WHITE">
                            <padding>
-                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
-                           <toggleGroup>
-                              <ToggleGroup fx:id="discount" />
-                           </toggleGroup>
-                        </RadioButton>
-                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                           <font>
+                              <Font name="Arial Black" size="14.0" />
+                           </font>
+                        </Label>
+                        <VBox layoutX="18.0" layoutY="187.0" prefHeight="83.0" prefWidth="114.0">
                            <children>
-                              <Label text="\$" textAlignment="CENTER">
-                                 <padding>
-                                    <Insets left="5.0" right="5.0" />
-                                 </padding>
-                              </Label>
-                              <TextField fx:id="discountFlatAmount" alignment="CENTER" prefHeight="25.0" prefWidth="52.0">
+                              <RadioButton mnemonicParsing="false" text="Percentage" textFill="WHITE">
                                  <padding>
                                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                  </padding>
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="discount" />
+                                 </toggleGroup>
+                                 <font>
+                                    <Font name="Arial Black" size="12.0" />
+                                 </font>
+                              </RadioButton>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <TextField fx:id="percentageFlatAmount" alignment="CENTER" prefHeight="25.0" prefWidth="53.0" promptText="50" styleClass="percentageField" stylesheets="@orderscreen.css">
+                                       <font>
+                                          <Font name="Arial Black" size="14.0" />
+                                       </font>
+                                    </TextField>
+                                    <Label text="\%" textFill="WHITE">
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                       <padding>
+                                          <Insets left="5.0" />
+                                       </padding>
+                                       <font>
+                                          <Font name="Arial Black" size="20.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                           </padding>
+                        </VBox>
+                        <VBox layoutX="180.0" layoutY="187.0" prefHeight="83.0" prefWidth="92.0">
+                           <children>
+                              <RadioButton mnemonicParsing="false" prefHeight="21.0" prefWidth="71.0" text="Flat" textFill="WHITE" toggleGroup="$discount">
+                                 <padding>
+                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                 </padding>
+                                 <font>
+                                    <Font name="Arial Black" size="12.0" />
+                                 </font>
+                              </RadioButton>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label text="\$" textAlignment="CENTER" textFill="WHITE">
+                                       <padding>
+                                          <Insets left="5.0" right="5.0" />
+                                       </padding>
+                                       <font>
+                                          <Font name="Arial Black" size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="discountFlatAmount" alignment="CENTER" prefHeight="36.0" prefWidth="52.0" promptText="5.99" styleClass="discountField" stylesheets="@orderscreen.css">
+                                       <padding>
+                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                       </padding>
+                                       <font>
+                                          <Font name="Arial Black" size="14.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                           </padding>
+                        </VBox>
+                        <VBox layoutX="170.0" layoutY="136.0" prefHeight="35.0" prefWidth="112.0">
+                           <children>
+                              <CheckBox fx:id="discountEnableCheck" mnemonicParsing="false" text="Discount" textFill="WHITE">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                                 <font>
+                                    <Font name="Arial Black" size="12.0" />
+                                 </font>
+                              </CheckBox>
+                              <HBox prefHeight="52.0" prefWidth="280.0" />
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </VBox>
+                        <HBox alignment="BOTTOM_LEFT" layoutX="5.0" layoutY="305.0" prefHeight="46.0" prefWidth="270.0" spacing="20.0">
+                           <children>
+                              <Button minWidth="75.0" mnemonicParsing="false" onMouseReleased="#closePopup" styleClass="cancelButton" stylesheets="@orderscreen.css" text="Cancel" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Black" size="13.0" />
+                                 </font>
+                              </Button>
+                              <Button minWidth="75.0" mnemonicParsing="false" onMouseReleased="#applyChanges" styleClass="confirmButton" stylesheets="@orderscreen.css" text="Confirm" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Black" size="13.0" />
+                                 </font>
+                              </Button>
+                              <Button minWidth="75.0" mnemonicParsing="false" onMouseReleased="#requestDeleteItem" prefWidth="86.0" styleClass="deleteButton" stylesheets="@orderscreen.css" text="Delete" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Black" size="13.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                        <HBox layoutX="6.0" layoutY="139.0" prefHeight="29.0" prefWidth="129.0" spacing="5.0">
+                           <children>
+                              <Label text="Quantity:" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Black" size="12.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="itemQuantity" alignment="CENTER" prefHeight="25.0" prefWidth="58.0" promptText="2" styleClass="quantityField" stylesheets="@orderscreen.css">
+                                 <font>
+                                    <Font name="Arial Black" size="13.0" />
+                                 </font>
                               </TextField>
                            </children>
-                        </HBox>
-                     </children>
-                     <padding>
-                        <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
-                     </padding>
-                  </VBox>
-                  <VBox prefHeight="200.0" prefWidth="100.0">
-                     <children>
-                        <RadioButton mnemonicParsing="false" text="Percentage" toggleGroup="$discount">
                            <padding>
                               <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                            </padding>
-                        </RadioButton>
-                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                        </HBox>
+                        <HBox layoutX="6.0" layoutY="94.0" prefHeight="27.0" prefWidth="280.0">
                            <children>
-                              <TextField fx:id="percentageFlatAmount" alignment="CENTER" prefHeight="25.0" prefWidth="53.0" />
-                              <Label text="\%">
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
+                              <Label text="Original Price:" textFill="WHITE">
                                  <padding>
-                                    <Insets left="5.0" />
+                                    <Insets right="5.0" />
                                  </padding>
+                                 <font>
+                                    <Font name="Arial Black" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="itemOriginalPrice" text="\$0.00" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Black" size="14.0" />
+                                 </font>
                               </Label>
                            </children>
+                           <padding>
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                           </padding>
                         </HBox>
+                        <HBox layoutX="6.0" layoutY="41.0" prefHeight="21.0" prefWidth="280.0">
+                           <children>
+                              <Label text="Name:" textFill="WHITE">
+                                 <opaqueInsets>
+                                    <Insets right="50.0" />
+                                 </opaqueInsets>
+                                 <padding>
+                                    <Insets right="5.0" />
+                                 </padding>
+                                 <font>
+                                    <Font name="Arial Black" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="itemName" maxWidth="214.0" prefHeight="22.0" prefWidth="214.0" text="Item_Name" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Black" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                           </padding>
+                        </HBox>
+                        <Line endX="136.0" layoutX="134.0" layoutY="28.0" startX="-119.0" />
                      </children>
-                     <padding>
-                        <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
-                     </padding>
-                  </VBox>
-               </children>
-            </HBox>
-         </children>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-      </VBox>
-      <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0">
-         <children>
-            <Button minWidth="75.0" mnemonicParsing="false" onMouseReleased="#closePopup" text="Cancel" />
-            <VBox alignment="BOTTOM_RIGHT" prefHeight="91.0" prefWidth="228.0">
-               <children>
-                  <Button minWidth="75.0" mnemonicParsing="false" onMouseReleased="#requestDeleteItem" text="Delete">
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                  </Button>
-                  <Button minWidth="75.0" mnemonicParsing="false" onMouseReleased="#applyChanges" text="Confirm">
-                     <VBox.margin>
-                        <Insets top="5.0" />
-                     </VBox.margin>
-                  </Button>
+                  </AnchorPane>
                </children>
             </VBox>
          </children>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </padding>
-      </HBox>
+      </StackPane>
    </children>
 </VBox>
