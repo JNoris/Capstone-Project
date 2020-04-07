@@ -70,9 +70,13 @@ public class MainScreenController implements Initializable {
 //        
 //        loginWindow.setScene(logout);
 //        loginWindow.show();
-            
-          ControllerManager.getInstance().changeScene(ControllerManager.getInstance().getLoginScreen());
 
+        ControllerManager.getInstance().changeScene(ControllerManager.getInstance().getLoginScreen());
+
+    }
+
+    public void managementBtnClicked() {
+        ControllerManager.getInstance().changeScene(ControllerManager.getInstance().getManagementScene());
     }
 
     public void orderBtnClicked(ActionEvent event) throws IOException {
@@ -81,7 +85,6 @@ public class MainScreenController implements Initializable {
 
         // This line grabs the Stage information
 //        Stage orderWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        
         ControllerManager.getInstance().changeScene(order);
 //        orderWindow.setScene(order);
 //        orderWindow.show();
@@ -111,6 +114,7 @@ public class MainScreenController implements Initializable {
         transactionContainer.getChildren().addAll(itemName, itemPrice);       
         mainScreenDisplay.getChildren().addAll(transactionContainer);
     }
+
 }
 
     

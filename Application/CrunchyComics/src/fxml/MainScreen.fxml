@@ -46,7 +46,7 @@
                         <Font name="Arial Black" size="35.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="93.0" prefWidth="312.0" styleClass="managementButton" stylesheets="@mainscreen.css" text="Management" textFill="#006a00">
+                  <Button mnemonicParsing="false" onMouseReleased="#managementBtnClicked" prefHeight="93.0" prefWidth="312.0" styleClass="managementButton" stylesheets="@mainscreen.css" text="Management" textFill="#006a00">
                      <font>
                         <Font name="Arial Black" size="35.0" />
                      </font>
