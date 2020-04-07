@@ -18,6 +18,5 @@
 	values (008, 'Gabriel Hardman',02,'9781401293031','DC');
 	insert into Comic (itemID, author, volume, isbn, publisher)
 	values (009,'Al Ewing',05,'9781302916688','Marvel');
-    /*insert into Comic (itemID, author, volume, isbn, publisher)
-	values (010,'Peter David',01,'9781302904364','Marvel');*/
-    
+	insert into Comic (itemID, author, volume, isbn, publisher)
+	values (010,'Peter David',01,'9781302904364','Marvel');
