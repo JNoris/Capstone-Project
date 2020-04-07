@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package broker;
 
 import domain.Item;
@@ -16,11 +11,14 @@ import javax.persistence.Query;
 import manager.DatabaseManager;
 
 /**
+ * TransactionItem class is responsible for retrieving and inserting
+ * TransactionItem data from/to the database.
  *
- * @author 749295
+ * @author Simon Skrudland
  */
 public class TransactionItemBroker {
-     private EntityManager em = null;
+
+    private EntityManager em = null;
     private DatabaseManager dbManager = null;
 
     public TransactionItemBroker(DatabaseManager dbManager) {
@@ -28,47 +26,74 @@ public class TransactionItemBroker {
         this.dbManager = dbManager;
         this.em = emfactory.createEntityManager();
     }
-    public void insert(Transaction transaction){
-        em.persist(transaction);
-    }
-    
-      public List<TransactionItem> getAllTransactionItems(){
+
+    /**
+     * Gets all TransactionItems from the database.
+     *
+     * @return a list containing all the TransactionItems.
+     */
+    public List<TransactionItem> getAllTransactionItems() {
         Query q = em.createNamedQuery("Item.findAll");
         List results = q.getResultList();
-        
+
         return results;
     }
-    
-    public TransactionItem getTransactionItem(int itemID, int transactionID){
+
+    /**
+     * Gets a TransactionItem based on the itemID and transactionID.
+     *
+     * @param itemID specific itemID for the TransactionItem.
+     * @param transactionID specific transactionID for the TransactionItem.
+     * @return a TransactionItem that matches the itemID and transactionID.
+     */
+    public TransactionItem getTransactionItem(int itemID, int transactionID) {
         Query q = em.createNamedQuery("TransactionItem.findTransactionItem");
         q.setParameter("itemID", itemID);
         q.setParameter("transactionID", transactionID);
         List results = q.getResultList();
-        
-        return (TransactionItem)results.get(0);
+
+        return (TransactionItem) results.get(0);
     }
-    
-    public TransactionItem getTransactionItemByItemID(int itemID){
+
+    /**
+     * Get TransactionItem by itemID.
+     *
+     * @param itemID specific itemID for the TransactionItem.
+     * @return a TransactionItem that matches the itemID.
+     */
+    public TransactionItem getTransactionItemByItemID(int itemID) {
         Query q = em.createNamedQuery("TransactionItem.findByItemID");
         q.setParameter("itemID", itemID);
         List results = q.getResultList();
-        
-        return (TransactionItem)results.get(0);
+
+        return (TransactionItem) results.get(0);
     }
-    
-     public TransactionItem getTransactionItemByTransactionID(int transactionID){
+
+    /**
+     * Get TransactionItem by transactionID.
+     *
+     * @param transactionID specific transactionID for the TransactionItem.
+     * @return a TransactionItem that matches the transactionID.
+     */
+    public TransactionItem getTransactionItemByTransactionID(int transactionID) {
         Query q = em.createNamedQuery("TransactionItem.findByTransactionID");
         q.setParameter("transactionID", transactionID);
         List results = q.getResultList();
-        
-        return (TransactionItem)results.get(0);
+
+        return (TransactionItem) results.get(0);
     }
-     
-      public TransactionItem getTransactionItemByItemPrice(int price){
+
+    /**
+     * Get TransactionItem by price.
+     *
+     * @param price specific price for the TranactionItem
+     * @return a TransactionItem that matches the price.
+     */
+    public TransactionItem getTransactionItemByItemPrice(int price) {
         Query q = em.createNamedQuery("TransactionItem.findByPrice");
         q.setParameter("price", price);
         List results = q.getResultList();
-        
-        return (TransactionItem)results.get(0);
+
+        return (TransactionItem) results.get(0);
     }
 }

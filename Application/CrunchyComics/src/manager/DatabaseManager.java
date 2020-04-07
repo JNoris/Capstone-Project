@@ -40,7 +40,6 @@ public class DatabaseManager {
                 e.printStackTrace();
                 System.exit(0); //TODO: Handle this error better.
                 return null;
-                //TODO: Remove singleton.
             }
         }else{
             return dbManager;

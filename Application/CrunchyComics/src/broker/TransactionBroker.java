@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package broker;
 
 import javax.persistence.EntityManager;
@@ -14,8 +9,8 @@ import java.util.List;
 import javax.persistence.Query;
 
 /**
- *
- * @author 695553
+ * TransactionBroker class is responsible for retrieving and inserting Transactions data from/to the database.
+ * @author Simon Skrudland
  */
 public class TransactionBroker {
 
@@ -46,6 +41,10 @@ public class TransactionBroker {
         return (int) q.getResultList().get(0);
     }
     
+    /**
+     * Gets all transaction from the database.
+     * @return a list with all transactions.
+     */
     public List<Transaction> getAllTransactions(){
         Query q = em.createNamedQuery("Transaction.findAll");
         return (List<Transaction>)q.getResultList();
