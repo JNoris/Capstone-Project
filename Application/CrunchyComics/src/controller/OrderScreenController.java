@@ -88,11 +88,9 @@ public class OrderScreenController implements Initializable {
     @FXML
     private VBox resultContainer;
     @FXML
-    private Circle searchCircle;
+    private Button settingsButton;
     @FXML
-    private Circle filterCircle;
-    @FXML
-    private Label settingsCircle;
+    private VBox backgroundPane;
 
     private TransactionBroker tb;
     private Button result;
@@ -113,7 +111,7 @@ public class OrderScreenController implements Initializable {
         //Create new transaction object.
         transaction = new Transaction();
         transaction.setTransactionItemList(new ArrayList<>());
-        transaction.setTransactionItemList(new ArrayList<TransactionItem>());
+        transaction.setTransactionItemList(new ArrayList<>());
         //Set transaction date
         transaction.setTransactionID(tb.getHighestID() + 1);
 
@@ -183,7 +181,10 @@ public class OrderScreenController implements Initializable {
         Label name = new Label();
         Label price = new Label();
         Label id = new Label();
-
+        
+        hbox.getStylesheets().add("/fxml/orderscreen.css");
+        hbox.getStyleClass().add("searchBox");
+        
         name.setMaxHeight(100);
         name.setMinWidth(500);
         name.setMaxWidth(500);
@@ -260,8 +261,10 @@ public class OrderScreenController implements Initializable {
             tItem.setItem(item);
             tItem.getTransactionItemPK().setSoldPrice(item.getPrice()); //Sets price of the item as the original price of the item.
             transaction.getTransactionItemList().add(tItem);
-
+            
             TransactionUIElement t = new TransactionUIElement(tItem, this);
+            t.getStylesheets().add("/fxml/orderscreen.css");
+            t.getStyleClass().add("transactionItem");
             saleListDisplay.getChildren().addAll(t);
         }
         calculateSubtotal();
@@ -273,15 +276,17 @@ public class OrderScreenController implements Initializable {
             total += tItem.getTransactionItemPK().getSoldPrice() * tItem.getTransactionItemPK().getQuantity();
         }
         calculateTax(total);
-        subtotalDisplay.setText(String.format("%.2f", total));
+        subtotalDisplay.setText(String.format("$%.2f", total));
     }
 
+    //Issues Here ($)
     public void calculateTax(float value) {
         float tax = value * 0.05f;
-        taxDisplay.setText(String.format("$%.2f", tax));
+        taxDisplay.setText(String.format("%.2f", tax));
         updateTotal(value + tax);
     }
-
+    
+    //Issues with $ here
     public void updateTotal(float value) {
         finalPriceDisplay.setText(String.format("%.2f", value));
     }
@@ -338,9 +343,11 @@ public class OrderScreenController implements Initializable {
     public void createPopup(TransactionItem item) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/OrderScreenItemPopup.fxml"));
         Popup popup = new Popup();
+        
         try {
             popup.getContent().add((Parent) loader.load());
             popup.show(ControllerManager.getInstance().getMainScreen().getWindow());
+            
         } catch (IOException e) {
             System.exit(0);
         }

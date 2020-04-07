@@ -11,12 +11,11 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<!--<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #3A3A3A;" stylesheets="@orderscreen.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.OrderScreenController">-->
-
-<VBox maxHeight="720.0" maxWidth="1280.0" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" spacing="50.0" style="-fx-background-color: #3A3A3A;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.OrderScreenController">
+<VBox maxHeight="720.0" maxWidth="1280.0" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" spacing="50.0" style="-fx-background-color: #3A3A3A;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.OrderScreenController">
   <children>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="694.0" prefWidth="1247.0">
          <children>
@@ -24,7 +23,7 @@
                <children>
                   <AnchorPane prefHeight="58.0" prefWidth="437.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#logoutBtnClicked" prefHeight="0.0" prefWidth="114.0" styleClass="logoutButton" stylesheets="@orderscreen.css" text="Log Out" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#logoutBtnClicked" prefHeight="0.0" prefWidth="114.0" style="-fx-background-color: #6A0000;" text="Log Out" textFill="WHITE">
                            <font>
                               <Font name="Arial Black" size="20.0" />
                            </font>
@@ -34,15 +33,12 @@
                               <Font name="Arial Black" size="25.0" />
                            </font>
                         </Label>
-                        <Button fx:id="settingsButton" layoutX="351.0" layoutY="5.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="47.0" styleClass="settingsButton" stylesheets="@orderscreen.css">
-                           <graphic>
-                              <ImageView disable="true" fitHeight="51.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true" styleClass="settingsImage">
-                                 <image>
-                                    <Image url="@cog.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
+                        <Circle fx:id="settingsCircle" fill="#7f7f7f" layoutX="384.0" layoutY="22.0" radius="24.0" stroke="BLACK" strokeType="INSIDE" />
+                        <ImageView disable="true" fitHeight="51.0" fitWidth="31.0" layoutX="369.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@cog.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </AnchorPane>
                </children>
@@ -59,17 +55,30 @@
                      <children>
                         <AnchorPane prefHeight="60.0" prefWidth="653.0">
                            <children>
-                              <TextField fx:id="searchField" layoutX="1.0" layoutY="9.0" onKeyTyped="#searchItems" prefHeight="43.0" prefWidth="637.0" promptText="Please type in the item you wish to search for...." styleClass="searchField" stylesheets="@orderscreen.css">
-                                 <font>
-                                    <Font name="Arial Black" size="14.0" />
-                                 </font></TextField>
+                              <TextField fx:id="searchField" layoutX="1.0" layoutY="9.0" prefHeight="43.0" prefWidth="441.0" style="-fx-background-color: #7F7F7F;" />
+                              <Circle fx:id="searchCircle" fill="#7f7f7f" layoutX="536.0" layoutY="31.0" radius="24.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fx:id="filterCircle" fill="#7f7f7f" layoutX="613.0" layoutY="31.0" radius="24.0" stroke="BLACK" strokeType="INSIDE" />
+                              <ImageView disable="true" fitHeight="35.0" fitWidth="34.0" layoutX="518.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@searchPicture.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView disable="true" fitHeight="51.0" fitWidth="31.0" layoutX="597.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@arrowDown.png" />
+                                 </image>
+                              </ImageView>
+                              <TextField fx:id="searchField" layoutX="1.0" layoutY="9.0" onKeyTyped="#searchItems" prefHeight="43.0" prefWidth="441.0" style="-fx-background-color: #7F7F7F;" />
+                              <Circle fill="#7f7f7f" layoutX="536.0" layoutY="31.0" radius="24.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="#7f7f7f" layoutX="613.0" layoutY="31.0" radius="24.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Button layoutX="467.0" layoutY="18.0" mnemonicParsing="false" style="-fx-background-radius: 100;" text="Search" />
                            </children>
                         </AnchorPane>
                      </children>
                   </HBox>
-                  <ScrollPane fx:id="searchDisplay" pannable="true" prefHeight="507.0" prefWidth="650.0" style="-fx-background-color: #5F5F5F;" vbarPolicy="NEVER">
+                  <ScrollPane fx:id="searchDisplay" prefHeight="507.0" prefWidth="650.0" style="-fx-background-color: #5F5F5F;" vbarPolicy="NEVER">
                      <content>
-                        <VBox fx:id="resultContainer" prefHeight="525.0" prefWidth="637.0" spacing="5.0" style="-fx-background-color: #5F5F5F;" />
+                        <VBox fx:id="resultContainer" prefHeight="512.0" prefWidth="637.0" spacing="5.0" style="-fx-background-color: #5F5F5F;" />
                      </content>
                   </ScrollPane>
                </children>
@@ -78,65 +87,70 @@
                <children>
                   <Pane prefHeight="558.0" prefWidth="561.0" style="-fx-background-color: #5F5F5F;">
                      <children>
-                        <Label fx:id="saleIDDisplay" layoutX="9.0" layoutY="34.0" prefHeight="41.0" prefWidth="273.0" text="Transaction Order" textFill="WHITE">
+                        <Label fx:id="saleIDDisplay" layoutX="7.0" layoutY="31.0" prefHeight="44.0" prefWidth="206.0" text="Sale Order#_" textFill="WHITE">
                            <font>
                               <Font name="Arial Black" size="25.0" />
                            </font>
                         </Label>
                         <Line endX="398.0" fill="#3f3f3f" layoutX="149.0" layoutY="374.0" startX="-130.0" />
-                        <Button fx:id="finishOrderBtn" layoutX="384.0" layoutY="501.0" mnemonicParsing="false" onMouseClicked="#completeTransaction" prefHeight="33.0" prefWidth="153.0" styleClass="finishOrderButton" stylesheets="@orderscreen.css" text="Finish Order" textFill="WHITE">
+                        <Button layoutX="384.0" layoutY="453.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="153.0" style="-fx-background-color: #6A0000;" text="Change Price" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Black" size="15.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="finishOrderBtn" layoutX="384.0" layoutY="501.0" mnemonicParsing="false" onMouseClicked="#completeTransaction" prefHeight="33.0" prefWidth="153.0" style="-fx-background-color: #03C04A;" text="Finish Order" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Black" size="15.0" />
+                           </font>
+                        </Button>
+                        <Button layoutX="383.0" layoutY="403.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="153.0" style="-fx-background-color: #4184A4;" text="Edit Order" textFill="WHITE">
                            <font>
                               <Font name="Arial Black" size="15.0" />
                            </font>
                         </Button>
                         <ScrollPane hbarPolicy="NEVER" layoutY="75.0" prefHeight="294.0" prefWidth="561.0" style="-fx-background-color: #5F5F5F;" vbarPolicy="ALWAYS">
                            <content>
-                              <VBox fx:id="saleListDisplay" prefHeight="294.0" prefWidth="559.0" style="-fx-background-color: #5F5F5F;" />
+                              <VBox fx:id="saleListDisplay" prefHeight="292.0" prefWidth="545.0" style="-fx-background-color: #5F5F5F;" />
                            </content>
                         </ScrollPane>
                         <VBox layoutX="18.0" layoutY="381.0" prefHeight="165.0" prefWidth="199.0" spacing="20.0">
                            <children>
-                              <Label fx:id="saleIDDisplay11" prefHeight="41.0" prefWidth="200.0" text="Subtotal" textFill="WHITE">
+                              <Label fx:id="saleIDDisplay11" prefHeight="41.0" prefWidth="200.0" text="Subtotal       $" textFill="WHITE">
                                  <font>
                                     <Font name="Arial Black" size="25.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="saleIDDisplay111" prefHeight="42.0" prefWidth="200.0" text="Tax              " textFill="WHITE">
+                              <Label fx:id="saleIDDisplay111" prefHeight="42.0" prefWidth="83.0" text="Tax" textFill="WHITE">
                                  <font>
                                     <Font name="Arial Black" size="25.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="saleIDDisplay112" prefHeight="43.0" prefWidth="220.0" text="Final Price   " textFill="WHITE">
+                              <Label fx:id="saleIDDisplay112" prefHeight="43.0" prefWidth="220.0" text="Final Price" textFill="WHITE">
                                  <font>
                                     <Font name="Arial Black" size="25.0" />
                                  </font>
                               </Label>
                            </children>
                         </VBox>
-                        <VBox layoutX="211.0" layoutY="380.0" prefHeight="172.0" prefWidth="159.0" spacing="20.0">
+                        <VBox layoutX="217.0" layoutY="379.0" prefHeight="173.0" prefWidth="153.0" spacing="20.0">
                            <children>
-                              <Label fx:id="subtotalDisplay" prefHeight="28.0" prefWidth="159.0" text="0.00" textFill="WHITE">
+                              <Label fx:id="subtotalDisplay" prefHeight="42.0" prefWidth="165.0" text="0.00" textFill="WHITE">
                                  <font>
                                     <Font name="Arial Black" size="25.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="taxDisplay" prefHeight="45.0" prefWidth="159.0" text="0.00" textFill="WHITE">
+                              <Label fx:id="taxDisplay" prefHeight="44.0" prefWidth="100.0" text="0.00" textFill="WHITE">
                                  <font>
                                     <Font name="Arial Black" size="25.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="finalPriceDisplay" prefHeight="47.0" prefWidth="159.0" text="0.00" textFill="WHITE">
+                              <Label fx:id="finalPriceDisplay" prefHeight="43.0" prefWidth="220.0" text="0.00" textFill="WHITE">
                                  <font>
                                     <Font name="Arial Black" size="25.0" />
                                  </font>
                               </Label>
                            </children>
                         </VBox>
-                        <Label fx:id="saleIDDisplay1" layoutX="349.0" layoutY="36.0" prefHeight="38.0" prefWidth="199.0" text="Click on an item to edit" textAlignment="CENTER" textFill="WHITE" wrapText="true">
-                           <font>
-                              <Font name="Arial Black" size="15.0" />
-                           </font>
-                        </Label>
                      </children>
                   </Pane>
                </children>
