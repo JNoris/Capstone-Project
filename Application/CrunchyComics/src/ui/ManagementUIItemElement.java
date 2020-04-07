@@ -26,7 +26,7 @@ public class ManagementUIItemElement extends HBox {
     private Label itemQuantity;
     private Label itemPrice;
     private Label itemType;
-
+    
     private Label edit;
 
     public ManagementUIItemElement(ManagementController controller, Item item) {

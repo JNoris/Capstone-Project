@@ -74,6 +74,12 @@ public final class ItemBroker {
         return results;
     }
 
+    public int getLastID() {
+        Query q = em.createNamedQuery("Item.findLastID");
+        List results = q.getResultList();
+        return (int)results.get(0);
+    }
+
     public void insert(Item item) {
         em.getTransaction().begin();
         em.persist(item);

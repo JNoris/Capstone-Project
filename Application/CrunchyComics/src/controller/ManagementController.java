@@ -38,10 +38,14 @@ public class ManagementController implements Initializable {
 
     @FXML
     private VBox populateArea;
+    @FXML
+    private Button newBtn;
+    
+    private boolean itemMode = false;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-//        System.out.println("populateArea: " + populateArea);
+        newBtn.visibleProperty().set(false);
     }
 
     /**
@@ -55,6 +59,8 @@ public class ManagementController implements Initializable {
     }
 
     public void populateItems() {
+        newBtn.visibleProperty().set(true);
+        itemMode = true;
         System.out.println("Populating area with Items...");
 
         populateArea.getChildren().clear();
@@ -65,6 +71,8 @@ public class ManagementController implements Initializable {
     }
 
     public void populateOrders() {
+        newBtn.visibleProperty().set(true);
+        itemMode = false;
         populateArea.getChildren().clear();
 
         System.out.println("Populating area with Orders.");
@@ -83,10 +91,19 @@ public class ManagementController implements Initializable {
             popup.show(ControllerManager.getInstance().getWindow());
             controller.setItem(item);
             controller.setManagementUIItemElement(element);
+            controller.setManagementController(this);
             controller.populate();
-        }catch (IOException e){
+        } catch (IOException e) {
             System.out.println("Could not create management item popup.");
         }
+    }
 
+    public void newBtnClicked() {
+        if (itemMode) {
+            Item item = new Item();
+            createItemManagementPopup(null, item);
+        } else {
+
+        }
     }
 }

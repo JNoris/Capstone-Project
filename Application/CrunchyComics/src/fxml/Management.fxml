@@ -33,6 +33,50 @@
             </Button>
             <TabPane fx:id="tabpane" layoutX="14.0" layoutY="88.0" prefHeight="558.0" prefWidth="1228.0" side="LEFT" stylesheets="@managementscreen.css" tabClosingPolicy="UNAVAILABLE">
                <tabs>
+                  <Tab styleClass=".inventoryTab">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #5A5A5A;">
+                           <children>
+                              <Button layoutY="14.0" mnemonicParsing="false" onAction="#populateItems" styleClass="addEditLabel" stylesheets="@managementscreen.css" text="Add/Edit Inventory" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Black" size="18.0" />
+                                 </font>
+                              </Button>
+                              <Button layoutY="53.0" mnemonicParsing="false" onAction="#populateOrders" styleClass="purchaseOrderLabel" stylesheets="@managementscreen.css" text="Create Purchase Order" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Black" size="18.0" />
+                                 </font>
+                              </Button>
+                              <Button layoutX="986.0" layoutY="494.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="114.0" styleClass="doneButton" stylesheets="@managementscreen.css" text="Done" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Black" size="20.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="newBtn" layoutX="834.0" layoutY="494.0" mnemonicParsing="false" onMouseReleased="#newBtnClicked" prefHeight="0.0" prefWidth="114.0" styleClass="newButton" stylesheets="@managementscreen.css" text="New" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Black" size="20.0" />
+                                 </font>
+                              </Button>
+                              <Button layoutX="689.0" layoutY="494.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="114.0" styleClass="editButton" stylesheets="@managementscreen.css" text="Edit" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Black" size="20.0" />
+                                 </font>
+                              </Button>
+                              <ScrollPane layoutX="321.0" layoutY="60.0" prefHeight="423.0" prefWidth="777.0">
+                                 <content>
+                                    <VBox fx:id="populateArea" />
+                                 </content>
+                              </ScrollPane>
+                           </children></AnchorPane>
+                     </content>
+                     <graphic>
+                        <Label prefHeight="108.0" prefWidth="78.0" text="Inventory" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Black" size="14.0" />
+                           </font>
+                        </Label>
+                     </graphic>
+                  </Tab>
                   <Tab>
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="558.0" prefWidth="1170.0" style="-fx-background-color: #5A5A5A;">
@@ -61,50 +105,6 @@
                      </content>
                      <graphic>
                         <Label prefHeight="84.0" prefWidth="94.0" text="Reports" textFill="WHITE">
-                           <font>
-                              <Font name="Arial Black" size="14.0" />
-                           </font>
-                        </Label>
-                     </graphic>
-                  </Tab>
-                  <Tab styleClass=".inventoryTab">
-                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #5A5A5A;">
-                           <children>
-                              <Button layoutY="14.0" mnemonicParsing="false" onAction="#populateItems" styleClass="addEditLabel" stylesheets="@managementscreen.css" text="Add/Edit Inventory" textFill="WHITE">
-                                 <font>
-                                    <Font name="Arial Black" size="18.0" />
-                                 </font>
-                              </Button>
-                              <Button layoutY="53.0" mnemonicParsing="false" onAction="#populateOrders" styleClass="purchaseOrderLabel" stylesheets="@managementscreen.css" text="Create Purchase Order" textFill="WHITE">
-                                 <font>
-                                    <Font name="Arial Black" size="18.0" />
-                                 </font>
-                              </Button>
-                              <Button layoutX="986.0" layoutY="494.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="114.0" styleClass="doneButton" stylesheets="@managementscreen.css" text="Done" textFill="WHITE">
-                                 <font>
-                                    <Font name="Arial Black" size="20.0" />
-                                 </font>
-                              </Button>
-                              <Button layoutX="834.0" layoutY="494.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="114.0" styleClass="newButton" stylesheets="@managementscreen.css" text="New" textFill="WHITE">
-                                 <font>
-                                    <Font name="Arial Black" size="20.0" />
-                                 </font>
-                              </Button>
-                              <Button layoutX="689.0" layoutY="494.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="114.0" styleClass="editButton" stylesheets="@managementscreen.css" text="Edit" textFill="WHITE">
-                                 <font>
-                                    <Font name="Arial Black" size="20.0" />
-                                 </font>
-                              </Button>
-                              <ScrollPane layoutX="321.0" layoutY="60.0" prefHeight="423.0" prefWidth="777.0">
-                                 <content>
-                                    <VBox fx:id="populateArea" />
-                                 </content>
-                              </ScrollPane>
-                           </children></AnchorPane>
-                     </content>
-                     <graphic>
-                        <Label prefHeight="108.0" prefWidth="78.0" text="Inventory" textFill="WHITE">
                            <font>
                               <Font name="Arial Black" size="14.0" />
                            </font>
