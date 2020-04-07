@@ -86,7 +86,7 @@ public class Type implements Serializable {
 
     @Override
     public String toString() {
-        return "domain.Type[ itemType=" + itemType + " ]";
+        return itemType;
     }
     
 }

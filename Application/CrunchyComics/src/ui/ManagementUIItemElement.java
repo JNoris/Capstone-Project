@@ -5,6 +5,7 @@
  */
 package ui;
 
+import controller.ManagementController;
 import domain.Item;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -18,6 +19,8 @@ import javafx.scene.text.Font;
  */
 public class ManagementUIItemElement extends HBox {
 
+    private ManagementController controller;
+
     private Item item;
     private Label itemName;
     private Label itemQuantity;
@@ -26,7 +29,8 @@ public class ManagementUIItemElement extends HBox {
 
     private Label edit;
 
-    public ManagementUIItemElement(Item item) {
+    public ManagementUIItemElement(ManagementController controller, Item item) {
+        this.controller = controller;
         this.item = item;
 
         this.itemName = new Label(item.getName());
@@ -53,6 +57,19 @@ public class ManagementUIItemElement extends HBox {
         //Layout
         itemQuantity.setAlignment(Pos.CENTER);
 
+        //Add event on click
+        this.setOnMouseClicked((event) -> {
+            controller.createItemManagementPopup(this, item);
+        });
+
+        //Add all elements to the screen.
         this.getChildren().addAll(itemName, itemQuantity, itemPrice, itemType);
+    }
+
+    public void refresh() {
+        this.itemName.setText(item.getName());
+        this.itemQuantity.setText(item.getQuantity() + "");
+        this.itemPrice.setText(String.format("$%.2f", item.getPrice()));
+        this.itemType.setText(item.getItemType().getItemType());
     }
 }

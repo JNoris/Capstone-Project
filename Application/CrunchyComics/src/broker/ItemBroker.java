@@ -4,12 +4,11 @@ import manager.DatabaseManager;
 import domain.*;
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 /**
- * ItemBroker class is responsible for retrieving and insert Item data from/to the database.
+ * ItemBroker class is responsible for retrieving and insert Item data from/to
+ * the database.
  *
  * @author Simon Skrudland
  */
@@ -73,5 +72,11 @@ public final class ItemBroker {
         q.setParameter("name", toMatch);
         List results = q.getResultList();
         return results;
+    }
+
+    public void insert(Item item) {
+        em.getTransaction().begin();
+        em.persist(item);
+        em.getTransaction().commit();
     }
 }

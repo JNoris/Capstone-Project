@@ -60,7 +60,7 @@ public class ManagementController implements Initializable {
         populateArea.getChildren().clear();
         ItemBroker itemBroker = new ItemBroker(DatabaseManager.getInstance(), DatabaseManager.getEntityManager());
         for (Item i : itemBroker.getAllItems()) {
-            populateArea.getChildren().add(new ManagementUIItemElement(i));
+            populateArea.getChildren().add(new ManagementUIItemElement(this, i));
         }
     }
 
@@ -68,5 +68,25 @@ public class ManagementController implements Initializable {
         populateArea.getChildren().clear();
 
         System.out.println("Populating area with Orders.");
+    }
+
+    public void createItemManagementPopup(ManagementUIItemElement element, Item item) {
+        System.out.println("Popup " + item.getName());
+        Popup popup = new Popup();
+        ControllerManager.getInstance().setPopup(popup);
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ManagementItemPopup.fxml"));
+        ManagementUIItemElementController controller = new ManagementUIItemElementController();
+        loader.setController(controller);
+        try {
+            popup.getContent().add((Parent) loader.load());
+            popup.show(ControllerManager.getInstance().getWindow());
+            controller.setItem(item);
+            controller.setManagementUIItemElement(element);
+            controller.populate();
+        }catch (IOException e){
+            System.out.println("Could not create management item popup.");
+        }
+
     }
 }

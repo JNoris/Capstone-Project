@@ -60,6 +60,7 @@ public class ControllerManager {
             lastScene = scene;
         }
         if(scene == mainScreen){
+            hidePopup();
             popup = null;
         }
     }
@@ -88,6 +89,9 @@ public class ControllerManager {
         return popup;
     }
     public void setPopup(Popup popup){
+        if(this.popup != null){
+            hidePopup();
+        }
         this.popup = popup;
     }
     public void setWindow(Stage window) {
