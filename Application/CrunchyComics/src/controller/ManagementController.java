@@ -14,6 +14,7 @@ import javafx.stage.*;
 import javafx.fxml.*;
 import javafx.scene.paint.Color;
 import javafx.event.*;
+import manager.ControllerManager;
 
 /**
  *
@@ -43,13 +44,6 @@ public class ManagementController implements Initializable {
      * @throws IOException
      */
     public void homeBtnClicked(ActionEvent event) throws IOException {
-        Parent mainScreenParent = FXMLLoader.load(getClass().getResource("/fxml/MainScreen.fxml"));
-        Scene main = new Scene(mainScreenParent);
-
-        // This line grabs the Stage information
-        Stage mainScreenWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        mainScreenWindow.setScene(main);
-        mainScreenWindow.show();
+        ControllerManager.getInstance().changeScene(ControllerManager.getInstance().getMainScreen());
     }
 }

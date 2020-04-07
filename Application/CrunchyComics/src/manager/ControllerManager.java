@@ -22,6 +22,7 @@ public class ControllerManager {
     private Stage window;
     private Scene mainScreen;
     private Scene loginScreen;
+    private Scene managementScreen;
     private Scene lastScene;
     private Popup popup; //Only one popup can be open at any time.
 
@@ -31,8 +32,12 @@ public class ControllerManager {
             this.mainScreen = new Scene((Parent) loader.load());
             this.mainScreen.setUserData(loader);
             this.lastScene = mainScreen; //Defaults lastScene to the MainScreen
+            
             loader = new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
-            this.loginScreen = new Scene((Parent) loader.load(getClass().getResource("/fxml/Login.fxml")));
+            this.loginScreen = new Scene((Parent) loader.load());
+            
+            loader = new FXMLLoader(getClass().getResource("/fxml/Management.fxml"));
+            this.managementScreen = new Scene((Parent) loader.load());
         } catch (IOException e) {
             e.printStackTrace();
             System.exit(-1);
@@ -54,6 +59,9 @@ public class ControllerManager {
         if (scene != loginScreen) {
             lastScene = scene;
         }
+        if(scene == mainScreen){
+            popup = null;
+        }
     }
 
     public Scene getMainScreen() {
@@ -66,6 +74,10 @@ public class ControllerManager {
     
     public Scene getLastScene(){
         return lastScene;
+    }
+    
+    public Scene getManagementScene(){
+        return managementScreen;
     }
 
     public Stage getWindow() {
