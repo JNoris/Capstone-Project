@@ -61,7 +61,7 @@ public class TransactionUIElement extends HBox {
         this.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                createPopup(TransactionUIElement.this.transactionItem);
+                controller.createPopup(TransactionUIElement.this, TransactionUIElement.this.transactionItem);
             }
         });
 

@@ -1,4 +1,4 @@
- package controller;
+package controller;
 
 import broker.ItemBroker;
 import broker.TransactionBroker;
@@ -39,14 +39,12 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
@@ -87,15 +85,12 @@ public class OrderScreenController implements Initializable {
     private VBox saleListDisplay;
     @FXML
     private VBox resultContainer;
-    @FXML
-    private Button settingsButton;
-    @FXML
-    private VBox backgroundPane;
 
     private TransactionBroker tb;
     private Button result;
     private ItemBroker itemBroker;
     private Transaction transaction;
+//    private Popup popup;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -110,8 +105,7 @@ public class OrderScreenController implements Initializable {
 
         //Create new transaction object.
         transaction = new Transaction();
-        transaction.setTransactionItemList(new ArrayList<>());
-        transaction.setTransactionItemList(new ArrayList<>());
+        transaction.setTransactionItemList(new ArrayList<TransactionItem>());
         //Set transaction date
         transaction.setTransactionID(tb.getHighestID() + 1);
 
@@ -128,8 +122,9 @@ public class OrderScreenController implements Initializable {
      * @throws IOException
      */
     public void logoutBtnClicked(ActionEvent event) throws IOException {
-        Parent loginParent = FXMLLoader.load(getClass().getResource("/fxml/Login.fxml"));
-        Scene logout = new Scene(loginParent);
+//        Parent loginParent = FXMLLoader.load(getClass().getResource("/fxml/Login.fxml"));
+//        Scene logout = new Scene(loginParent);
+        Scene logout = ControllerManager.getInstance().getLoginScreen();
 
         // This line grabs the Stage information
         Stage loginWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -146,7 +141,6 @@ public class OrderScreenController implements Initializable {
      * underneath in the results pane.
      *
      * @param event
-     * @param item
      * @throws IOException
      */
     public void initiateSearch(ActionEvent event, Item item) throws IOException {
@@ -204,10 +198,10 @@ public class OrderScreenController implements Initializable {
         hbox.setPadding(new Insets(10, 10, 10, 10));
 
         name.setText(item.getName());
-        price.setText("$"+item.getPrice() + "");
+        price.setText(item.getPrice() + "");
         id.setText(item.getItemID() + "");
 
-        hbox.getChildren().addAll(name,price);
+        hbox.getChildren().addAll(name, price);
         hbox.setOnMouseClicked(new EventHandler() {
             @Override
             public void handle(Event event) {
@@ -219,8 +213,6 @@ public class OrderScreenController implements Initializable {
     }
 
     /**
-     * Grab an item to the sale side
-     * @param item
      * Grab an item to the sale side.
      *
      */
@@ -327,7 +319,7 @@ public class OrderScreenController implements Initializable {
         //Updates the transactions in the MainScreen.
         c.showTransactions();
         //Set scene to main screen.
-        ControllerManager.getInstance().getWindow().setScene(ControllerManager.getInstance().getMainScreen());
+        ControllerManager.getInstance().changeScene(ControllerManager.getInstance().getMainScreen());
 
     }
 
@@ -340,14 +332,26 @@ public class OrderScreenController implements Initializable {
     }
 
     //Pop up
-    public void createPopup(TransactionItem item) {
+    public void createPopup(TransactionUIElement element, TransactionItem item) {
+        if (ControllerManager.getInstance().getPopup() != null) {
+            System.out.println("Hiding old popup");
+            ControllerManager.getInstance().getPopup().hide();
+        }
+        System.out.println("Creating popup");
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/OrderScreenItemPopup.fxml"));
         Popup popup = new Popup();
-        
+        ControllerManager.getInstance().setPopup(popup);
         try {
+//            itemPopup.getContent().add((Parent) loader.load());
+//            itemPopup.show(ControllerManager.getInstance().getMainScreen().getWindow());
+            TransactionUIElementController controller = new TransactionUIElementController();
+            loader.setController(controller);
             popup.getContent().add((Parent) loader.load());
-            popup.show(ControllerManager.getInstance().getMainScreen().getWindow());
-            
+            popup.show(ControllerManager.getInstance().getWindow());
+            controller.fill(item);
+            controller.setPopup(popup);
+            controller.setNode(element);
         } catch (IOException e) {
             System.exit(0);
         }
