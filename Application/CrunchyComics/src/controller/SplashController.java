@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 import javax.annotation.PostConstruct;
 import manager.ControllerManager;
 import manager.DatabaseManager;
+import utility.Settings;
 
 /**
  *
@@ -39,6 +40,8 @@ public class SplashController {
             Stage stage = (Stage) mainPane.getScene().getWindow();
 
 //            stage.setScene(new Scene(loginScreen));
+            Settings.getInstance();
+            
             stage.setScene(ControllerManager.getInstance().getLoginScreen());
             stage.show();
         } catch (IOException e) {
