@@ -34,7 +34,7 @@
                               <Font name="Arial Black" size="25.0" />
                            </font>
                         </Label>
-                        <Button fx:id="settingsButton" layoutX="351.0" layoutY="5.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="47.0" styleClass="settingsButton" stylesheets="@orderscreen.css">
+                        <Button fx:id="settingsButton" layoutX="351.0" layoutY="5.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="47.0" styleClass="settingsButton" stylesheets="@orderscreen.css" textFill="WHITE">
                            <graphic>
                               <ImageView disable="true" fitHeight="51.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true" styleClass="settingsImage">
                                  <image>
@@ -67,7 +67,7 @@
                         </AnchorPane>
                      </children>
                   </HBox>
-                  <ScrollPane fx:id="searchDisplay" pannable="true" prefHeight="507.0" prefWidth="650.0" style="-fx-background-color: #5F5F5F;" vbarPolicy="NEVER">
+                  <ScrollPane fx:id="searchDisplay" hbarPolicy="NEVER" pannable="true" prefHeight="507.0" prefWidth="650.0" style="-fx-background-color: #5F5F5F;">
                      <content>
                         <VBox fx:id="resultContainer" prefHeight="525.0" prefWidth="637.0" spacing="5.0" style="-fx-background-color: #5F5F5F;" />
                      </content>
