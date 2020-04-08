@@ -61,7 +61,7 @@ public class TransactionUIElement extends HBox {
         this.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                createPopup(TransactionUIElement.this.transactionItem);
+                controller.createPopup(TransactionUIElement.this, TransactionUIElement.this.transactionItem);
             }
         });
 
@@ -154,6 +154,11 @@ public class TransactionUIElement extends HBox {
                 return;
             }
         }
+    }
+
+    public void selfDelete() {
+        controller.getTransaction().getTransactionItemList().remove(this.transactionItem);
+        controller.removeFromSale(this);
     }
 
     public boolean equals(TransactionUIElement other) {

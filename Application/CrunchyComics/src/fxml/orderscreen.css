@@ -1,0 +1,196 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Mar 10, 2020, 1:42:12 AM
+    Author     : 746299
+*/
+
+.settingsButton{ 
+    -fx-background-color: #8E8E8E;
+    -fx-border-width: 5;
+    -fx-border-color:transparent;
+    -fx-border-radius:30;
+    -fx-background-radius: 30;
+}
+
+.settingsImage:hover{
+    -fx-opacity:0;
+}
+.settingsButton:hover{
+    -fx-border-color: #1FFF00;
+    -fx-background-color:transparent;
+}
+
+.logoutButton{
+    -fx-background-color:#6A0000;
+    -fx-padding:2;
+    -fx-background-radius:10;
+    -fx-border-width: 5;
+    -fx-border-radius:10;
+    -fx-border-color:transparent;
+    -fx-text-fill:white;
+}
+
+.logoutButton:hover{
+    -fx-border-color:#FF0000;
+    -fx-background-color:transparent;
+    -fx-text-fill: #FF0000;
+}
+
+.editOrderButton{
+    -fx-background-color:#050B7B;
+    -fx-padding:2;
+    -fx-background-radius:5;
+    -fx-border-width:5;
+    -fx-border-radius:5;
+    -fx-border-color:transparent;
+}
+
+.editOrderButton:hover{
+    -fx-background-color:transparent;
+    -fx-border-color:#000DFF;
+    -fx-text-fill:#000DFF;
+}
+
+.finishOrderButton{
+    -fx-background-color:#006A00;
+    -fx-padding:2;
+    -fx-background-radius:5;
+    -fx-border-width:5;
+    -fx-border-radius:5;
+    -fx-border-color:transparent;
+}
+
+.finishOrderButton:hover{
+    -fx-background-color:transparent;
+    -fx-border-color:#1FFF00;
+    -fx-text-fill:#1FFF00;
+}
+
+.searchField{
+    -fx-background-color:#5A5A5A;
+    -fx-background-radius:5;
+    -fx-border-radius:5;
+    -fx-border-width:5;
+    -fx-border-color:transparent;
+}
+
+.searchField:hover{
+    -fx-border-color:white;
+}
+
+.searchField:focused{
+    -fx-background-color: white;
+    -fx-text-alignment: center;
+}
+
+.deleteButton{
+    -fx-background-color:#6A0000;
+    -fx-padding:2;
+    -fx-background-radius:10;
+    -fx-border-width: 5;
+    -fx-border-radius:10;
+    -fx-border-color:transparent;
+    -fx-text-fill:white;
+}
+
+.deleteButton:hover{
+    -fx-border-color:#FF0000;
+    -fx-background-color:transparent;
+    -fx-text-fill: #FF0000;
+}
+
+.confirmButton{
+    -fx-background-color:#006A00;
+    -fx-padding:2;
+    -fx-background-radius:10;
+    -fx-border-width:5;
+    -fx-border-radius:10;
+    -fx-border-color:transparent;
+}
+
+.confirmButton:hover{
+    -fx-background-color:transparent;
+    -fx-border-color:#1FFF00;
+    -fx-text-fill:#1FFF00;
+}
+
+.cancelButton{
+    -fx-background-color:#6A0000;
+    -fx-padding:2;
+    -fx-background-radius:10;
+    -fx-border-width: 5;
+    -fx-border-radius:10;
+    -fx-border-color:transparent;
+    -fx-text-fill:white;
+}
+
+.cancelButton:hover{
+    -fx-border-color:#FF0000;
+    -fx-background-color:transparent;
+    -fx-text-fill: #FF0000;
+}
+
+.saleItemControlPopup{
+    -fx-background-radius:5;
+}
+
+.quantityField{
+    -fx-border-radius:2;
+    -fx-border-width:2;
+    -fx-border-color:transparent;
+}
+
+.quantityField:focused{
+    -fx-border-color:#3A3A3A;
+    -fx-text-alignment: center;
+}
+
+.percentageField{
+    -fx-border-radius:2;
+    -fx-border-width:2;
+    -fx-border-color:transparent;
+}
+
+.percentageField:focused{
+    -fx-border-color:#3A3A3A;
+    -fx-text-alignment: center;
+}
+
+.discountField{
+    -fx-border-radius:2;
+    -fx-border-width:2;
+    -fx-border-color:transparent;
+}
+
+.discountField:focused{
+    -fx-border-color:#3A3A3A;
+    -fx-text-alignment: center;
+}
+
+.searchBox{
+    -fx-border-width:5;
+    -fx-border-color:#5A5A5A;
+}
+
+.searchBox:hover{
+    -fx-border-color:#8E8E8E;
+    -fx-background-color:#3A3A3A;
+}
+
+.transactionItem{
+    -fx-border-width:5;
+    -fx-padding:2;
+    -fx-border-color:#5A5A5A;
+}
+
+.transactionItem:hover{
+    -fx-border-color:#8E8E8E;
+    -fx-background-color:#3A3A3A;
+}
+
+
+

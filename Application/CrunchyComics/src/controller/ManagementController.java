@@ -1,5 +1,7 @@
 package controller;
 
+import broker.ItemBroker;
+import domain.Item;
 import javafx.scene.input.*;
 import java.io.IOException;
 import java.net.URL;
@@ -14,41 +16,94 @@ import javafx.stage.*;
 import javafx.fxml.*;
 import javafx.scene.paint.Color;
 import javafx.event.*;
+import javafx.scene.layout.VBox;
+import manager.ControllerManager;
+import manager.DatabaseManager;
+import ui.ManagementUIItemElement;
 
 /**
  *
- * @author Noris.
- * 
+ * @author Noris. UMM I MEAN: CAPSTONE GROUP, OF COURSE, TIS NOT MY WORK BUT OUR
+ * WORK.
+ *
  * @Notes This is probably the most incomplete GUI as of Feb 17th. Change the
- *        font to Arial Black, set a divider between tabs and the content they
- *        show, etc.
+ * font to Arial Black, set a divider between tabs and the content they show,
+ * etc.
  * @Events will have to be handled. My main question is is in the interaction
- *         model we have things like the Edit button and all that, isn't this
- *         repetitive? We already have Add/Edit Inventory on the left side.
- * 
+ * model we have things like the Edit button and all that, isn't this
+ * repetitive? We already have Add/Edit Inventory on the left side.
+ *
  */
 public class ManagementController implements Initializable {
 
+    @FXML
+    private VBox populateArea;
+    @FXML
+    private Button newBtn;
+    
+    private boolean itemMode = false;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        newBtn.visibleProperty().set(false);
     }
 
-    /***
-     * 
+    /**
      * Redirects user to Main Screen when user clicks "Home".
-     * 
+     *
      * @param event
      * @throws IOException
      */
     public void homeBtnClicked(ActionEvent event) throws IOException {
-        Parent mainScreenParent = FXMLLoader.load(getClass().getResource("/fxml/MainScreen.fxml"));
-        Scene main = new Scene(mainScreenParent);
+        ControllerManager.getInstance().changeScene(ControllerManager.getInstance().getMainScreen());
+    }
 
-        // This line grabs the Stage information
-        Stage mainScreenWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    public void populateItems() {
+        newBtn.visibleProperty().set(true);
+        itemMode = true;
+        System.out.println("Populating area with Items...");
 
-        mainScreenWindow.setScene(main);
-        mainScreenWindow.show();
+        populateArea.getChildren().clear();
+        ItemBroker itemBroker = new ItemBroker(DatabaseManager.getInstance(), DatabaseManager.getEntityManager());
+        for (Item i : itemBroker.getAllItems()) {
+            populateArea.getChildren().add(new ManagementUIItemElement(this, i));
+        }
+    }
+
+    public void populateOrders() {
+        newBtn.visibleProperty().set(true);
+        itemMode = false;
+        populateArea.getChildren().clear();
+
+        System.out.println("Populating area with Orders.");
+    }
+
+    public void createItemManagementPopup(ManagementUIItemElement element, Item item) {
+        System.out.println("Popup " + item.getName());
+        Popup popup = new Popup();
+        ControllerManager.getInstance().setPopup(popup);
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ManagementItemPopup.fxml"));
+        ManagementUIItemElementController controller = new ManagementUIItemElementController();
+        loader.setController(controller);
+        try {
+            popup.getContent().add((Parent) loader.load());
+            popup.show(ControllerManager.getInstance().getWindow());
+            controller.setItem(item);
+            controller.setManagementUIItemElement(element);
+            controller.setManagementController(this);
+            controller.populate();
+        } catch (IOException e) {
+            System.out.println("Could not create management item popup. " + e.getMessage());
+        }
+    }
+
+    public void newBtnClicked() {
+        if (itemMode) {
+            Item item = new Item();
+            createItemManagementPopup(null, item);
+        } else {
+
+        }
     }
 }

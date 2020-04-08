@@ -20,6 +20,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import manager.ControllerManager;
 import manager.DatabaseManager;
 
 /**
@@ -60,14 +61,22 @@ public class MainScreenController implements Initializable {
      * login screen
      */
     public void logoutBtnClicked(ActionEvent event) throws IOException {
-        Parent loginParent = FXMLLoader.load(getClass().getResource("/fxml/Login.fxml"));
-        Scene logout = new Scene(loginParent);
+//        Parent loginParent = FXMLLoader.load(getClass().getResource("/fxml/Login.fxml"));
+//        Scene logout = new Scene(loginParent);
+//        Scene logout = ControllerManager.getInstance().getLoginScreen();
+//
+//        // This line grabs the Stage information
+//        Stage loginWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//        
+//        loginWindow.setScene(logout);
+//        loginWindow.show();
 
-        // This line grabs the Stage information
-        Stage loginWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        ControllerManager.getInstance().changeScene(ControllerManager.getInstance().getLoginScreen());
 
-        loginWindow.setScene(logout);
-        loginWindow.show();
+    }
+
+    public void managementBtnClicked() {
+        ControllerManager.getInstance().changeScene(ControllerManager.getInstance().getManagementScene());
     }
 
     /**
@@ -79,10 +88,10 @@ public class MainScreenController implements Initializable {
         Scene order = new Scene(orderParent);
 
         // This line grabs the Stage information
-        Stage orderWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        orderWindow.setScene(order);
-        orderWindow.show();
+//        Stage orderWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        ControllerManager.getInstance().changeScene(order);
+//        orderWindow.setScene(order);
+//        orderWindow.show();
     }
 
     public void addOrderToMainScreen(Transaction t) {
@@ -105,8 +114,12 @@ public class MainScreenController implements Initializable {
 
         itemName.setFont(new Font("Arial Black", 25));
         itemPrice.setFont(new Font("Arial Black", 25));
-
-        transactionContainer.getChildren().addAll(itemName, itemPrice);
+        
+        transactionContainer.getChildren().addAll(itemName, itemPrice);       
         mainScreenDisplay.getChildren().addAll(transactionContainer);
     }
+
 }
+
+    
+

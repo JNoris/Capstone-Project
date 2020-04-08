@@ -14,14 +14,17 @@ import utility.LoginService;
 import javafx.fxml.*;
 import javafx.scene.paint.Color;
 import javafx.event.*;
+import manager.ControllerManager;
+import utility.Timer;
 
 /**
  *
- * @author Noris
- * 
+ * @author Noris. UMM I MEAN: CAPSTONE GROUP, OF COURSE, TIS NOT MY WORK BUT OUR
+ * WORK.
+ *
  * @Notes Please make sure to correct this code. Namely: Password as well as
- *        validation.
- * 
+ * validation.
+ *
  */
 public class LoginController implements Initializable {
 
@@ -47,24 +50,33 @@ public class LoginController implements Initializable {
 
     /**
      * When this method is called by clicking "Enter" in Login (assuming correct
-     * credentials inputted), it will change the Scene to Main Screen <<<<<<<
-     * Updated upstream =======
-     * 
-     * @param event >>>>>>> Stashed changes
+     * credentials inputted), it will change the Scene to Main Screen
+     *
+     * @param event
      */
     public void loginEnterBtnClicked(ActionEvent event) {
         try {
-            Parent mainScreenParent = FXMLLoader.load(getClass().getResource("/fxml/MainScreenNORMAL.fxml"));
-            Scene main = new Scene(mainScreenParent);
+//            Parent mainScreenParent = FXMLLoader.load(getClass().getResource("/fxml/MainScreen.fxml"));
+//            Scene main = new Scene(mainScreenParent);
 
             LoginService ls = new LoginService();
 
             if (ls.checkPassword(passwordFieldInput.getText())) {
 
-                // This line grabs the Stage information
-                Stage mainWindowScreen = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                mainWindowScreen.setScene(main);
-                mainWindowScreen.show();
+                // This line grabs the Stage information.
+//                Stage mainWindowScreen = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//                mainWindowScreen.setScene(main);
+//                mainWindowScreen.show();
+                ControllerManager.getInstance().changeScene(ControllerManager.getInstance().getLastScene());
+                ControllerManager.getInstance().restorePopup();
+                Timer.createTimer(10000);
+                //Create a Thread that keeps track of a logout timer.
+                Thread t = new Thread(Timer.getInstance());
+                t.start();
+
+                //Reset error message.
+                errorMessage.setText("");
+
             } else {
                 errorMessage.setText("Your password is incorrect.");
                 errorMessage.setTextFill(Color.rgb(210, 39, 30));

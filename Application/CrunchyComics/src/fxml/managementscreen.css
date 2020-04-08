@@ -1,0 +1,167 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Mar 10, 2020, 1:42:40 AM
+    Author     : 746299
+*/
+
+#tabpane{
+ -fx-tab-min-height: 7em;
+ -fx-tab-min-width: 6.5em;
+ -fx-tab-max-width: 6.5em;
+ -fx-tab-max-height: 7em;
+ -fx-background-color: transparent;
+ -fx-border-color: transparent;
+}
+.tab-header-background{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.tab .tab-label{
+    -fx-background-color:  #3A3A3A;
+    -fx-border-color: transparent;
+}
+
+.tab{
+    -fx-background-color: transparent;
+}
+
+.tab:selected{
+    -fx-background-radius: 0;
+    -fx-background-insets: 0;
+    -fx-border-width: 5 0 0 5;
+    -fx-border-color: #5A5A5A;
+    -fx-focus-color:transparent;
+}
+
+
+.tab:hover .tab-label:hover{
+    -fx-background-color: #8A8A8A;
+}
+
+.printInventoryLabel{
+    -fx-background-color: transparent;
+}
+
+.printSalesLabel{
+    -fx-background-color:transparent;
+}
+
+.printInventoryLabel:hover{
+    -fx-background-radius: 2;
+    -fx-background-color: #3A3A3A;
+}
+
+.printSalesLabel:hover{
+    -fx-background-radius: 2;
+    -fx-background-color: #3A3A3A;
+}
+
+.printInventoryLabel:focused{
+    -fx-background-color: #3A3A3A;
+}
+
+.printSalesLabel:focused{
+    -fx-background-color: #3A3A3A;
+}
+
+.addEditLabel{
+    -fx-background-color:transparent;
+}
+
+.addEditLabel:hover{
+    -fx-background-radius: 2;
+    -fx-background-color: #3A3A3A;
+}
+
+.addEditLabel:focused{
+    -fx-background-color: #3A3A3A;
+}
+
+.purchaseOrderLabel{
+    -fx-background-color:transparent;
+}
+
+.purchaseOrderLabel:hover{
+    -fx-background-radius: 2;
+    -fx-background-color: #3A3A3A;
+}
+
+.purchaseOrderLabel:focused{
+    -fx-background-color: #3A3A3A;
+}
+
+.homeButton{
+    -fx-background-color: #6A0000;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-width: 5;
+    -fx-border-color: transparent;
+}
+
+.homeButton:hover{
+    -fx-border-color:#FF0000;
+    -fx-background-color:transparent;
+    -fx-text-fill: #FF0000;
+}
+
+.doneButton{
+    -fx-background-color: #006A00;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-width: 5;
+    -fx-border-color: transparent;
+}
+
+.doneButton:hover{
+    -fx-text-fill:#1FFF00;
+    -fx-background-color:transparent;
+    -fx-border-color:#1FFF00;
+}
+
+.pickDatesButton{
+    -fx-background-color: #050B7B;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-width: 5;
+    -fx-border-color: transparent;
+}
+
+.pickDatesButton:hover{
+    -fx-text-fill:#000DFF;
+    -fx-background-color: transparent;
+    -fx-border-color: #000DFF;
+}
+
+.editButton{
+    -fx-background-color: #050B7B;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-width: 5;
+    -fx-border-color: transparent;
+}
+
+.editButton:hover{
+    -fx-text-fill:#000DFF;
+    -fx-background-color: transparent;
+    -fx-border-color: #000DFF;
+}
+
+.newButton{
+    -fx-background-color: #006A00;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-width: 5;
+    -fx-border-color: transparent;
+}
+
+.newButton:hover{
+    -fx-text-fill:#1FFF00;
+    -fx-background-color:transparent;
+    -fx-border-color:#1FFF00;
+}
+

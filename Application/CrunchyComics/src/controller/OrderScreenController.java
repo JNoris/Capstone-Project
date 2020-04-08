@@ -89,6 +89,7 @@ public class OrderScreenController implements Initializable {
     private Button result;
     private ItemBroker itemBroker;
     private Transaction transaction;
+//    private Popup popup;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -120,8 +121,9 @@ public class OrderScreenController implements Initializable {
      * @throws IOException
      */
     public void logoutBtnClicked(ActionEvent event) throws IOException {
-        Parent loginParent = FXMLLoader.load(getClass().getResource("/fxml/Login.fxml"));
-        Scene logout = new Scene(loginParent);
+//        Parent loginParent = FXMLLoader.load(getClass().getResource("/fxml/Login.fxml"));
+//        Scene logout = new Scene(loginParent);
+        Scene logout = ControllerManager.getInstance().getLoginScreen();
 
         // This line grabs the Stage information
         Stage loginWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -171,7 +173,10 @@ public class OrderScreenController implements Initializable {
         Label name = new Label();
         Label price = new Label();
         Label id = new Label();
-
+        
+        hbox.getStylesheets().add("/fxml/orderscreen.css");
+        hbox.getStyleClass().add("searchBox");
+        
         name.setMaxHeight(100);
         name.setMinWidth(500);
         name.setMaxWidth(500);
@@ -227,16 +232,6 @@ public class OrderScreenController implements Initializable {
                             calculateSubtotal();
                             return;
                         }
-                        //// System.out.println("TransactionItem exists.");
-                        // exist = true;
-                        //
-                        // t.getTransactionItemPK().setQuantity(t.getTransactionItemPK().getQuantity() +
-                        //// 1);
-                        // e.refresh();
-                        //
-                        // calculateSubtotal();
-                        // return;
-
                     }
                 }
             }
@@ -250,8 +245,10 @@ public class OrderScreenController implements Initializable {
             tItem.getTransactionItemPK().setSoldPrice(item.getPrice()); // Sets price of the item as the original price
                                                                         // of the item.
             transaction.getTransactionItemList().add(tItem);
-
+            
             TransactionUIElement t = new TransactionUIElement(tItem, this);
+            t.getStylesheets().add("/fxml/orderscreen.css");
+            t.getStyleClass().add("transactionItem");
             saleListDisplay.getChildren().addAll(t);
         }
         calculateSubtotal();
@@ -263,15 +260,17 @@ public class OrderScreenController implements Initializable {
             total += tItem.getTransactionItemPK().getSoldPrice() * tItem.getTransactionItemPK().getQuantity();
         }
         calculateTax(total);
-        subtotalDisplay.setText(String.format("%.2f", total));
+        subtotalDisplay.setText(String.format("$%.2f", total));
     }
 
+    //Issues Here ($)
     public void calculateTax(float value) {
         float tax = value * 0.05f;
-        taxDisplay.setText(String.format("$%.2f", tax));
+        taxDisplay.setText(String.format("%.2f", tax));
         updateTotal(value + tax);
     }
-
+    
+    //Issues with $ here
     public void updateTotal(float value) {
         finalPriceDisplay.setText(String.format("%.2f", value));
     }
@@ -312,8 +311,8 @@ public class OrderScreenController implements Initializable {
                 .getUserData()).getController();
         // Updates the transactions in the MainScreen.
         c.showTransactions();
-        // Set scene to main screen.
-        ControllerManager.getInstance().getWindow().setScene(ControllerManager.getInstance().getMainScreen());
+        //Set scene to main screen.
+        ControllerManager.getInstance().changeScene(ControllerManager.getInstance().getMainScreen());
 
     }
 
@@ -325,13 +324,27 @@ public class OrderScreenController implements Initializable {
         return list;
     }
 
-    // Pop up
-    public void createPopup(TransactionItem item) {
+    //Pop up
+    public void createPopup(TransactionUIElement element, TransactionItem item) {
+        if (ControllerManager.getInstance().getPopup() != null) {
+            System.out.println("Hiding old popup");
+            ControllerManager.getInstance().getPopup().hide();
+        }
+        System.out.println("Creating popup");
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/OrderScreenItemPopup.fxml"));
         Popup popup = new Popup();
+        ControllerManager.getInstance().setPopup(popup);
         try {
+//            itemPopup.getContent().add((Parent) loader.load());
+//            itemPopup.show(ControllerManager.getInstance().getMainScreen().getWindow());
+            TransactionUIElementController controller = new TransactionUIElementController();
+            loader.setController(controller);
             popup.getContent().add((Parent) loader.load());
-            popup.show(ControllerManager.getInstance().getMainScreen().getWindow());
+            popup.show(ControllerManager.getInstance().getWindow());
+            controller.fill(item);
+            controller.setPopup(popup);
+            controller.setNode(element);
         } catch (IOException e) {
             System.exit(0);
         }

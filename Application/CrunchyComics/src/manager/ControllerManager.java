@@ -9,6 +9,7 @@ import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Popup;
 import javafx.stage.Stage;
 
 /**
@@ -21,15 +22,22 @@ public class ControllerManager {
     private Stage window;
     private Scene mainScreen;
     private Scene loginScreen;
+    private Scene managementScreen;
+    private Scene lastScene;
+    private Popup popup; //Only one popup can be open at any time.
 
     private ControllerManager() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/MainScreen.fxml"));
-            this.mainScreen = new Scene((Parent)loader.load());
+            this.mainScreen = new Scene((Parent) loader.load());
             this.mainScreen.setUserData(loader);
+            this.lastScene = mainScreen; //Defaults lastScene to the MainScreen
             
             loader = new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
-            this.loginScreen = new Scene((Parent)loader.load(getClass().getResource("/fxml/Login.fxml")));
+            this.loginScreen = new Scene((Parent) loader.load());
+            
+            loader = new FXMLLoader(getClass().getResource("/fxml/Management.fxml"));
+            this.managementScreen = new Scene((Parent) loader.load());
         } catch (IOException e) {
             e.printStackTrace();
             System.exit(-1);
@@ -45,20 +53,60 @@ public class ControllerManager {
             return cManager;
         }
     }
-    
-    public Scene getMainScreen(){
+
+    public void changeScene(Scene scene) {
+        window.setScene(scene);
+        if (scene != loginScreen) {
+            lastScene = scene;
+        }
+        if(scene == mainScreen){
+            hidePopup();
+            popup = null;
+        }
+    }
+
+    public Scene getMainScreen() {
         return mainScreen;
     }
-    
-    public Scene getLoginScreen(){
+
+    public Scene getLoginScreen() {
         return loginScreen;
     }
     
-    public Stage getWindow(){
+    public Scene getLastScene(){
+        return lastScene;
+    }
+    
+    public Scene getManagementScene(){
+        return managementScreen;
+    }
+
+    public Stage getWindow() {
         return this.window;
     }
     
-    public void setWindow(Stage window){
+    public Popup getPopup(){
+        return popup;
+    }
+    public void setPopup(Popup popup){
+        if(this.popup != null){
+            hidePopup();
+        }
+        this.popup = popup;
+    }
+    public void setWindow(Stage window) {
         this.window = window;
+    }
+    
+    public void hidePopup(){
+        if(popup != null){
+            popup.hide();
+        }
+    }
+    
+    public void restorePopup(){
+        if(popup != null){
+            popup.show(window);
+        }
     }
 }
