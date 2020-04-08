@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label alignment="CENTER" prefHeight="35.0" prefWidth="700.0" text="Create New Order" />
+      <VBox prefHeight="109.0" prefWidth="600.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="26.0" prefWidth="600.0">
+               <children>
+                  <Label minWidth="80.0" text="Order Date:" />
+                  <Label fx:id="currentDateLabel" text="CURRENT_DATE" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="26.0" prefWidth="600.0">
+               <children>
+                  <Label minWidth="80.0" text="Arrival Date:" />
+                  <ComboBox fx:id="monthComboBox" onAction="#monthChanged" prefHeight="25.0" prefWidth="89.0" promptText="Month">
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin>
+                  </ComboBox>
+                  <ComboBox fx:id="dayComboBox" prefHeight="25.0" prefWidth="89.0" promptText="Day">
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin>
+                  </ComboBox>
+                  <ComboBox fx:id="yearComboBox" prefHeight="25.0" prefWidth="89.0" promptText="Year">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </ComboBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="26.0" prefWidth="600.0">
+               <children>
+                  <Label minWidth="80.0" text="Vendor:" />
+                  <ComboBox fx:id="vendorComboBox" editable="true" prefHeight="25.0" prefWidth="89.0" promptText="Vendor" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <HBox prefHeight="218.0" prefWidth="600.0">
+         <children>
+            <VBox prefHeight="218.0" prefWidth="206.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="205.0" text="Items List" />
+                  <TextField fx:id="itemSearchField" onKeyTyped="#searchItems" promptText="Search" />
+                  <ScrollPane prefHeight="200.0" prefWidth="200.0">
+                     <content>
+                        <VBox fx:id="itemListContainer" prefHeight="200.0" prefWidth="190.0" />
+                     </content>
+                  </ScrollPane>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <HBox.margin>
+                  <Insets left="5.0" right="5.0" />
+               </HBox.margin>
+            </VBox>
+            <VBox prefHeight="218.0" prefWidth="378.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="375.0" text="Order List" />
+                  <ScrollPane prefHeight="200.0" prefWidth="318.0">
+                     <content>
+                        <VBox fx:id="orderListContainer" prefHeight="200.0" prefWidth="360.0" />
+                     </content>
+                  </ScrollPane>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="55.0" prefWidth="600.0">
+         <children>
+            <Button mnemonicParsing="false" onMouseReleased="#cancelBtnClicked" text="Cancel">
+               <HBox.margin>
+                  <Insets right="5.0" />
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onMouseReleased="#confirmBtnClicked" text="Confirm" />
+         </children>
+      </HBox>
+   </children>
+</VBox>

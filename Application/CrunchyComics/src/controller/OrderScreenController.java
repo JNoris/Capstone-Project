@@ -233,15 +233,6 @@ public class OrderScreenController implements Initializable {
                             calculateSubtotal();
                             return;
                         }
-////                        System.out.println("TransactionItem exists.");
-//                        exist = true;
-//
-//                        t.getTransactionItemPK().setQuantity(t.getTransactionItemPK().getQuantity() + 1);
-//                        e.refresh();
-//
-//                        calculateSubtotal();
-//                        return;
-
                     }
                 }
             }
