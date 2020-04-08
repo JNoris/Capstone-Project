@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0">
+         <children>
+            <VBox alignment="CENTER" opacity="0.8" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #000000;">
+               <children>
+                  <Pane opacity="0.35" prefHeight="200.0" prefWidth="200.0" />
+               </children>
+            </VBox>
+            <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="466.0" prefWidth="600.0" style="-fx-background-color: #6A6A6A;" styleClass="orderBox" stylesheets="@managementscreen.css" StackPane.alignment="CENTER">
+               <children>
+                  <AnchorPane prefHeight="542.0" prefWidth="600.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="35.0" prefWidth="600.0" text="Create New Order" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Black" size="20.0" />
+                           </font>
+                        </Label>
+                        <VBox layoutX="7.0" layoutY="40.0" prefHeight="97.0" prefWidth="593.0" spacing="5.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="26.0" prefWidth="600.0">
+                                 <children>
+                                    <Label minWidth="80.0" prefHeight="22.0" prefWidth="129.0" text="Order Date:" textFill="WHITE">
+                                       <font>
+                                          <Font name="Arial Black" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="currentDateLabel" prefHeight="17.0" prefWidth="178.0" text="CURRENT_DATE" textFill="WHITE">
+                                       <font>
+                                          <Font name="Arial Black" size="14.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="26.0" prefWidth="600.0">
+                                 <children>
+                                    <Label minWidth="80.0" prefHeight="17.0" prefWidth="128.0" text="Arrival Date:" textFill="WHITE">
+                                       <font>
+                                          <Font name="Arial Black" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <ComboBox fx:id="monthComboBox" onAction="#monthChanged" prefHeight="25.0" prefWidth="89.0" promptText="Month">
+                                       <HBox.margin>
+                                          <Insets right="5.0" />
+                                       </HBox.margin>
+                                    </ComboBox>
+                                    <ComboBox fx:id="dayComboBox" prefHeight="25.0" prefWidth="89.0" promptText="Day">
+                                       <HBox.margin>
+                                          <Insets right="5.0" />
+                                       </HBox.margin>
+                                    </ComboBox>
+                                    <ComboBox fx:id="yearComboBox" prefHeight="25.0" prefWidth="89.0" promptText="Year">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </ComboBox>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="26.0" prefWidth="600.0">
+                                 <children>
+                                    <Label minWidth="80.0" prefHeight="22.0" prefWidth="126.0" text="Vendor:" textFill="WHITE">
+                                       <font>
+                                          <Font name="Arial Black" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <ComboBox fx:id="vendorComboBox" editable="true" prefHeight="25.0" prefWidth="89.0" promptText="Vendor" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <HBox layoutY="147.0" prefHeight="252.0" prefWidth="593.0" spacing="4.0" styleClass="orderBox" stylesheets="@managementscreen.css">
+                           <children>
+                              <VBox prefHeight="254.0" prefWidth="260.0">
+                                 <children>
+                                    <Label alignment="CENTER" prefHeight="22.0" prefWidth="253.0" text="Items List" textFill="WHITE">
+                                       <font>
+                                          <Font name="Arial Black" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="itemSearchField" onKeyTyped="#searchItems" prefHeight="32.0" prefWidth="260.0" promptText="Search" styleClass="itemNameField" stylesheets="@managementscreen.css">
+                                       <font>
+                                          <Font name="Arial Black" size="13.0" />
+                                       </font>
+                                    </TextField>
+                                    <ScrollPane prefHeight="200.0" prefWidth="200.0">
+                                       <content>
+                                          <VBox fx:id="itemListContainer" prefHeight="200.0" prefWidth="244.0" />
+                                       </content>
+                                    </ScrollPane>
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <HBox.margin>
+                                    <Insets left="5.0" right="5.0" />
+                                 </HBox.margin>
+                              </VBox>
+                              <VBox prefHeight="254.0" prefWidth="317.0">
+                                 <children>
+                                    <Label alignment="CENTER" prefHeight="17.0" prefWidth="375.0" text="Order List" textFill="WHITE">
+                                       <font>
+                                          <Font name="Arial Black" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <ScrollPane prefHeight="231.0" prefWidth="378.0">
+                                       <content>
+                                          <VBox fx:id="orderListContainer" prefHeight="229.0" prefWidth="366.0" />
+                                       </content>
+                                    </ScrollPane>
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutY="408.0" prefHeight="53.0" prefWidth="600.0" spacing="150.0">
+                           <children>
+                              <Button mnemonicParsing="false" onMouseReleased="#cancelBtnClicked" styleClass="cancelButton" stylesheets="@managementscreen.css" text="Cancel">
+                                 <HBox.margin>
+                                    <Insets right="5.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font name="Arial Black" size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" onMouseReleased="#confirmBtnClicked" styleClass="confirmButton" stylesheets="@managementscreen.css" text="Confirm" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Black" size="14.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <Line endX="473.0" layoutX="115.0" layoutY="35.0" startX="-100.0" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </VBox>
+         </children>
+      </StackPane>
+   </children>
+</VBox>

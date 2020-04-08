@@ -7,7 +7,6 @@ package ui;
 
 import controller.OrderScreenController;
 import controller.TransactionUIElementController;
-import domain.Item;
 import domain.TransactionItem;
 import java.io.IOException;
 import javafx.event.EventHandler;
@@ -23,6 +22,8 @@ import javafx.stage.Popup;
 import manager.ControllerManager;
 
 /**
+ * This class is an UI element that contains information used for the management
+ * of transactions in the database.
  *
  * @author Vinicius Smith
  */
@@ -35,6 +36,13 @@ public class TransactionUIElement extends HBox {
     private TransactionItem transactionItem;
     private OrderScreenController controller;
 
+    /**
+     * Constructs a new TransactionUIElement with information from the
+     * TransactionItem item.
+     *
+     * @param item transactionItem reference
+     * @param controller controller reference
+     */
     public TransactionUIElement(TransactionItem item, OrderScreenController controller) {
         this.transactionItem = item;
         this.controller = controller;
@@ -50,7 +58,6 @@ public class TransactionUIElement extends HBox {
         id.setMaxHeight(0);
         id.setMinWidth(0);
 
-//            HBox itemContainer = new HBox(10);
         this.spacingProperty().set(10);
         this.setPadding(new Insets(10, 10, 10, 10));
 
@@ -77,8 +84,6 @@ public class TransactionUIElement extends HBox {
         this.quantity.setMinWidth(65);
         this.quantity.setMaxWidth(65);
 
-        //label1.setTextFill(Color.web("#0076a3"));
-        //label.setFont(new Font("Arial", 30));
         this.name.setTextFill(Color.web("#FFFFFF"));
         this.price.setTextFill(Color.web("#FFFFFF"));
         this.quantity.setTextFill(Color.web("#FFFFFF"));
@@ -90,22 +95,47 @@ public class TransactionUIElement extends HBox {
         this.getChildren().addAll(id, name, quantity, price);
     }
 
+    /**
+     * Gets the name from UI.
+     *
+     * @return the name.
+     */
     public String getName() {
         return name.getText();
     }
 
+    /**
+     * Gets the quantity from the UI.
+     *
+     * @return the quantity.
+     */
     public int getQuantity() {
         return Integer.parseInt(quantity.getText());
     }
 
+    /**
+     * Gets the item id from the UI.
+     *
+     * @return the item id.
+     */
     public int getItemId() {
         return Integer.parseInt(id.getText());
     }
 
+    /**
+     * Gets the price from the UI.
+     *
+     * @return the price.
+     */
     public float getPrice() {
         return Float.parseFloat(price.getText());
     }
 
+    /**
+     * Gets the transaction item.
+     *
+     * @return the transaction item.
+     */
     public TransactionItem getTransactionItem() {
         return transactionItem;
     }
@@ -116,11 +146,16 @@ public class TransactionUIElement extends HBox {
      */
     public void refresh() {
         this.quantity.setText(transactionItem.getTransactionItemPK().getQuantity() + "");
-        this.price.setText(transactionItem.getTransactionItemPK().getSoldPrice() * transactionItem.getTransactionItemPK().getQuantity() + "");
+        this.price.setText(String.format("%.2f", transactionItem.getTransactionItemPK().getSoldPrice() * transactionItem.getTransactionItemPK().getQuantity()) + "");
         this.controller.calculateSubtotal();
     }
 
-    //Pop up
+    /**
+     * Creates a pop-up that allows the user to modify transaction item
+     * information easily.
+     *
+     * @param item reference to the transaction item.
+     */
     public void createPopup(TransactionItem item) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/OrderScreenItemPopup.fxml"));
         Popup popup = new Popup();
@@ -137,6 +172,11 @@ public class TransactionUIElement extends HBox {
         }
     }
 
+    /**
+     * Check for UI elements with same information as this object. If a match is
+     * found certain informations are combined and the quantity of the match is
+     * increased. This object is then remove from the UI.
+     */
     public void fixDuplicates() {
         System.out.println("Looking for duplicate...");
         for (TransactionUIElement other : controller.getAllSaleElements()) {
@@ -156,11 +196,22 @@ public class TransactionUIElement extends HBox {
         }
     }
 
+    /**
+     * Delete this element from the list and removes the transaction item
+     * associated with it from the transaction.
+     */
     public void selfDelete() {
         controller.getTransaction().getTransactionItemList().remove(this.transactionItem);
         controller.removeFromSale(this);
     }
 
+    /**
+     * Compares the UI element with another base on the TranscationItem.
+     *
+     * @param other the other UI element.
+     * @return True if they have TransactionItems with the same information.
+     * False otherwise.
+     */
     public boolean equals(TransactionUIElement other) {
         if (this.transactionItem.getTransactionItemPK().equals(other.getTransactionItem().getTransactionItemPK())) {
             return true;

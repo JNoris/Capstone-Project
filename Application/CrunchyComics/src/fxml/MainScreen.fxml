@@ -28,7 +28,7 @@
                         <Font name="Arial Black" size="25.0" />
                      </font>
                   </Label>
-                  <Button fx:id="settingsButton" mnemonicParsing="false" prefHeight="38.0" prefWidth="47.0" styleClass="settingsButton" stylesheets="@orderscreen.css">
+                  <Button fx:id="settingsButton" mnemonicParsing="false" onMouseReleased="#settingsBtnClicked" prefHeight="38.0" prefWidth="47.0" styleClass="settingsButton" stylesheets="@orderscreen.css">
                      <graphic>
                         <ImageView disable="true" fitHeight="51.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true" styleClass="settingsImage">
                            <image>

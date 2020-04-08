@@ -5,7 +5,6 @@ import broker.TransactionBroker;
 import domain.Item;
 import domain.Transaction;
 import domain.TransactionItem;
-import domain.TransactionItemPK;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -17,31 +16,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-import javafx.application.Application;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -132,51 +115,16 @@ public class OrderScreenController implements Initializable {
         loginWindow.show();
     }
 
-    // TODO: Not used so delete eventually.
-    /**
-     * When TextField searchField is initiated (by clicking on the search field in
-     * the order screen), whatever is typed in the field will call
-     * textfield.getText(); which grabs the fields input and outputs query
-     * underneath in the results pane.
-     *
-     * @param event
-     * @throws IOException
-     */
-    public void initiateSearch(ActionEvent event, Item item) throws IOException {
-        // searchField is the fxid
-        result = new Button();
-
-        HBox itemContainer = new HBox(50);
-
-        EventHandler<ActionEvent> e = new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-                if (searchField.getText().equals(item.getName())) {
-                    itemContainer.getChildren().addAll(new Label(item.getName()),
-                            new Label(Integer.toString(item.getItemID())), new Label(Float.toString(item.getPrice())),
-                            result);
-                    // No idea how to add the button correctly
-                }
-            }
-        };
-
-        /**
-         * When the enter key is pressed
-         */
-        searchField.setOnAction(e);
-
-    }
-
     public void addItemToSearch(Item item) {
         // Button base = new Button();
         HBox hbox = new HBox(20);
         Label name = new Label();
         Label price = new Label();
         Label id = new Label();
-        
+
         hbox.getStylesheets().add("/fxml/orderscreen.css");
         hbox.getStyleClass().add("searchBox");
-        
+
         name.setMaxHeight(100);
         name.setMinWidth(500);
         name.setMaxWidth(500);
@@ -245,7 +193,7 @@ public class OrderScreenController implements Initializable {
             tItem.getTransactionItemPK().setSoldPrice(item.getPrice()); // Sets price of the item as the original price
                                                                         // of the item.
             transaction.getTransactionItemList().add(tItem);
-            
+
             TransactionUIElement t = new TransactionUIElement(tItem, this);
             t.getStylesheets().add("/fxml/orderscreen.css");
             t.getStyleClass().add("transactionItem");
@@ -269,7 +217,7 @@ public class OrderScreenController implements Initializable {
         taxDisplay.setText(String.format("%.2f", tax));
         updateTotal(value + tax);
     }
-    
+
     //Issues with $ here
     public void updateTotal(float value) {
         finalPriceDisplay.setText(String.format("%.2f", value));

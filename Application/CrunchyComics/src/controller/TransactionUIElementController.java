@@ -40,7 +40,7 @@ public class TransactionUIElementController implements Initializable {
     @FXML
     private TextField discountFlatAmount;
     @FXML
-    private TextField percentageFlatAmount;
+    private TextField discountPercentageAmount;
     @FXML
     private CheckBox discountEnableCheck;
     @FXML
@@ -51,7 +51,7 @@ public class TransactionUIElementController implements Initializable {
 
         //Default 
         discountFlatAmount.disableProperty().set(true);
-        percentageFlatAmount.disableProperty().set(true);
+        discountPercentageAmount.disableProperty().set(true);
         discount.getToggles().forEach(t -> {
             ((Node) t).setDisable(true);
         });
@@ -62,13 +62,13 @@ public class TransactionUIElementController implements Initializable {
             public void handle(ActionEvent event) {
                 if (discountEnableCheck.isSelected()) {
                     discountFlatAmount.disableProperty().set(false);
-                    percentageFlatAmount.disableProperty().set(false);
+                    discountPercentageAmount.disableProperty().set(false);
                     discount.getToggles().forEach(t -> {
                         ((Node) t).setDisable(false);
                     });
                 } else {
                     discountFlatAmount.disableProperty().set(true);
-                    percentageFlatAmount.disableProperty().set(true);
+                    discountPercentageAmount.disableProperty().set(true);
                     discount.getToggles().forEach(t -> {
                         ((Node) t).setDisable(true);
                     });
@@ -92,23 +92,21 @@ public class TransactionUIElementController implements Initializable {
         node.getTransactionItem().getTransactionItemPK().setQuantity(Integer.parseInt(itemQuantity.getText()));
 
         //Apply discount if enabled
-        if (discountEnableCheck.isSelected()) {
+        if (discountEnableCheck.isSelected()) { //Flat
             String selectedToggle = ((RadioButton) discount.getSelectedToggle()).getText();
             if (selectedToggle.equals("Flat")) {
                 node.getTransactionItem().getTransactionItemPK().setSoldPrice(node.getTransactionItem().getTransactionItemPK().getSoldPrice() - Float.parseFloat(discountFlatAmount.getText()));
-            } else {
-
+            } else { //Percentage
+                node.getTransactionItem().getTransactionItemPK().setSoldPrice(node.getTransactionItem().getTransactionItemPK().getSoldPrice() * Float.parseFloat(discountPercentageAmount.getText())/100.0f);
             }
         }
         node.refresh();
-        
+
         //Look for duplicate
         node.fixDuplicates();
-        
+
         closePopup();
     }
-    
-
 
     public void requestDeleteItem() {
         node.selfDelete();

@@ -29,7 +29,8 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Vendor.findAll", query = "SELECT v FROM Vendor v")
     , @NamedQuery(name = "Vendor.findByVendorID", query = "SELECT v FROM Vendor v WHERE v.vendorID = :vendorID")
-    , @NamedQuery(name = "Vendor.findByVendorName", query = "SELECT v FROM Vendor v WHERE v.vendorName = :vendorName")})
+    , @NamedQuery(name = "Vendor.findByVendorName", query = "SELECT v FROM Vendor v WHERE v.vendorName = :vendorName")
+    , @NamedQuery(name = "Vendor.findLastID", query = "SELECT MAX(v.vendorID) FROM Vendor v")})
 public class Vendor implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -102,7 +103,7 @@ public class Vendor implements Serializable {
 
     @Override
     public String toString() {
-        return "domain.Vendor[ vendorID=" + vendorID + " ]";
+        return vendorName;
     }
-    
+
 }

@@ -44,6 +44,7 @@ public class SplashController {
             
             stage.setScene(ControllerManager.getInstance().getLoginScreen());
             stage.show();
+            stage.centerOnScreen();
         } catch (IOException e) {
             System.err.println("Login FXML not found! Error: " + e.getMessage());
             System.exit(0);
