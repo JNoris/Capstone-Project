@@ -62,9 +62,9 @@
                                     <Font name="Arial Black" size="20.0" />
                                  </font>
                               </Button>
-                              <ScrollPane layoutX="321.0" layoutY="60.0" prefHeight="423.0" prefWidth="777.0">
+                              <ScrollPane layoutX="273.0" layoutY="15.0" prefHeight="468.0" prefWidth="824.0" style="-fx-background-color: #3A3a3a;" styleClass="inventoryDisplayScreen" stylesheets="@managementscreen.css">
                                  <content>
-                                    <VBox fx:id="populateArea" />
+                                    <VBox fx:id="populateArea" styleClass="populateDataDisplay" stylesheets="@managementscreen.css" />
                                  </content>
                               </ScrollPane>
                            </children></AnchorPane>

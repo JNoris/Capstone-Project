@@ -4,57 +4,115 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 
-
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="294.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox prefHeight="400.0" prefWidth="317.0" style="-fx-background-color: #FFFFFF;">
+      <StackPane prefHeight="720.0" prefWidth="1280.0">
          <children>
-            <Label alignment="CENTER" prefHeight="30.0" prefWidth="400.0" text="Order Management" textAlignment="CENTER" />
-            <HBox alignment="CENTER_LEFT" prefHeight="22.0" prefWidth="400.0">
+            <VBox opacity="0.8" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #000000;">
                <children>
-                  <Label minWidth="75.0" text="ID:" />
-                  <Label fx:id="labelOrderID" text="ORDER_ID" />
+                  <Pane prefHeight="731.0" prefWidth="1280.0" />
                </children>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="22.0" prefWidth="400.0">
+            </VBox>
+            <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="372.0" style="-fx-background-color: #6A6A6A;" StackPane.alignment="CENTER">
                <children>
-                  <Label minWidth="75.0" text="Order Date:" />
-                  <Label fx:id="labelOrderDate" text="ORDER_DATE" />
+                  <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="372.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="372.0" text="Order Management" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Black" size="20.0" />
+                           </font>
+                        </Label>
+                        <VBox layoutX="20.0" layoutY="37.0" prefHeight="132.0" prefWidth="329.0" spacing="10.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="22.0" prefWidth="273.0" spacing="87.0">
+                                 <children>
+                                    <Label minWidth="28.0" prefHeight="22.0" prefWidth="28.0" text="ID:" textFill="WHITE">
+                                       <font>
+                                          <Font name="Arial Black" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="labelOrderID" prefHeight="22.0" prefWidth="264.0" text="ORDER_ID" textFill="WHITE">
+                                       <font>
+                                          <Font name="Arial Black" size="14.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="22.0" prefWidth="230.0" spacing="30.0">
+                                 <children>
+                                    <Label minWidth="75.0" prefHeight="22.0" prefWidth="128.0" text="Order Date:" textFill="WHITE">
+                                       <font>
+                                          <Font name="Arial Black" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="labelOrderDate" prefHeight="22.0" prefWidth="252.0" text="ORDER_DATE" textFill="WHITE">
+                                       <font>
+                                          <Font name="Arial Black" size="14.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="22.0" prefWidth="273.0">
+                                 <children>
+                                    <Label minWidth="75.0" prefHeight="22.0" prefWidth="112.0" text="Arrival Date:" textFill="WHITE">
+                                       <font>
+                                          <Font name="Arial Black" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="labelOrderArrivalDate" prefHeight="22.0" prefWidth="190.0" text="ORDER_ARRIVAL_DATE" textFill="WHITE">
+                                       <font>
+                                          <Font name="Arial Black" size="14.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="22.0" prefWidth="281.0" spacing="45.0">
+                                 <children>
+                                    <Label minWidth="67.0" prefHeight="22.0" prefWidth="67.0" text="Vendor:" textFill="WHITE">
+                                       <font>
+                                          <Font name="Arial Black" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="labelOrderVendor" prefHeight="22.0" prefWidth="261.0" text="ORDER_VENDOR" textFill="WHITE">
+                                       <font>
+                                          <Font name="Arial Black" size="14.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <ScrollPane layoutX="19.0" layoutY="171.0" prefHeight="179.0" prefWidth="335.0">
+                           <content>
+                              <VBox fx:id="orderItemContainer" prefHeight="176.0" prefWidth="331.0" />
+                           </content>
+                        </ScrollPane>
+                        <HBox alignment="BOTTOM_CENTER" layoutX="25.0" layoutY="354.0" prefHeight="37.0" prefWidth="335.0">
+                           <children>
+                              <Button mnemonicParsing="false" onMouseReleased="#cancelBtnClicked" styleClass="cancelButton" stylesheets="@managementscreen.css" text="Close" textFill="WHITE">
+                                 <HBox.margin>
+                                    <Insets right="5.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font name="Arial Black" size="14.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <Line endX="194.0" layoutX="155.0" layoutY="30.0" startX="-126.33331298828125" />
+                     </children>
+                  </AnchorPane>
                </children>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="22.0" prefWidth="400.0">
-               <children>
-                  <Label minWidth="75.0" text="Arrival Date:" />
-                  <Label fx:id="labelOrderArrivalDate" text="ORDER_ARRIVAL_DATE" />
-               </children>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="22.0" prefWidth="400.0">
-               <children>
-                  <Label minWidth="75.0" text="Vendor:" />
-                  <Label fx:id="labelOrderVendor" text="ORDER_VENDOR" />
-               </children>
-            </HBox>
-            <ScrollPane prefHeight="179.0" prefWidth="294.0">
-               <content>
-                  <VBox fx:id="orderItemContainer" prefHeight="136.0" prefWidth="278.0" />
-               </content>
-               <VBox.margin>
-                  <Insets left="4.0" right="4.0" top="5.0" />
-               </VBox.margin>
-            </ScrollPane>
-            <HBox alignment="BOTTOM_CENTER" prefHeight="86.0" prefWidth="294.0">
-               <children>
-                  <Button mnemonicParsing="false" onMouseReleased="#cancelBtnClicked" text="Close">
-                     <HBox.margin>
-                        <Insets right="5.0" />
-                     </HBox.margin>
-                  </Button>
-               </children>
-            </HBox>
+            </VBox>
          </children>
-      </VBox>
+      </StackPane>
    </children>
 </HBox>

@@ -5,65 +5,157 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 
-
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="345.0" prefWidth="400.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label alignment="CENTER" prefHeight="30.0" prefWidth="400.0" text="Item Management" textAlignment="CENTER" />
-      <HBox alignment="CENTER_LEFT" prefHeight="22.0" prefWidth="400.0">
+      <StackPane prefHeight="720.0" prefWidth="1280.0">
          <children>
-            <Label minWidth="75.0" text="Name:" />
-            <TextField fx:id="fieldItemName" promptText="ITEM_NAME" />
+            <VBox opacity="0.8" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #000000;">
+               <children>
+                  <Pane opacity="0.35" prefHeight="740.0" prefWidth="1280.0" style="-fx-background-color: #000000;" />
+               </children></VBox>
+            <VBox alignment="CENTER" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="523.0" prefWidth="443.0">
+               <children>
+                  <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="535.0" prefWidth="450.0" style="-fx-background-color: #6A6A6A; -fx-background-radius: 10;">
+                     <children>
+                        <Label alignment="CENTER" layoutX="37.0" prefHeight="36.0" prefWidth="391.0" text="Item Management" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Black" size="20.0" />
+                           </font>
+                        </Label>
+                        <Line endX="324.0" endY="-1.0" layoutX="115.0" layoutY="37.0" startX="-100.0" />
+                        <VBox layoutX="57.0" layoutY="43.0" prefHeight="357.0" prefWidth="338.0" spacing="20.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="22.0" prefWidth="400.0" spacing="50.0">
+                                 <children>
+                                    <Label minWidth="75.0" text="ID:" textFill="WHITE">
+                                       <font>
+                                          <Font name="Arial Black" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="labelItemID" text="ITEM_ID" textFill="WHITE">
+                                       <font>
+                                          <Font name="Arial Black" size="14.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="270.0" spacing="50.0">
+                                 <children>
+                                    <Label minWidth="75.0" text="Name:" textFill="WHITE">
+                                       <font>
+                                          <Font name="Arial Black" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="fieldItemName" promptText="Enter Item Name" styleClass="itemNameField" stylesheets="@managementscreen.css">
+                                       <font>
+                                          <Font name="Arial Black" size="14.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="22.0" prefWidth="400.0" spacing="50.0">
+                                 <children>
+                                    <Label minWidth="75.0" text="Price:" textFill="WHITE">
+                                       <font>
+                                          <Font name="Arial Black" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="fieldItemPrice" promptText="Enter Item Price" styleClass="itemPriceField" stylesheets="@managementscreen.css">
+                                       <font>
+                                          <Font name="Arial Black" size="14.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="270.0" spacing="50.0">
+                                 <children>
+                                    <Label minWidth="75.0" text="UPC:" textFill="WHITE">
+                                       <font>
+                                          <Font name="Arial Black" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="fieldItemUPC" promptText="Enter Item UPC" styleClass="upcField" stylesheets="@managementscreen.css">
+                                       <font>
+                                          <Font name="Arial Black" size="14.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="263.0" spacing="50.0">
+                                 <children>
+                                    <Label minWidth="75.0" text="Type:" textFill="WHITE">
+                                       <font>
+                                          <Font name="Arial Black" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <ComboBox fx:id="comboItemType" prefWidth="150.0" promptText="Choose Type" styleClass="itemTypeComboBox" stylesheets="@managementscreen.css" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="263.0" spacing="50.0">
+                                 <children>
+                                    <Label minWidth="75.0" text="Quantity:" textFill="WHITE">
+                                       <font>
+                                          <Font name="Arial Black" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="fieldItemQuantity" promptText="Enter Quantity" styleClass="quantityField" stylesheets="@managementscreen.css">
+                                       <font>
+                                          <Font name="Arial Black" size="14.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="309.0" spacing="30.0">
+                                 <children>
+                                    <Label minWidth="75.0" text="Description:" textFill="WHITE">
+                                       <font>
+                                          <Font name="Arial Black" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="fieldItemDescription" promptText="Enter Description" styleClass="descriptionField" stylesheets="@managementscreen.css">
+                                       <font>
+                                          <Font name="Arial Black" size="14.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <Label fx:id="labelError" alignment="CENTER" layoutX="14.0" layoutY="425.0" prefHeight="60.0" prefWidth="420.0" text="error_message" textFill="RED" visible="false">
+                           <font>
+                              <Font name="Arial Black" size="14.0" />
+                           </font>
+                        </Label>
+                        <HBox alignment="BOTTOM_CENTER" layoutX="7.0" layoutY="490.0" prefHeight="39.0" prefWidth="436.0" spacing="30.0">
+                           <children>
+                              <Button mnemonicParsing="false" onMouseReleased="#cancelBtnClicked" styleClass="cancelButton" stylesheets="@managementscreen.css" text="Cancel" textFill="WHITE">
+                                 <HBox.margin>
+                                    <Insets right="5.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font name="Arial Black" size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" onMouseReleased="#confirmBtnClicked" styleClass="confirmButton" stylesheets="@managementscreen.css" text="Confirm" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Black" size="14.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </VBox>
          </children>
-      </HBox>
-      <HBox alignment="CENTER_LEFT" prefHeight="22.0" prefWidth="400.0">
-         <children>
-            <Label minWidth="75.0" text="ID:" />
-            <Label fx:id="labelItemID" text="ITEM_ID" />
-         </children>
-      </HBox>
-      <HBox alignment="CENTER_LEFT" prefHeight="22.0" prefWidth="400.0">
-         <children>
-            <Label minWidth="75.0" text="Price:" />
-            <TextField fx:id="fieldItemPrice" promptText="ITEM_PRICE" />
-         </children>
-      </HBox>
-      <HBox alignment="CENTER_LEFT" prefHeight="22.0" prefWidth="400.0">
-         <children>
-            <Label minWidth="75.0" text="Description:" />
-            <TextField fx:id="fieldItemDescription" promptText="ITEM_DESCRIPTION" />
-         </children>
-      </HBox>
-      <HBox alignment="CENTER_LEFT" prefHeight="22.0" prefWidth="400.0">
-         <children>
-            <Label minWidth="75.0" text="Type:" />
-            <ComboBox fx:id="comboItemType" prefWidth="150.0" promptText="ITEM_TYPES" />
-         </children>
-      </HBox>
-      <HBox alignment="CENTER_LEFT" prefHeight="22.0" prefWidth="400.0">
-         <children>
-            <Label minWidth="75.0" text="UPC:" />
-            <TextField fx:id="fieldItemUPC" promptText="ITEM_UPC" />
-         </children>
-      </HBox>
-      <HBox alignment="CENTER_LEFT" prefHeight="22.0" prefWidth="400.0">
-         <children>
-            <Label minWidth="75.0" text="Quantity:" />
-            <TextField fx:id="fieldItemQuantity" promptText="ITEM_QUANTITY" />
-         </children>
-      </HBox>
-      <Label fx:id="labelError" alignment="CENTER" prefHeight="17.0" prefWidth="400.0" text="error_message" visible="false" />
-      <HBox alignment="BOTTOM_CENTER" prefHeight="126.0" prefWidth="400.0">
-         <children>
-            <Button mnemonicParsing="false" onMouseReleased="#cancelBtnClicked" text="Cancel">
-               <HBox.margin>
-                  <Insets right="5.0" />
-               </HBox.margin>
-            </Button>
-            <Button mnemonicParsing="false" onMouseReleased="#confirmBtnClicked" text="Confirm" />
-         </children>
-      </HBox>
+      </StackPane>
    </children>
 </VBox>
