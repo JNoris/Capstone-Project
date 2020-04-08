@@ -16,6 +16,9 @@ public final class ItemBroker {
 
     private EntityManager em = null;
 
+    public ItemBroker(){
+        this.em = DatabaseManager.getEntityManager();
+    }
     public ItemBroker(DatabaseManager dbManager, EntityManager em) {
         this.em = em;
     }

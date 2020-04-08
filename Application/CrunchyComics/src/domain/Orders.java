@@ -36,7 +36,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Orders.findAll", query = "SELECT o FROM Orders o")
     , @NamedQuery(name = "Orders.findByOrderNo", query = "SELECT o FROM Orders o WHERE o.orderNo = :orderNo")
     , @NamedQuery(name = "Orders.findByOrderDate", query = "SELECT o FROM Orders o WHERE o.orderDate = :orderDate")
-    , @NamedQuery(name = "Orders.findByArrivalDate", query = "SELECT o FROM Orders o WHERE o.arrivalDate = :arrivalDate")})
+    , @NamedQuery(name = "Orders.findByArrivalDate", query = "SELECT o FROM Orders o WHERE o.arrivalDate = :arrivalDate")
+    , @NamedQuery(name = "Orders.findLastID", query = "SELECT MAX(o.orderNo) FROM Orders o")})
 public class Orders implements Serializable {
 
     private static final long serialVersionUID = 1L;
