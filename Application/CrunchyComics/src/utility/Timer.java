@@ -92,6 +92,11 @@ public class Timer implements Runnable {
     }
 
     /**
+     * Starts a loop that runs until the timeout is reached or the stop flag is
+     * set. After finishing the loop, the login screen is set as the scene. If
+     * the stop flag is set it will return from the method and the timer will be
+     * set to null.
+     *
      * @see Runnable#run()
      */
     @Override

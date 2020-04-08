@@ -81,10 +81,20 @@ public class Settings implements Serializable {
         return settings;
     }
 
+    /**
+     * Gets the timeout timer.
+     *
+     * @return the timeout timer.
+     */
     public int getTimeoutTimer() {
         return this.timerTimeout;
     }
 
+    /**
+     * Sets the timeout timer with a new value. Minimal value is 30 seconds.
+     *
+     * @param timerTimeout new timeout value.
+     */
     public void setTimeoutTimer(int timerTimeout) {
         if (timerTimeout < 30000) {
             timerTimeout = 30000;
@@ -93,10 +103,21 @@ public class Settings implements Serializable {
         Timer.getInstance().setTimeout(timerTimeout);
     }
 
+    /**
+     * Gets the timerEnable.
+     *
+     * @return the timerEnable.
+     */
     public boolean getTimerEnable() {
         return timerEnable;
     }
 
+    /**
+     * Set timerEnable. If there is a Timer active it will be disabled. If
+     * enabling the timer a new one will be created.
+     *
+     * @param timerEnable new timerEnable value.
+     */
     public void setTimerEnable(boolean timerEnable) {
         this.timerEnable = timerEnable;
         if (timerEnable == false) {
@@ -107,16 +128,31 @@ public class Settings implements Serializable {
             Timer.createTimer();
         }
     }
-    
-    public void setPassword(String password){
+
+    /**
+     * Set password.
+     *
+     * @param password new password.
+     */
+    public void setPassword(String password) {
         this.password = password;
     }
-    
-    public String getPassword(){
+
+    /**
+     * Gets the password.
+     *
+     * @return the password.
+     */
+    public String getPassword() {
         return this.password;
     }
-    
-    public String getMasterPassword(){
+
+    /**
+     * Gets the master password.
+     *
+     * @return the master password.
+     */
+    public String getMasterPassword() {
         return this.masterPassword;
     }
 }
