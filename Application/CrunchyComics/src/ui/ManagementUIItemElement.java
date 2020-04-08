@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ui;
 
 import controller.ManagementController;
@@ -14,6 +9,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 
 /**
+ * This class is an UI element that contains information used for the management
+ * of items in the database.
  *
  * @author Vinicius Smith
  */
@@ -26,9 +23,15 @@ public class ManagementUIItemElement extends HBox {
     private Label itemQuantity;
     private Label itemPrice;
     private Label itemType;
-    
+
     private Label edit;
 
+    /**
+     * Creates a new UI element populated by the item information.
+     *
+     * @param controller controller that created this UI element.
+     * @param item item to be used for values.
+     */
     public ManagementUIItemElement(ManagementController controller, Item item) {
         this.controller = controller;
         this.item = item;
@@ -37,7 +40,7 @@ public class ManagementUIItemElement extends HBox {
         this.itemQuantity = new Label(item.getQuantity() + "");
         this.itemPrice = new Label(String.format("$%.2f", item.getPrice()));
         this.itemType = new Label(item.getItemType().getItemType());
-        
+
         //CSS
         this.getStylesheets().add("/fxml/management.css");
         this.getStyleClass().add("items");
@@ -69,6 +72,10 @@ public class ManagementUIItemElement extends HBox {
         this.getChildren().addAll(itemName, itemQuantity, itemPrice, itemType);
     }
 
+    /**
+     * Refreshes the information in this UI element if there were any changes to
+     * the referenced Item.
+     */
     public void refresh() {
         this.itemName.setText(item.getName());
         this.itemQuantity.setText(item.getQuantity() + "");

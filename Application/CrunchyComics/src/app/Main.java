@@ -29,8 +29,9 @@ public class Main extends Application {
 
     /**
      * Loads and shows the initial scene.
+     *
      * @param stage
-     * @throws Exception 
+     * @throws Exception
      */
     @Override
     public void start(Stage stage) throws Exception {
@@ -45,7 +46,11 @@ public class Main extends Application {
         });
 
         stage.setScene(splashScene);
+        stage.setOnCloseRequest(e -> {
+            System.exit(0);
+        });
         stage.show();
         ControllerManager.getInstance().setWindow(stage);
+
     }
 }

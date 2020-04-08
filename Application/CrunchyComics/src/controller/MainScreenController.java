@@ -19,6 +19,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.stage.Popup;
 import javafx.stage.Stage;
 import manager.ControllerManager;
 import manager.DatabaseManager;
@@ -113,12 +114,25 @@ public class MainScreenController implements Initializable {
 
         itemName.setFont(new Font("Arial Black", 25));
         itemPrice.setFont(new Font("Arial Black", 25));
-        
-        transactionContainer.getChildren().addAll(itemName, itemPrice);       
+
+        transactionContainer.getChildren().addAll(itemName, itemPrice);
         mainScreenDisplay.getChildren().addAll(transactionContainer);
     }
 
+    public void settingsBtnClicked() {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/SettingsPopup.fxml"));
+        Popup popup = new Popup();
+        ControllerManager.getInstance().setPopup(popup);
+        try {
+//            itemPopup.getContent().add((Parent) loader.load());
+//            itemPopup.show(ControllerManager.getInstance().getMainScreen().getWindow());
+            SettingsController controller = new SettingsController();
+            loader.setController(controller);
+            popup.getContent().add((Parent) loader.load());
+            popup.show(ControllerManager.getInstance().getWindow());
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(0);
+        }
+    }
 }
-
-    
-

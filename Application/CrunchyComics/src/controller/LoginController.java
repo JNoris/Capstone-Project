@@ -68,11 +68,7 @@ public class LoginController implements Initializable {
 
                 ControllerManager.getInstance().changeScene(ControllerManager.getInstance().getLastScene());
                 ControllerManager.getInstance().restorePopup();
-                Timer.createTimer(10000);
-                //Create a Thread that keeps track of a logout timer.
-                Thread t = new Thread(Timer.getInstance());
-                t.start();
-
+                Timer.createTimer();
                 //Reset error message.
                 errorMessage.setText("");
 
