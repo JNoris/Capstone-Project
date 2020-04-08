@@ -37,6 +37,10 @@ public class ManagementUIOrderElement extends HBox {
         orderArrivalDate = new Label(format.format(order.getArrivalDate()));
         orderVendor = new Label(order.getVendorID().getVendorName());
 
+        //CSS
+        this.getStylesheets().add("/fxml/management.css");
+        this.getStyleClass().add("items");
+        
         //Fonts
         orderNumber.setFont(new Font("Arial Black", 15));
         orderDate.setFont(new Font("Arial Black", 15));

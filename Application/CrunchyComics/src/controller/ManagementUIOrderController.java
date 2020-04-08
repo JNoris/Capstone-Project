@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import manager.ControllerManager;
 
 /**
@@ -53,18 +54,22 @@ public class ManagementUIOrderController {
             Label itemQuantity = new Label(oi.getOrderQuantity() + "");
             Label itemTotal = new Label(String.format("$%.2f", oi.getOrderQuantity() * oi.getPurchasePrice()));
             
-            //Sizes
-            itemName.setMinWidth(100);
-            itemName.setMaxWidth(75);
+            //Sizes and Font
+            itemName.setMinWidth(150);
+            itemName.setMaxWidth(150);
+            itemName.setFont(Font.font("Arial Black",12));
             
             itemPurchasePrice.setMinWidth(45);
             itemPurchasePrice.setMaxWidth(45);
+            itemPurchasePrice.setFont(Font.font("Arial Black",12));
             
             itemQuantity.setMinWidth(30);
             itemQuantity.setMaxWidth(30);
+            itemQuantity.setFont(Font.font("Arial Black",12));
             
             itemTotal.setMinWidth(45);
             itemTotal.setMaxWidth(45);
+            itemTotal.setFont(Font.font("Arial Black",12));
             
             itemContainer.getChildren().addAll(itemName, itemPurchasePrice, itemQuantity, itemTotal);
             orderItemContainer.getChildren().add(itemContainer);

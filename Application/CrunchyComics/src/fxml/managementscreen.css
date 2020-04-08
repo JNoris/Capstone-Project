@@ -165,3 +165,126 @@ and open the template in the editor.
     -fx-border-color:#1FFF00;
 }
 
+.confirmButton{
+    -fx-background-color:#006A00;
+    -fx-padding:2;
+    -fx-background-radius:10;
+    -fx-border-width:5;
+    -fx-border-radius:10;
+    -fx-border-color:transparent;
+}
+
+.confirmButton:hover{
+    -fx-background-color:transparent;
+    -fx-border-color:#1FFF00;
+    -fx-text-fill:#1FFF00;
+}
+
+.cancelButton{
+    -fx-background-color:#6A0000;
+    -fx-padding:2;
+    -fx-background-radius:10;
+    -fx-border-width: 5;
+    -fx-border-radius:10;
+    -fx-border-color:transparent;
+    -fx-text-fill:white;
+}
+
+.cancelButton:hover{
+    -fx-border-color:#FF0000;
+    -fx-background-color:transparent;
+    -fx-text-fill: #FF0000;
+}
+
+.itemNameField{
+    -fx-background-color:#5A5A5A;
+    -fx-background-radius:5;
+    -fx-border-radius:5;
+    -fx-border-width:5;
+    -fx-border-color:transparent;
+    -fx-text-fill:white;
+}
+
+.itemNameField:hover{
+    -fx-border-color:white;
+}
+
+.itemPriceField{
+    -fx-background-color:#5A5A5A;
+    -fx-background-radius:5;
+    -fx-border-radius:5;
+    -fx-border-width:5;
+    -fx-border-color:transparent;
+    -fx-text-fill:white;
+}
+
+.itemPriceField:hover{
+    -fx-border-color:white;
+}
+
+.upcField{
+    -fx-background-color:#5A5A5A;
+    -fx-background-radius:5;
+    -fx-border-radius:5;
+    -fx-border-width:5;
+    -fx-border-color:transparent;
+    -fx-text-fill:white;
+}
+
+.upcField:hover{
+    -fx-border-color:white;
+}
+
+.quantityField{
+    -fx-background-color:#5A5A5A;
+    -fx-background-radius:5;
+    -fx-border-radius:5;
+    -fx-border-width:5;
+    -fx-border-color:transparent;
+    -fx-text-fill:white;
+}
+
+.quantityField:hover{
+    -fx-border-color:white;
+}
+
+.descriptionField{
+    -fx-background-color:#5A5A5A;
+    -fx-background-radius:5;
+    -fx-border-radius:5;
+    -fx-border-width:5;
+    -fx-border-color:transparent;
+    -fx-text-fill:white;
+}
+
+.descriptionField:hover{
+    -fx-border-color:white;
+}
+
+.orderBox{
+    -fx-background-color:#3A3A3A;
+    -fx-background-radius:5;
+    -fx-border-radius:5;
+    -fx-border-width:5;
+    -fx-border-color:transparent;
+    -fx-text-fill:white;
+}
+
+.itemListContainer{
+    -fx-border-width:5;
+    -fx-padding:2;
+    -fx-border-color:transparent;
+}
+
+.itemListContainer:hover{
+    -fx-border-color:#8E8E8E;
+}
+
+.items{
+    -fx-border-width: 5;
+    -fx-border-color:transparent;
+}
+.items:hover{
+    -fx-border-width: 5;
+    -fx-border-color:#3A3A3A;
+}

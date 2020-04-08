@@ -189,7 +189,7 @@ and open the template in the editor.
 
 .transactionItem:hover{
     -fx-border-color:#8E8E8E;
-    -fx-background-color:#3A3A3A;
+    -fx-background-color:transparent;
 }
 
 

@@ -27,6 +27,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import manager.ControllerManager;
 
 /**
@@ -68,10 +69,10 @@ public class ManagementNewOrderController implements Initializable {
 
         SimpleDateFormat format = new SimpleDateFormat("yyyy-dd-MM");
         currentDateLabel.setText(format.format(new Date()));
-
+        
+        
         monthComboBox.setItems(FXCollections.observableArrayList("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"));
         monthComboBox.setValue(monthComboBox.getItems().get(0));
-
         dayComboBox.setItems(FXCollections.observableArrayList("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14",
                 "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"));
         dayComboBox.setValue(dayComboBox.getItems().get(0));
@@ -121,6 +122,9 @@ public class ManagementNewOrderController implements Initializable {
         itemListContainer.getChildren().clear();
         for (Item i : items) {
             Label name = new Label(i.getName());
+            name.getStylesheets().add("/fxml/managementscreen.css");
+            name.getStyleClass().add("itemListContainer");
+            name.setFont(Font.font("Arial Black",12));
             name.setUserData(i);
             name.setOnMouseClicked(itemClicked);
             itemListContainer.getChildren().add(name);
@@ -138,17 +142,24 @@ public class ManagementNewOrderController implements Initializable {
         TextField price = new TextField();
         TextField quantity = new TextField();
         Button removeBtn = new Button("Remove");
+        container.getStylesheets().add("/fxml/managementscreen.css");
+        container.getStyleClass().add("itemListContainer");
 
         name.setMaxWidth(120);
         name.setMinWidth(120);
+        name.setFont(Font.font("Arial Black",12));
 
         price.setMaxWidth(70);
         price.setMinWidth(70);
         price.setPromptText("Price");
+        price.setFont(Font.font("Arial Black",12));
 
         quantity.setMaxWidth(45);
         quantity.setMinWidth(45);
         quantity.setText("0");
+        quantity.setFont(Font.font("Arial Black",12));
+        
+        removeBtn.setFont(Font.font("Arial Black",12));
 
         container.setUserData(item);
         container.getChildren().addAll(name, price, quantity, removeBtn);

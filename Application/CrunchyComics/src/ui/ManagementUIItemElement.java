@@ -37,7 +37,10 @@ public class ManagementUIItemElement extends HBox {
         this.itemQuantity = new Label(item.getQuantity() + "");
         this.itemPrice = new Label(String.format("$%.2f", item.getPrice()));
         this.itemType = new Label(item.getItemType().getItemType());
-
+        
+        //CSS
+        this.getStylesheets().add("/fxml/management.css");
+        this.getStyleClass().add("items");
         //Fonts
         itemName.setFont(new Font("Arial Black", 15));
         itemQuantity.setFont(new Font("Arial Black", 15));
