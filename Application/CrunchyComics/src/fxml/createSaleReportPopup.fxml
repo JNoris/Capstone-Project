@@ -5,50 +5,110 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="294.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label alignment="CENTER" prefHeight="30.0" prefWidth="600.0" text="Create Sale Report" />
-      <HBox alignment="CENTER_LEFT" prefHeight="37.0" prefWidth="600.0">
+      <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0">
          <children>
-            <Label minWidth="70.0" text="File Name:" />
-            <TextField fx:id="textFieldFileName" />
+            <VBox disable="true" opacity="0.8" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #000000;" visible="false" />
+            <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="304.0" prefWidth="600.0" style="-fx-background-color: #6A6A6A;" styleClass="orderBox" stylesheets="@managementscreen.css">
+               <children>
+                  <AnchorPane prefHeight="308.0" prefWidth="600.0">
+                     <children>
+                        <VBox layoutX="55.0" layoutY="44.0" prefHeight="200.0" prefWidth="491.0" spacing="5.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="37.0" prefWidth="600.0" spacing="20.0">
+                                 <children>
+                                    <Label minWidth="70.0" prefHeight="22.0" prefWidth="90.0" text="File Name:" textFill="WHITE">
+                                       <font>
+                                          <Font name="Arial Black" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="textFieldFileName" styleClass="quantityField">
+                                       <font>
+                                          <Font name="Arial Black" size="12.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="49.0" prefWidth="600.0" spacing="20.0">
+                                 <children>
+                                    <Label minWidth="70.0" prefHeight="22.0" prefWidth="90.0" text="Location:" textFill="WHITE">
+                                       <font>
+                                          <Font name="Arial Black" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="textFieldLocation" styleClass="quantityField">
+                                       <HBox.margin>
+                                          <Insets right="5.0" />
+                                       </HBox.margin>
+                                       <font>
+                                          <Font name="Arial Black" size="12.0" />
+                                       </font>
+                                    </TextField>
+                                    <Button mnemonicParsing="false" onMouseReleased="#selectFolderClicked" styleClass="confirmButton" text="Select Folder" textFill="WHITE">
+                                       <font>
+                                          <Font name="Arial Black" size="14.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="37.0" prefWidth="600.0" spacing="20.0">
+                                 <children>
+                                    <Label minWidth="70.0" prefHeight="22.0" prefWidth="90.0" text="From:" textFill="WHITE">
+                                       <font>
+                                          <Font name="Arial Black" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <DatePicker fx:id="fromDatePicker" styleClass="quantityField" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="37.0" prefWidth="600.0" spacing="20.0">
+                                 <children>
+                                    <Label minWidth="70.0" prefHeight="22.0" prefWidth="90.0" text="To:" textFill="WHITE">
+                                       <font>
+                                          <Font name="Arial Black" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <DatePicker fx:id="toDatePicker" styleClass="quantityField" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <HBox alignment="BOTTOM_CENTER" layoutY="256.0" prefHeight="37.0" prefWidth="600.0" spacing="50.0">
+                           <children>
+                              <Button mnemonicParsing="false" onMouseReleased="#cancelBtnClicked" styleClass="cancelButton" text="Cancel" textFill="WHITE">
+                                 <HBox.margin>
+                                    <Insets right="5.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font name="Arial Black" size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" onMouseReleased="#confirmBtnClicked" styleClass="confirmButton" text="Confirm" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Black" size="14.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="600.0" text="Create Sale Report" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Black" size="20.0" />
+                           </font>
+                        </Label>
+                        <Line endX="398.0" layoutX="156.0" layoutY="30.0" startX="-100.0" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </VBox>
          </children>
-      </HBox>
-      <HBox alignment="CENTER_LEFT" prefHeight="49.0" prefWidth="600.0">
-         <children>
-            <Label minWidth="70.0" text="Location:" />
-            <TextField fx:id="textFieldLocation" editable="false">
-               <HBox.margin>
-                  <Insets right="5.0" />
-               </HBox.margin>
-            </TextField>
-            <Button mnemonicParsing="false" onMouseReleased="#selectFolderClicked" text="Select Folder" />
-         </children>
-      </HBox>
-      <HBox alignment="CENTER_LEFT" prefHeight="37.0" prefWidth="600.0">
-         <children>
-            <Label minWidth="70.0" text="From:" />
-            <DatePicker fx:id="fromDatePicker" />
-         </children>
-      </HBox>
-      <HBox alignment="CENTER_LEFT" prefHeight="37.0" prefWidth="600.0">
-         <children>
-            <Label minWidth="70.0" text="To:" />
-            <DatePicker fx:id="toDatePicker" />
-         </children>
-      </HBox>
-      <HBox alignment="BOTTOM_CENTER" prefHeight="82.0" prefWidth="600.0">
-         <children>
-            <Button mnemonicParsing="false" onMouseReleased="#cancelBtnClicked" text="Cancel">
-               <HBox.margin>
-                  <Insets right="5.0" />
-               </HBox.margin>
-            </Button>
-            <Button mnemonicParsing="false" onMouseReleased="#confirmBtnClicked" text="Confirm" />
-         </children>
-      </HBox>
+      </StackPane>
    </children>
 </VBox>
