@@ -94,7 +94,7 @@ public class ManagementController implements Initializable {
             controller.setManagementController(this);
             controller.populate();
         } catch (IOException e) {
-            System.out.println("Could not create management item popup.");
+            System.out.println("Could not create management item popup. " + e.getMessage());
         }
     }
 

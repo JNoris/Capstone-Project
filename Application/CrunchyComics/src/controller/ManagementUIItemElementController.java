@@ -16,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 import manager.ControllerManager;
 import manager.DatabaseManager;
 import ui.ManagementUIItemElement;
@@ -49,7 +50,18 @@ public class ManagementUIItemElementController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        //Input check for price.
+        fieldItemPrice.setOnKeyTyped(e -> {
+            if (e.getCharacter().matches("[^0-9.]")) {
+                e.consume();
+            }
+        });
+        
+        fieldItemUPC.setOnKeyTyped(e -> {
+            if (e.getCharacter().matches("[^0-9]")) {
+                e.consume();
+            }
+        });
     }
 
     public void populate() {
@@ -84,6 +96,21 @@ public class ManagementUIItemElementController implements Initializable {
 
     public void confirmBtnClicked() {
         ItemBroker itemBroker = new ItemBroker(DatabaseManager.getInstance(), DatabaseManager.getEntityManager());
+
+        //Error checking
+        if (fieldItemName.getText().isEmpty()) {
+            labelError.setVisible(true);
+            labelError.setText("Name field can't be empty!");
+            fieldItemName.requestFocus();
+            return;
+        }
+        if (fieldItemPrice.getText().isEmpty()) {
+            labelError.setVisible(true);
+            labelError.setText("Price field can't be empty!");
+            fieldItemPrice.requestFocus();
+            return;
+        }
+
         item.setName(fieldItemName.getText());
         item.setPrice(Float.parseFloat(fieldItemPrice.getText()));
         item.setUpc(fieldItemUPC.getText());
