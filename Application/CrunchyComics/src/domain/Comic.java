@@ -19,7 +19,7 @@ import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- *
+ * Creates the comic object.
  * @author Vinicius Smith
  */
 @Entity
@@ -54,13 +54,27 @@ public class Comic implements Serializable {
     @OneToOne(optional = false, fetch = FetchType.EAGER)
     private Item item;
 
+    /**
+     * Default constructor for the comic object.
+     */
     public Comic() {
     }
 
+    /**
+     * Non-default constructor for the comic object based on ID alone.
+     * @param itemID 
+     */
     public Comic(Integer itemID) {
         this.itemID = itemID;
     }
 
+    /**
+     * Non-default constructor for the comic object.
+     * @param itemID
+     * @param author
+     * @param volume
+     * @param isbn 
+     */
     public Comic(Integer itemID, String author, int volume, String isbn) {
         this.itemID = itemID;
         this.author = author;
@@ -68,54 +82,106 @@ public class Comic implements Serializable {
         this.isbn = isbn;
     }
 
+    /**
+     * Gets the item ID.
+     * @return itemID
+     */
     public Integer getItemID() {
         return itemID;
     }
 
+    /**
+     * Sets the item ID.
+     * @param itemID 
+     */
     public void setItemID(Integer itemID) {
         this.itemID = itemID;
     }
 
+    /**
+     * Gets the author of the comic.
+     * @return author
+     */
     public String getAuthor() {
         return author;
     }
 
+    /**
+     * Sets the author for the comic.
+     * @param author 
+     */
     public void setAuthor(String author) {
         this.author = author;
     }
 
+    /**
+     * Gets the volume of the comic.
+     * @return volume
+     */
     public int getVolume() {
         return volume;
     }
 
+    /**
+     * Sets the volume for the comic.
+     * @param volume 
+     */
     public void setVolume(int volume) {
         this.volume = volume;
     }
 
+    /**
+     * Gets the ISBN of the comic.
+     * @return isbn
+     */
     public String getIsbn() {
         return isbn;
     }
 
+    /**
+     * Sets the ISBN for the comic.
+     * @param isbn 
+     */
     public void setIsbn(String isbn) {
         this.isbn = isbn;
     }
 
+    /**
+     * Gets the Publisher for the comic.
+     * @return publisher
+     */
     public String getPublisher() {
         return publisher;
     }
 
+    /**
+     * Sets the Publisher for the comic.
+     * @param publisher 
+     */
     public void setPublisher(String publisher) {
         this.publisher = publisher;
     }
 
+    /**
+     * Gets the item related to the comic.
+     * @return item
+     */
     public Item getItem() {
         return item;
     }
 
+    /**
+     * Sets the item related to the comic.
+     * @param item 
+     */
     public void setItem(Item item) {
         this.item = item;
     }
 
+    /**
+     * Returns the hash value of the comic.
+     * @return hash
+     */
     @Override
     public int hashCode() {
         int hash = 0;
@@ -123,6 +189,11 @@ public class Comic implements Serializable {
         return hash;
     }
 
+    /**
+     * Checks if the value of the comics equals another item.
+     * @param object
+     * @return true if it equals otherwise false
+     */
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
@@ -136,6 +207,10 @@ public class Comic implements Serializable {
         return true;
     }
 
+    /**
+     * Returns the comic as a string value.
+     * @return "domain.Comic[ itemID=" + itemID + " ]"
+     */
     @Override
     public String toString() {
         return "domain.Comic[ itemID=" + itemID + " ]";

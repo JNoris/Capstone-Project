@@ -22,7 +22,7 @@ import manager.DatabaseManager;
 import ui.ManagementUIItemElement;
 
 /**
- *
+ * Controls the ManagementUIElement popup logic to modify data in the database.
  * @author Vinicius Smith
  */
 public class ManagementUIItemElementController implements Initializable {
@@ -48,6 +48,11 @@ public class ManagementUIItemElementController implements Initializable {
     private ManagementUIItemElement element;
     private ManagementController mgntController;
 
+    /**
+     * Checks the value of the price if there is invalid input (not a number) on load.
+     * @param location
+     * @param resources 
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //Input check for price.
@@ -64,6 +69,9 @@ public class ManagementUIItemElementController implements Initializable {
         });
     }
 
+    /**
+     * Loads the data from the database and displays the values onto the scene.
+     */
     public void populate() {
         //New Item creation.
         if (element == null) {
@@ -90,10 +98,16 @@ public class ManagementUIItemElementController implements Initializable {
         }
     }
 
+    /**
+     * The button used to validate incorrect user input.
+     */
     public void cancelBtnClicked() {
         ControllerManager.getInstance().hidePopup();
     }
 
+    /**
+     * The button used to validate correct user input.
+     */
     public void confirmBtnClicked() {
         ItemBroker itemBroker = new ItemBroker(DatabaseManager.getInstance(), DatabaseManager.getEntityManager());
 
@@ -130,15 +144,27 @@ public class ManagementUIItemElementController implements Initializable {
 
         ControllerManager.getInstance().hidePopup();
     }
-
+    
+    /**
+     * Sets the item to the inputted value.
+     * @param item 
+     */
     public void setItem(Item item) {
         this.item = item;
     }
 
+    /**
+     * Sets the ManagementUIItemElement to the parameter popup.
+     * @param element 
+     */
     public void setManagementUIItemElement(ManagementUIItemElement element) {
         this.element = element;
     }
-
+    
+    /**
+     * Controls which ManagementController is needed.
+     * @param mgntController 
+     */
     public void setManagementController(ManagementController mgntController) {
         this.mgntController = mgntController;
     }

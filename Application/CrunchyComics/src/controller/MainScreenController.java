@@ -24,7 +24,7 @@ import manager.ControllerManager;
 import manager.DatabaseManager;
 
 /**
- *
+ * Controls all of the logic for the main screen.
  * @author Noris. UMM I MEAN: CAPSTONE GROUP, OF COURSE, TIS NOT MY WORK BUT OUR
  * WORK.
  *
@@ -39,6 +39,11 @@ public class MainScreenController implements Initializable {
 
     private List<Transaction> transactions;
 
+    /**
+     * Loads all of the transactions within the database as well as the daily/weekly records.
+     * @param location
+     * @param resources 
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("Initializing MainScreenController");
@@ -61,35 +66,33 @@ public class MainScreenController implements Initializable {
      * login screen
      */
     public void logoutBtnClicked(ActionEvent event) throws IOException {
-//        Parent loginParent = FXMLLoader.load(getClass().getResource("/fxml/Login.fxml"));
-//        Scene logout = new Scene(loginParent);
-//        Scene logout = ControllerManager.getInstance().getLoginScreen();
-//
-//        // This line grabs the Stage information
-//        Stage loginWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//        
-//        loginWindow.setScene(logout);
-//        loginWindow.show();
-
         ControllerManager.getInstance().changeScene(ControllerManager.getInstance().getLoginScreen());
 
     }
 
+    /**
+     * Transfers control to the ManagementController to change to the Management scene.
+     */
     public void managementBtnClicked() {
         ControllerManager.getInstance().changeScene(ControllerManager.getInstance().getManagementScene());
     }
 
+    /**
+     * Transfers control to the OrderController as well as changes to the Orders scene.
+     * @param event
+     * @throws IOException 
+     */
     public void orderBtnClicked(ActionEvent event) throws IOException {
         Parent orderParent = FXMLLoader.load(getClass().getResource("/fxml/OrderScreen.fxml"));
         Scene order = new Scene(orderParent);
 
-        // This line grabs the Stage information
-//        Stage orderWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
         ControllerManager.getInstance().changeScene(order);
-//        orderWindow.setScene(order);
-//        orderWindow.show();
     }
 
+    /**
+     * Grabs the loaded transactions from the database and places it onto the scene.
+     * @param t 
+     */
     public void addOrderToMainScreen(Transaction t) {
         HBox transactionContainer = new HBox(10);
         Label itemName = new Label("Transaction #" + t.getTransactionID() + "");

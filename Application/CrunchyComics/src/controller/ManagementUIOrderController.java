@@ -17,7 +17,7 @@ import javafx.scene.text.Font;
 import manager.ControllerManager;
 
 /**
- *
+ * Controls the logic to modify data within the ManagementUIOrder container.
  * @author Vinicius Smith
  */
 public class ManagementUIOrderController {
@@ -35,6 +35,9 @@ public class ManagementUIOrderController {
 
     private Orders order;
 
+    /**
+     * Loads the dates and order information into the <code>orderItemContainer</code>
+     */
     public void populate() {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-dd-MM");
 
@@ -76,10 +79,17 @@ public class ManagementUIOrderController {
         }
     }
 
+    /**
+     * Sets the order to the inputted values
+     * @param order 
+     */
     public void setOrder(Orders order) {
         this.order = order;
     }
 
+    /**
+     * The button used to validate incorrect user input.
+     */
     public void cancelBtnClicked() {
         ControllerManager.getInstance().hidePopup();
     }

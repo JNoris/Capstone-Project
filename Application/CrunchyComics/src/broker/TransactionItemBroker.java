@@ -21,6 +21,10 @@ public class TransactionItemBroker {
     private EntityManager em = null;
     private DatabaseManager dbManager = null;
 
+    /**
+     * The non-default constructor used to grab TransactionItem/s from the database.
+     * @param dbManager 
+     */
     public TransactionItemBroker(DatabaseManager dbManager) {
         EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("CrunchyComicsPU");
         this.dbManager = dbManager;

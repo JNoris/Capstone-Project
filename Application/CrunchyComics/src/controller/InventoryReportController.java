@@ -17,7 +17,7 @@ import javafx.stage.DirectoryChooser;
 import manager.ControllerManager;
 
 /**
- *
+ * Controls the Inventory Report Controller
  * @author Vinicius Smith
  */
 public class InventoryReportController {
@@ -28,13 +28,19 @@ public class InventoryReportController {
     TextField textFieldLocation;
 
     private File folder;
-
+    
+    /**
+     * Creates the prompt for user to find the .CSV file 
+     */
     public void selectFolderClicked() {
         DirectoryChooser dirChooser = new DirectoryChooser();
         folder = dirChooser.showDialog(ControllerManager.getInstance().getWindow());
         textFieldLocation.setText(folder.getAbsolutePath());
     }
-
+    
+    /**
+     * The button to validate correct user input.
+     */
     public void confirmBtnClicked() {
         if (textFieldFileName.getText().isEmpty()) {
             textFieldFileName.requestFocus();
@@ -50,7 +56,10 @@ public class InventoryReportController {
         ControllerManager.getInstance().hidePopup();
 
     }
-
+    
+    /**
+     * The button used to validate incorrect user input.
+     */
     public void cancelBtnClicked() {
         ControllerManager.getInstance().hidePopup();
     }
@@ -62,6 +71,10 @@ public class InventoryReportController {
         return filename + ".csv";
     }
 
+    /**
+     * Persists the items within the .CSV file to the database.
+     * @param items 
+     */
     private void writeFile(List<Item> items) {
         File file = new File(folder.getAbsolutePath() + "/" + correctFileName(textFieldFileName.getText()));
         try {

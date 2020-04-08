@@ -23,7 +23,7 @@ import javafx.stage.Popup;
 import ui.TransactionUIElement;
 
 /**
- *
+ * Controls the modification of price within the transaction sale popup.
  * @author Vinicius Smith
  */
 public class TransactionUIElementController implements Initializable {
@@ -46,6 +46,11 @@ public class TransactionUIElementController implements Initializable {
     @FXML
     private ToggleGroup discount;
 
+    /**
+     * Loads default values into the popup and sets discount to false until needed.
+     * @param location
+     * @param resources 
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -88,6 +93,9 @@ public class TransactionUIElementController implements Initializable {
         itemQuantity.setText(item.getTransactionItemPK().getQuantity() + "");
     }
 
+    /**
+     * Saves the changes to the transaction by changing the value of the price.
+     */
     public void applyChanges() {
         node.getTransactionItem().getTransactionItemPK().setQuantity(Integer.parseInt(itemQuantity.getText()));
 
@@ -108,19 +116,33 @@ public class TransactionUIElementController implements Initializable {
         closePopup();
     }
 
+    /**
+     * Removes the selected item from the transaction.
+     */
     public void requestDeleteItem() {
         node.selfDelete();
         closePopup();
     }
 
+    /**
+     * Removes the popup from view and redirects control to the OrderScreenController.
+     */
     public void closePopup() {
         this.popup.hide();
     }
 
+    /**
+     * Sets the popup to the TransactionUIElement popup.
+     * @param popup 
+     */
     public void setPopup(Popup popup) {
         this.popup = popup;
     }
 
+    /**
+     * Sets the node that called the controller.
+     * @param node 
+     */
     public void setNode(TransactionUIElement node) {
         this.node = node;
     }

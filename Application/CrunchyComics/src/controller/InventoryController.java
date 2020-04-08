@@ -16,7 +16,7 @@ import javafx.scene.paint.Color; // Good for dealing with error messages and set
 import javafx.event.*;
 
 /**
- *
+ * This creates the controller for the Inventory Stage.
  * @author Noris. UMM I MEAN: CAPSTONE GROUP, OF COURSE, TIS NOT MY WORK BUT OUR
  *         WORK.
  * 
@@ -28,7 +28,12 @@ public class InventoryController implements Initializable {
 
     @FXML
     private ComboBox comboBox;
-
+    
+    /**
+     * This method loads any resources before the startup of this stage.
+     * @param location
+     * @param resources 
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         /**
