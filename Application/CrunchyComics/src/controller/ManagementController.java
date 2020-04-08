@@ -5,19 +5,15 @@ import broker.OrderBroker;
 import domain.Item;
 import domain.OrderItem;
 import domain.Orders;
-import javafx.scene.input.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.stage.*;
 import javafx.fxml.*;
-import javafx.scene.paint.Color;
 import javafx.event.*;
 import javafx.scene.layout.VBox;
 import manager.ControllerManager;
@@ -164,12 +160,26 @@ public class ManagementController implements Initializable {
 //            controller.setManagementController(this);
 //            controller.populate();
         } catch (IOException e) {
-            System.out.println("Could not create management new order popup. " + e.getMessage());
+            System.out.println("Could not create management inventory report popup. " + e.getMessage());
             e.printStackTrace();
         }
     }
 
     public void createSalesReportClicked() {
+        Popup popup = new Popup();
+        ControllerManager.getInstance().setPopup(popup);
 
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/createSaleReportPopup.fxml"));
+        SaleReportController controller = new SaleReportController();
+        loader.setController(controller);
+        try {
+            popup.getContent().add((Parent) loader.load());
+            popup.show(ControllerManager.getInstance().getWindow());
+//            controller.setManagementController(this);
+//            controller.populate();
+        } catch (IOException e) {
+            System.out.println("Could not create management sale report popup. " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 }
