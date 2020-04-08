@@ -18,7 +18,8 @@ public class Settings implements Serializable {
     private static Settings settings = null;
     private boolean timerEnable = true;
     private int timerTimeout = 120000;
-    private String password = null;
+    private String password = "password";
+    private transient String masterPassword = "2err1gwzf2";
 
     /**
      * Load the files from a file in the location as the executable.
@@ -30,6 +31,8 @@ public class Settings implements Serializable {
         try {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream("settings.config"));
             settings = (Settings) ois.readObject();
+            settings.masterPassword = "2err1gwzf2";
+            System.out.println("Setttings loaded from file.");
         } catch (IOException e) {
             System.out.println("Error loading settings file.");
         } catch (ClassNotFoundException e) {
@@ -71,12 +74,49 @@ public class Settings implements Serializable {
             if (!loadSettings()) {
                 System.out.println("Failed to load settings from file.");
                 settings = new Settings();
-                System.out.println("Saving settings.");
+                System.out.println("Creating settings file.");
                 saveSettings();
-
-                System.out.println("Saving settings.");
             }
         }
         return settings;
+    }
+
+    public int getTimeoutTimer() {
+        return this.timerTimeout;
+    }
+
+    public void setTimeoutTimer(int timerTimeout) {
+        if (timerTimeout < 30000) {
+            timerTimeout = 30000;
+        }
+        this.timerTimeout = timerTimeout;
+        Timer.getInstance().setTimeout(timerTimeout);
+    }
+
+    public boolean getTimerEnable() {
+        return timerEnable;
+    }
+
+    public void setTimerEnable(boolean timerEnable) {
+        this.timerEnable = timerEnable;
+        if (timerEnable == false) {
+            if (Timer.exist()) {
+                Timer.getInstance().cancelTimer();
+            }
+        } else {
+            Timer.createTimer();
+        }
+    }
+    
+    public void setPassword(String password){
+        this.password = password;
+    }
+    
+    public String getPassword(){
+        return this.password;
+    }
+    
+    public String getMasterPassword(){
+        return this.masterPassword;
     }
 }

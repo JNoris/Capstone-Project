@@ -14,7 +14,7 @@ public class Timer implements Runnable {
     private static Timer timer = null;
     private double timeout = 0.0;
     private double currTimeout = 0.0;
-    private boolean stop = true;
+    private boolean stop = !Settings.getInstance().getTimerEnable();
 
     /**
      * Default private constructor.
@@ -23,6 +23,8 @@ public class Timer implements Runnable {
      */
     private Timer(double timeout) {
         this.timeout = timeout;
+        Thread t = new Thread(this);
+        t.start();
     }
 
     /**
@@ -39,7 +41,8 @@ public class Timer implements Runnable {
      *
      * @param timeout timeout time.
      */
-    public static void createTimer(double timeout) {
+    public static void createTimer() {
+        double timeout = Settings.getInstance().getTimeoutTimer();
         if (timer == null) {
             timer = new Timer(timeout);
         } else {
@@ -52,6 +55,7 @@ public class Timer implements Runnable {
      * Reset the timer so it starts counting from zero.
      */
     public void resetTimer() {
+        System.out.println("Timer reset");
         this.currTimeout = 0;
     }
 
@@ -71,7 +75,7 @@ public class Timer implements Runnable {
      */
     public void cancelTimer() {
         this.stop = true;
-        System.out.println("Timer canceled.");
+//        System.out.println("Timer canceled.");
     }
 
     /**
@@ -92,12 +96,18 @@ public class Timer implements Runnable {
      */
     @Override
     public void run() {
+        System.out.println("Timer started");
 
         double startTime = System.currentTimeMillis();
 
         //Loops until the currTimeout is larger than the set timeout value or the stop variable is set to true.
         while (currTimeout <= timeout && !stop) {
             currTimeout = System.currentTimeMillis() - startTime;
+            if (stop) {
+                timer = null;
+                System.out.println("Timer canceled");
+                return;
+            }
         }
         System.out.println("Timer ended");
         timer = null;
