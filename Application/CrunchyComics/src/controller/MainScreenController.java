@@ -4,7 +4,9 @@ import broker.TransactionBroker;
 import domain.Transaction;
 import java.io.IOException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -37,12 +39,16 @@ public class MainScreenController implements Initializable {
 
     @FXML
     private VBox mainScreenDisplay;
+    @FXML
+    private Label currentTimeLabel;
 
     private List<Transaction> transactions;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("Initializing MainScreenController");
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm");
+        currentTimeLabel.setText(format.format(new Date()));
         showTransactions();
     }
 
