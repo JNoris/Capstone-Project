@@ -51,7 +51,7 @@
                               </RadioButton>
                               <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                                  <children>
-                                    <TextField fx:id="percentageFlatAmount" alignment="CENTER" prefHeight="25.0" prefWidth="53.0" promptText="50" styleClass="percentageField" stylesheets="@orderscreen.css">
+                                    <TextField fx:id="discountPercentageAmount" alignment="CENTER" prefHeight="25.0" prefWidth="53.0" promptText="50" styleClass="percentageField" stylesheets="@orderscreen.css">
                                        <font>
                                           <Font name="Arial Black" size="14.0" />
                                        </font>

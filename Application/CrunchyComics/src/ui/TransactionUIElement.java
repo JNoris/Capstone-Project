@@ -116,7 +116,7 @@ public class TransactionUIElement extends HBox {
      */
     public void refresh() {
         this.quantity.setText(transactionItem.getTransactionItemPK().getQuantity() + "");
-        this.price.setText(transactionItem.getTransactionItemPK().getSoldPrice() * transactionItem.getTransactionItemPK().getQuantity() + "");
+        this.price.setText(String.format("%.2f", transactionItem.getTransactionItemPK().getSoldPrice() * transactionItem.getTransactionItemPK().getQuantity()) + "");
         this.controller.calculateSubtotal();
     }
 
