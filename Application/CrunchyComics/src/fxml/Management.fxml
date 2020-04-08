@@ -81,12 +81,12 @@
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="558.0" prefWidth="1170.0" style="-fx-background-color: #5A5A5A;">
                            <children>
-                              <Button layoutY="14.0" mnemonicParsing="false" styleClass="printInventoryLabel" stylesheets="@managementscreen.css" text="Print Inventory Report" textFill="WHITE">
+                              <Button layoutY="14.0" mnemonicParsing="false" onMouseReleased="#createInventoryReportClicked" styleClass="printInventoryLabel" stylesheets="@managementscreen.css" text="Create Inventory Report" textFill="WHITE">
                                  <font>
                                     <Font name="Arial Black" size="18.0" />
                                  </font>
                               </Button>
-                              <Button layoutY="53.0" mnemonicParsing="false" styleClass="printSalesLabel" stylesheets="@managementscreen.css" text="Print Sales Report" textFill="WHITE">
+                              <Button layoutY="53.0" mnemonicParsing="false" onMouseReleased="#createSalesReportClicked" styleClass="printSalesLabel" stylesheets="@managementscreen.css" text="Create Sales Report" textFill="WHITE">
                                  <font>
                                     <Font name="Arial Black" size="18.0" />
                                  </font>

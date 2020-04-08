@@ -150,4 +150,26 @@ public class ManagementController implements Initializable {
             createNewOrderPopup(order);
         }
     }
+
+    public void createInventoryReportClicked() {
+        Popup popup = new Popup();
+        ControllerManager.getInstance().setPopup(popup);
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/createInventoryReportPopup.fxml"));
+        InventoryReportController controller = new InventoryReportController();
+        loader.setController(controller);
+        try {
+            popup.getContent().add((Parent) loader.load());
+            popup.show(ControllerManager.getInstance().getWindow());
+//            controller.setManagementController(this);
+//            controller.populate();
+        } catch (IOException e) {
+            System.out.println("Could not create management new order popup. " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    public void createSalesReportClicked() {
+
+    }
 }
