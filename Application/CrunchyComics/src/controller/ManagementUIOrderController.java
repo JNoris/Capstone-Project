@@ -10,6 +10,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import manager.ControllerManager;
+import utility.Timer;
 
 /**
  * Controls the logic to modify data within the ManagementUIOrder container.
@@ -88,6 +89,7 @@ public class ManagementUIOrderController {
      * The button used to validate incorrect user input.
      */
     public void cancelBtnClicked() {
+        Timer.getInstance().resetTimer();
         ControllerManager.getInstance().hidePopup();
     }
 }

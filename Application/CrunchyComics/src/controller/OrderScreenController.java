@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -20,7 +19,6 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -30,10 +28,10 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Popup;
-import javafx.stage.Stage;
 import manager.ControllerManager;
 import manager.DatabaseManager;
 import ui.TransactionUIElement;
+import utility.Timer;
 
 /**
  * Controls the logic within the Order Screen to create transactions.
@@ -99,6 +97,7 @@ public class OrderScreenController implements Initializable {
      * application and redirect to login screen
      */
     public void logoutBtnClicked() {
+        Timer.getInstance().resetTimer();
         ControllerManager.getInstance().changeScene(ControllerManager.getInstance().getLoginScreen());
     }
 
@@ -257,6 +256,7 @@ public class OrderScreenController implements Initializable {
      * This method changes the screen to the MainScreen.
      */
     public void returnToMainScreen() {
+        Timer.getInstance().resetTimer();
         //Get the controller for the MainScreen.
         MainScreenController c = (MainScreenController) ((FXMLLoader) ControllerManager.getInstance().getMainScreen().getUserData()).getController();
         //Updates the transactions in the MainScreen.
@@ -287,6 +287,7 @@ public class OrderScreenController implements Initializable {
      * @param item item reference.
      */
     public void createPopup(TransactionUIElement element, TransactionItem item) {
+        Timer.getInstance().resetTimer();
         if (ControllerManager.getInstance().getPopup() != null) {
             System.out.println("Hiding old popup");
             ControllerManager.getInstance().getPopup().hide();

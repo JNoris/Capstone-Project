@@ -12,6 +12,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
 import manager.ControllerManager;
+import utility.Timer;
 
 /**
  * Controls the creation of sale reports.
@@ -35,6 +36,7 @@ public class SaleReportController {
      * Creates the prompt for user to find the .CSV file
      */
     public void selectFolderClicked() {
+        Timer.getInstance().resetTimer();
         DirectoryChooser dirChooser = new DirectoryChooser();
         folder = dirChooser.showDialog(ControllerManager.getInstance().getWindow());
         textFieldLocation.setText(folder.getAbsolutePath());
@@ -44,6 +46,7 @@ public class SaleReportController {
      * The button to validate correct user input.
      */
     public void confirmBtnClicked() {
+        Timer.getInstance().resetTimer();
         if (textFieldFileName.getText().isEmpty()) {
             textFieldFileName.requestFocus();
             return;
@@ -77,6 +80,7 @@ public class SaleReportController {
      * The button to validate incorrect user input.
      */
     public void cancelBtnClicked() {
+        Timer.getInstance().resetTimer();
         ControllerManager.getInstance().hidePopup();
     }
 
@@ -111,5 +115,6 @@ public class SaleReportController {
         } catch (IOException e) {
             System.out.println("Could not save file. Error:" + e.getMessage());
         }
+        Timer.getInstance().resetTimer();
     }
 }

@@ -16,6 +16,7 @@ import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.Popup;
 import ui.TransactionUIElement;
+import utility.Timer;
 
 /**
  * Controls the modification of price within the transaction sale pop-up.
@@ -95,6 +96,7 @@ public class TransactionUIElementController implements Initializable {
      * Saves the changes to the transaction by changing the value of the price.
      */
     public void applyChanges() {
+        Timer.getInstance().resetTimer();
         node.getTransactionItem().getTransactionItemPK().setQuantity(Integer.parseInt(itemQuantity.getText()));
 
         //Apply discount if enabled
@@ -128,6 +130,7 @@ public class TransactionUIElementController implements Initializable {
      * OrderScreenController.
      */
     public void closePopup() {
+        Timer.getInstance().resetTimer();
         this.popup.hide();
     }
 

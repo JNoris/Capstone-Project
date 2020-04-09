@@ -28,6 +28,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import manager.ControllerManager;
+import utility.Timer;
 
 /**
  * Controls the logic for the pop-up of the ManagementNewOrder.
@@ -69,6 +70,7 @@ public class ManagementNewOrderController implements Initializable {
         itemClicked = new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
+                Timer.getInstance().resetTimer();
                 ((Label) event.getSource()).getUserData();
                 addToOrderList((Item) ((Label) event.getSource()).getUserData());
             }
@@ -109,6 +111,7 @@ public class ManagementNewOrderController implements Initializable {
      * The button used to validate incorrect user input.
      */
     public void cancelBtnClicked() {
+        Timer.getInstance().resetTimer();
         ControllerManager.getInstance().hidePopup();
     }
 
@@ -187,11 +190,24 @@ public class ManagementNewOrderController implements Initializable {
         price.setPromptText("Price");
         price.setFont(Font.font("Arial Black", 12));
 
+        price.setOnKeyTyped(e -> {
+            if (!e.getCharacter().matches("[0-9.]")) {
+                e.consume();
+                Timer.getInstance().resetTimer();
+            }
+        });
+
         quantity.setMaxWidth(45);
         quantity.setMinWidth(45);
         quantity.setText("0");
         quantity.setFont(Font.font("Arial Black", 12));
 
+        quantity.setOnKeyTyped(e -> {
+            if (!e.getCharacter().matches("[0-9]")) {
+                e.consume();
+                Timer.getInstance().resetTimer();
+            }
+        });
         removeBtn.setFont(Font.font("Arial Black", 12));
 
         container.setUserData(item);
@@ -200,6 +216,7 @@ public class ManagementNewOrderController implements Initializable {
 
         removeBtn.setOnMouseReleased(e -> {
             orderListContainer.getChildren().remove(container);
+            Timer.getInstance().resetTimer();
         });
     }
 
@@ -207,6 +224,8 @@ public class ManagementNewOrderController implements Initializable {
      * The button to validate correct user input.
      */
     public void confirmBtnClicked() {
+        Timer.getInstance().resetTimer();
+
         //Error checking
         if (vendorComboBox.getValue() == null || vendorComboBox.getValue().toString().isEmpty()) {
             vendorComboBox.requestFocus();

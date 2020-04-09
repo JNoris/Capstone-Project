@@ -13,15 +13,13 @@ import manager.ControllerManager;
  * Main - Starting point for the Crunchy Comics UI
  *
  * @author Jatin Noris Buriac
- *
- * @date Feb 03, 2020
  */
 public class Main extends Application {
 
     /**
      * Executes the application.
-     * @param args
-     * @throws Exception 
+     * @param args arguments.
+     * @throws Exception in case something goes really bad.
      */
     public static void main(String[] args) throws Exception {
         launch(args);
@@ -30,8 +28,8 @@ public class Main extends Application {
     /**
      * Loads and shows the initial scene.
      *
-     * @param stage
-     * @throws Exception
+     * @param stage windows reference.
+     * @throws Exception also in case something goes really bad.
      */
     @Override
     public void start(Stage stage) throws Exception {

@@ -24,6 +24,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Popup;
 import manager.ControllerManager;
 import manager.DatabaseManager;
+import utility.Timer;
 
 /**
  * Controls all of the logic for the main screen.
@@ -61,6 +62,7 @@ public class MainScreenController implements Initializable {
         SimpleDateFormat format = new SimpleDateFormat("HH:mm");
         currentTimeLabel.setText(format.format(new Date()));
 
+        //Most popular item
         TransactionItemBroker tiBroker = new TransactionItemBroker(DatabaseManager.getInstance());
         TransactionItem ti = tiBroker.getMostSold();
         if (ti != null) {
@@ -101,6 +103,7 @@ public class MainScreenController implements Initializable {
      * scene.
      */
     public void managementBtnClicked() {
+        Timer.getInstance().resetTimer();
         ControllerManager.getInstance().changeScene(ControllerManager.getInstance().getManagementScene());
     }
 
@@ -122,7 +125,7 @@ public class MainScreenController implements Initializable {
      * Grabs the loaded transactions from the database and places it onto the
      * scene.
      *
-     * @param t transcation reference.
+     * @param t transaction reference.
      */
     public void addOrderToMainScreen(Transaction t) {
         HBox transactionContainer = new HBox(10);
@@ -154,6 +157,7 @@ public class MainScreenController implements Initializable {
      * password and timeout.
      */
     public void settingsBtnClicked() {
+        Timer.getInstance().resetTimer();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/SettingsPopup.fxml"));
         Popup popup = new Popup();
         ControllerManager.getInstance().setPopup(popup);

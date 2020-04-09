@@ -38,8 +38,6 @@ public class Timer implements Runnable {
 
     /**
      * Creates a new timer object with timeout time limit.
-     *
-     * @param timeout timeout time.
      */
     public static void createTimer() {
         double timeout = Settings.getInstance().getTimeoutTimer();

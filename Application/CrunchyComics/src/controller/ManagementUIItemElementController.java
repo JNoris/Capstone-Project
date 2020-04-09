@@ -16,6 +16,7 @@ import javafx.scene.control.TextField;
 import manager.ControllerManager;
 import manager.DatabaseManager;
 import ui.ManagementUIItemElement;
+import utility.Timer;
 
 /**
  * Controls the ManagementUIElement pop-up logic to modify data in the database.
@@ -57,12 +58,14 @@ public class ManagementUIItemElementController implements Initializable {
         //Input check for price.
         fieldItemPrice.setOnKeyTyped(e -> {
             if (e.getCharacter().matches("[^0-9.]")) {
+                Timer.getInstance().resetTimer();
                 e.consume();
             }
         });
 
         fieldItemUPC.setOnKeyTyped(e -> {
             if (e.getCharacter().matches("[^0-9]")) {
+                Timer.getInstance().resetTimer();
                 e.consume();
             }
         });
@@ -103,6 +106,7 @@ public class ManagementUIItemElementController implements Initializable {
      * The button used to validate incorrect user input.
      */
     public void cancelBtnClicked() {
+        Timer.getInstance().resetTimer();
         ControllerManager.getInstance().hidePopup();
     }
 
@@ -110,6 +114,7 @@ public class ManagementUIItemElementController implements Initializable {
      * The button used to validate correct user input.
      */
     public void confirmBtnClicked() {
+        Timer.getInstance().resetTimer();
         ItemBroker itemBroker = new ItemBroker(DatabaseManager.getInstance(), DatabaseManager.getEntityManager());
 
         //Error checking

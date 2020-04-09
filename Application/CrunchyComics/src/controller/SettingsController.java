@@ -15,6 +15,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import manager.ControllerManager;
 import utility.Settings;
+import utility.Timer;
 
 /**
  * Creates the configuration for the application. Changes password and timeout.
@@ -40,16 +41,23 @@ public class SettingsController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
         timeoutCheckBox.setSelected(Settings.getInstance().getTimerEnable());
         timeoutTimeTextField.setDisable(!timeoutCheckBox.isSelected());
         timeoutTimeTextField.setText(Settings.getInstance().getTimeoutTimer() / 1000 + "");
+
+        timeoutTimeTextField.setOnKeyTyped(e -> {
+            if (!e.getCharacter().matches("[0-9]")) {
+                Timer.getInstance().resetTimer();
+                e.consume();
+            }
+        });
     }
 
     /**
      * Validates correct user input. Saves the new settings to a file.
      */
     public void confirmBtnClicked() {
+        Timer.getInstance().resetTimer();
         Settings.getInstance().setTimerEnable(timeoutCheckBox.isSelected());
         if (timeoutCheckBox.isSelected()) {
             if (timeoutTimeTextField.getText().isEmpty()) {
@@ -74,6 +82,7 @@ public class SettingsController implements Initializable {
      * Cancels the action and closes the pop-up.
      */
     public void cancelBtnClicked() {
+        Timer.getInstance().resetTimer();
         ControllerManager.getInstance().hidePopup();
     }
 
