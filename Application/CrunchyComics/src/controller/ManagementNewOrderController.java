@@ -31,7 +31,7 @@ import javafx.scene.text.Font;
 import manager.ControllerManager;
 
 /**
- *
+ * Controls the logic for the popup of the ManagementNewOrder.
  * @author Vinicius Smith
  */
 public class ManagementNewOrderController implements Initializable {
@@ -56,7 +56,12 @@ public class ManagementNewOrderController implements Initializable {
     private Orders order;
     private EventHandler<MouseEvent> itemClicked;
     private ManagementController mgntController;
-
+    
+    /**
+     * Loads the event handlers to add the order items to the <code>orderListContainer</code>.
+     * @param location
+     * @param resources 
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         itemClicked = new EventHandler<MouseEvent>() {
@@ -89,11 +94,18 @@ public class ManagementNewOrderController implements Initializable {
         List<Item> items = itemBroker.getAllItems();
         fillItemList(items);
     }
-
+    
+    /**
+     * Sets the order to inputted value.
+     * @param order 
+     */
     public void setOrder(Orders order) {
         this.order = order;
     }
 
+    /**
+     * The button used to validate incorrect user input.
+     */
     public void cancelBtnClicked() {
         ControllerManager.getInstance().hidePopup();
     }
@@ -117,7 +129,11 @@ public class ManagementNewOrderController implements Initializable {
                     "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28"));
         }
     }
-
+    
+    /**
+     * Loads the items from the database and displays the items list.
+     * @param items 
+     */
     public void fillItemList(List<Item> items) {
         itemListContainer.getChildren().clear();
         for (Item i : items) {
@@ -131,11 +147,18 @@ public class ManagementNewOrderController implements Initializable {
         }
     }
 
+    /**
+     * Traverses through the items database until the input from the front-end matches with the item in the database
+     */
     public void searchItems() {
         ItemBroker itemBroker = new ItemBroker();
         fillItemList(itemBroker.getMatchingItems(itemSearchField.getText()));
     }
 
+    /**
+     * Loads the specific item into the <code>HBox</code> container and displays the name,price, and quantity.
+     * @param item 
+     */
     public void addToOrderList(Item item) {
         HBox container = new HBox();
         Label name = new Label(item.getName());
@@ -170,6 +193,9 @@ public class ManagementNewOrderController implements Initializable {
         });
     }
 
+    /**
+     * The button to validate correct user input.
+     */
     public void confirmBtnClicked() {
         //Error checking
         if(vendorComboBox.getValue() == null || vendorComboBox.getValue().toString().isEmpty()){
@@ -194,8 +220,7 @@ public class ManagementNewOrderController implements Initializable {
             System.out.println("Adding vendor to database.");
             vendorid = vendorBroker.getLastID() + 1;
             vendorBroker.insert(new Vendor(vendorid, vendorName));
-        }
-        //        
+        }       
         OrderBroker orderBroker = new OrderBroker();
         int orderID = orderBroker.getLastID() + 1;
 
@@ -211,7 +236,6 @@ public class ManagementNewOrderController implements Initializable {
             orderItems.add(oi);
         }
 
-//        Orders order = new Orders();
         order.setOrderNo(orderID);
         order.setVendorID(new Vendor(vendorid, vendorName));
         order.setOrderItemList(orderItems);
@@ -230,6 +254,10 @@ public class ManagementNewOrderController implements Initializable {
         ControllerManager.getInstance().hidePopup();
     }
 
+    /**
+     * Controls the many ManagementControllers and sets the value to the specific ManagementController.
+     * @param mgntController 
+     */
     public void setManagementController(ManagementController mgntController) {
         this.mgntController = mgntController;
     }

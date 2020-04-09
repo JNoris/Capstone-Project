@@ -7,7 +7,7 @@ import javax.persistence.Query;
 import manager.DatabaseManager;
 
 /**
- *
+ * The class that grabs the orders from the database.
  * @author Vinicius Smith
  */
 public class OrderBroker {
@@ -31,7 +31,7 @@ public class OrderBroker {
         return (Orders) results.get(0);
     }
 
-      /**
+     /**
      * Returns all the orders from the database.
      *
      * @return a list of all the orders.
@@ -43,12 +43,20 @@ public class OrderBroker {
         return results;
     }
 
+    /**
+     * Looks at the final item in the database and grabs that item.
+     * @return the last item ID 
+     */
     public int getLastID() {
         Query q = em.createNamedQuery("Orders.findLastID");
         List results = q.getResultList();
         return (int)results.get(0);
     }
 
+    /**
+    * Allows for an item to be inserted into the database and saves that file.
+    * @param order 
+    */
     public void insert(Orders order) {
         em.getTransaction().begin();
         em.persist(order);

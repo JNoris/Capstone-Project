@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
- *
+ * Creates the Item Type object.
  * @author Vinicius Smith
  */
 @Entity
@@ -40,30 +40,57 @@ public class Type implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "itemType", fetch = FetchType.EAGER)
     private List<Item> itemList;
 
+    /**
+     * Default constructor for the type object.
+     */
     public Type() {
     }
 
+    /**
+     * Non-default constructor for the type based on itemType alone.
+     * @param itemType 
+     */
     public Type(String itemType) {
         this.itemType = itemType;
     }
 
+    /**
+     * Gets the item type.
+     * @return itemType
+     */
     public String getItemType() {
         return itemType;
     }
 
+    /**
+     * Sets the item type.
+     * @param itemType 
+     */
     public void setItemType(String itemType) {
         this.itemType = itemType;
     }
 
+    /**
+     * Gets the Item List.
+     * @return itemList
+     */
     @XmlTransient
     public List<Item> getItemList() {
         return itemList;
     }
 
+    /**
+     * Sets the Item List.
+     * @param itemList 
+     */
     public void setItemList(List<Item> itemList) {
         this.itemList = itemList;
     }
 
+    /**
+     * Gets the hash value of the item type.
+     * @return hash
+     */
     @Override
     public int hashCode() {
         int hash = 0;
@@ -71,6 +98,11 @@ public class Type implements Serializable {
         return hash;
     }
 
+    /**
+     * Checks if the value of the transaction equals another item.
+     * @param object
+     * @return true if it equals otherwise false
+     */
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
@@ -84,6 +116,10 @@ public class Type implements Serializable {
         return true;
     }
 
+    /**
+     * Returns the item type as a string value.
+     * @return itemType
+     */
     @Override
     public String toString() {
         return itemType;

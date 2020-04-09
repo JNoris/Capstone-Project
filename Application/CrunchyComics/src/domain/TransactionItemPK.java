@@ -11,7 +11,7 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 /**
- *
+ * Creates the transaction item PK
  * @author Vinicius Smith
  */
 @Embeddable
@@ -30,9 +30,19 @@ public class TransactionItemPK implements Serializable {
     @Column(name = "sold_price")
     private float soldPrice;
 
+    /**
+     * Default constructor for the transaction item PK object.
+     */
     public TransactionItemPK() {
     }
 
+    /**
+     * Non-default constructor for the Transaction Item PK.
+     * @param itemID
+     * @param transactionID
+     * @param quantity
+     * @param soldPrice 
+     */
     public TransactionItemPK(int itemID, int transactionID, int quantity, float soldPrice) {
         this.itemID = itemID;
         this.transactionID = transactionID;
@@ -40,38 +50,74 @@ public class TransactionItemPK implements Serializable {
         this.soldPrice = soldPrice;
     }
 
+    /**
+     * Gets the ItemID.
+     * @return itemID
+     */
     public int getItemID() {
         return itemID;
     }
 
+    /**
+     * Sets the ItemID.
+     * @param itemID 
+     */
     public void setItemID(int itemID) {
         this.itemID = itemID;
     }
 
+    /**
+     * Gets the TransactionID.
+     * @return transactionID
+     */
     public int getTransactionID() {
         return transactionID;
     }
 
+    /**
+     * Sets the transaction ID.
+     * @param transactionID 
+     */
     public void setTransactionID(int transactionID) {
         this.transactionID = transactionID;
     }
 
+    /**
+     * Gets the quantity.
+     * @return quantity
+     */
     public int getQuantity() {
         return quantity;
     }
 
+    /**
+     * Sets the quantity.
+     * @param quantity 
+     */
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 
+    /**
+     * Gets the Sold Price.
+     * @return soldPrice
+     */
     public float getSoldPrice() {
         return soldPrice;
     }
 
+    /**
+     * Sets the sold price.
+     * @param soldPrice 
+     */
     public void setSoldPrice(float soldPrice) {
         this.soldPrice = soldPrice;
     }
 
+    /**
+     * Gets the hash value of the TransactionItemPK.
+     * @return hash
+     */
     @Override
     public int hashCode() {
         int hash = 0;
@@ -82,6 +128,11 @@ public class TransactionItemPK implements Serializable {
         return hash;
     }
 
+     /**
+     * Checks if the value of the transaction item equals another item.
+     * @param object
+     * @return true if it equals otherwise false
+     */
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
@@ -104,6 +155,10 @@ public class TransactionItemPK implements Serializable {
         return true;
     }
 
+    /**
+     * Returns the transaction item PK as a string value
+     * @return "domain.TransactionItemPK[ itemID=" + itemID + ", transactionID=" + transactionID + ", quantity=" + quantity + ", soldPrice=" + soldPrice + " ]"
+     */
     @Override
     public String toString() {
         return "domain.TransactionItemPK[ itemID=" + itemID + ", transactionID=" + transactionID + ", quantity=" + quantity + ", soldPrice=" + soldPrice + " ]";

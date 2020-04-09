@@ -5,71 +5,124 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 
-
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="445.0" prefWidth="282.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label alignment="CENTER" prefHeight="27.0" prefWidth="282.0" text="Settings" />
-      <HBox alignment="CENTER_LEFT" prefHeight="29.0" prefWidth="282.0">
+      <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0">
          <children>
-            <Label minWidth="100.0" text="Enable Timeout">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </Label>
-            <CheckBox fx:id="timeoutCheckBox" mnemonicParsing="false" onAction="#enableTimeoutClicked" />
+            <VBox alignment="CENTER" opacity="0.8" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #000000;">
+               <children>
+                  <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" />
+               </children>
+            </VBox>
+            <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="452.0" prefWidth="306.0">
+               <children>
+                  <AnchorPane prefHeight="450.0" prefWidth="348.0" styleClass="orderBox" stylesheets="@managementscreen.css">
+                     <children>
+                        <HBox alignment="BOTTOM_CENTER" layoutY="396.0" prefHeight="44.0" prefWidth="310.0" spacing="40.0" stylesheets="@managementscreen.css">
+                           <children>
+                              <Button mnemonicParsing="false" onMouseReleased="#cancelBtnClicked" styleClass="cancelButton" text="Cancel">
+                                 <HBox.margin>
+                                    <Insets right="5.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font name="Arial Black" size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" onMouseReleased="#confirmBtnClicked" styleClass="confirmButton" text="Confirm" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Black" size="14.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <Label alignment="CENTER" layoutX="32.0" prefHeight="29.0" prefWidth="250.0" text="Settings" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Black" size="20.0" />
+                           </font>
+                        </Label>
+                        <HBox alignment="CENTER_LEFT" layoutX="50.0" layoutY="46.0" prefHeight="29.0" prefWidth="211.0" spacing="35.0">
+                           <children>
+                              <Label minWidth="100.0" text="Enable Timeout" textFill="WHITE">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font name="Arial Black" size="14.0" />
+                                 </font>
+                              </Label>
+                              <CheckBox fx:id="timeoutCheckBox" mnemonicParsing="false" onAction="#enableTimeoutClicked" prefHeight="17.0" prefWidth="12.0" textFill="WHITE" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" layoutX="33.0" layoutY="85.0" prefHeight="42.0" prefWidth="244.0" spacing="10.0">
+                           <children>
+                              <Label minWidth="100.0" text="Timeout Time" textFill="WHITE">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font name="Arial Black" size="14.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="timeoutTimeTextField" prefHeight="25.0" prefWidth="48.0" styleClass="searchField" stylesheets="@orderscreen.css">
+                                 <HBox.margin>
+                                    <Insets right="5.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font name="Arial Black" size="12.0" />
+                                 </font>
+                              </TextField>
+                              <Label text="seconds" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Black" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" layoutX="52.0" layoutY="135.0" prefHeight="29.0" prefWidth="217.0" spacing="5.0">
+                           <children>
+                              <Label minWidth="100.0" prefHeight="22.0" prefWidth="149.0" text="New Password" textFill="WHITE">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font name="Arial Black" size="14.0" />
+                                 </font>
+                              </Label>
+                              <CheckBox fx:id="passwordCheckBox" mnemonicParsing="false" onAction="#enablePasswordClicked">
+                                 <font>
+                                    <Font name="Arial Black" size="12.0" />
+                                 </font>
+                              </CheckBox>
+                           </children>
+                        </HBox>
+                        <TextField fx:id="newPasswordTextField" disable="true" layoutX="81.0" layoutY="183.0" prefHeight="32.0" prefWidth="149.0" promptText="New password" styleClass="searchField" stylesheets="@orderscreen.css">
+                           <font>
+                              <Font name="Arial Black" size="14.0" />
+                           </font>
+                        </TextField>
+                        <Line endX="184.0" endY="1.52587890625E-5" layoutX="120.0" layoutY="29.0" startX="-100.0" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </VBox>
          </children>
-      </HBox>
-      <HBox alignment="CENTER_LEFT" prefHeight="29.0" prefWidth="282.0">
-         <children>
-            <Label minWidth="100.0" text="Timeout Time">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </Label>
-            <TextField fx:id="timeoutTimeTextField" prefHeight="25.0" prefWidth="48.0">
-               <HBox.margin>
-                  <Insets right="5.0" />
-               </HBox.margin>
-            </TextField>
-            <Label text="seconds" />
-         </children>
-      </HBox>
-      <HBox alignment="CENTER_LEFT" prefHeight="29.0" prefWidth="282.0">
-         <children>
-            <Label minWidth="100.0" text="New Password">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </Label>
-            <CheckBox fx:id="passwordCheckBox" mnemonicParsing="false" onAction="#enablePasswordClicked" />
-            <TextField fx:id="newPasswordTextField" disable="true" prefHeight="25.0" prefWidth="135.0" promptText="New password">
-               <HBox.margin>
-                  <Insets right="5.0" />
-               </HBox.margin>
-            </TextField>
-         </children>
-      </HBox>
-      <HBox alignment="BOTTOM_CENTER" prefHeight="319.0" prefWidth="282.0">
-         <children>
-            <Button mnemonicParsing="false" onMouseReleased="#cancelBtnClicked" text="Cancel">
-               <HBox.margin>
-                  <Insets right="5.0" />
-               </HBox.margin>
-            </Button>
-            <Button mnemonicParsing="false" onMouseReleased="#confirmBtnClicked" text="Confirm" />
-         </children>
-      </HBox>
+      </StackPane>
    </children>
 </VBox>

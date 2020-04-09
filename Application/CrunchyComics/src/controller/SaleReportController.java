@@ -22,7 +22,7 @@ import javafx.stage.DirectoryChooser;
 import manager.ControllerManager;
 
 /**
- *
+ * Controls the creation of sale reports.
  * @author Vinicius Smith
  */
 public class SaleReportController {
@@ -38,12 +38,18 @@ public class SaleReportController {
 
     private File folder;
 
+     /**
+     * Creates the prompt for user to find the .CSV file 
+     */
     public void selectFolderClicked() {
         DirectoryChooser dirChooser = new DirectoryChooser();
         folder = dirChooser.showDialog(ControllerManager.getInstance().getWindow());
         textFieldLocation.setText(folder.getAbsolutePath());
     }
 
+    /**
+     * The button to validate correct user input.
+     */
     public void confirmBtnClicked() {
         if (textFieldFileName.getText().isEmpty()) {
             textFieldFileName.requestFocus();
@@ -74,10 +80,18 @@ public class SaleReportController {
 
     }
 
+    /**
+     * The button to validate incorrect user input.
+     */
     public void cancelBtnClicked() {
         ControllerManager.getInstance().hidePopup();
     }
 
+    /**
+     * Checks if the filename is a Microsoft Excel file.
+     * @param filename
+     * @return 
+     */
     private String correctFileName(String filename) {
         if (filename.endsWith(".csv")) {
             return filename;
@@ -85,6 +99,10 @@ public class SaleReportController {
         return filename + ".csv";
     }
 
+    /**
+     * Persists the transactions onto a Microsoft Excel Sheet.
+     * @param transactions 
+     */
     private void writeFile(List<Transaction> transactions) {
         File file = new File(folder.getAbsolutePath() + "/" + correctFileName(textFieldFileName.getText()));
         try {

@@ -20,7 +20,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
- *
+ * Creates the vendor object.
  * @author Vinicius Smith
  */
 @Entity
@@ -44,43 +44,83 @@ public class Vendor implements Serializable {
     @OneToMany(mappedBy = "vendorID", fetch = FetchType.EAGER)
     private List<Orders> ordersList;
 
+    /**
+     * Default constructor for the vendor object.
+     */
     public Vendor() {
     }
 
+    /**
+     * Non-default constructor for the vendor based on vendor ID alone.
+     * @param vendorID 
+     */
     public Vendor(Integer vendorID) {
         this.vendorID = vendorID;
     }
 
+    /**
+     * Non-default constructor for the vendor.
+     * @param vendorID
+     * @param vendorName 
+     */
     public Vendor(Integer vendorID, String vendorName) {
         this.vendorID = vendorID;
         this.vendorName = vendorName;
     }
 
+    /**
+     * Gets the vendor ID.
+     * @return vendorID
+     */
     public Integer getVendorID() {
         return vendorID;
     }
 
+    /**
+     * Sets the vendor ID
+     * @param vendorID 
+     */
     public void setVendorID(Integer vendorID) {
         this.vendorID = vendorID;
     }
 
+    /**
+     * Gets the vendor name.
+     * @return vendorName
+     */
     public String getVendorName() {
         return vendorName;
     }
 
+    /**
+     * Sets the vendor names.
+     * @param vendorName 
+     */
     public void setVendorName(String vendorName) {
         this.vendorName = vendorName;
     }
 
+    /**
+     * Gets the orders list.
+     * @return orderList
+     */
     @XmlTransient
     public List<Orders> getOrdersList() {
         return ordersList;
     }
 
+    /**
+     * Sets the orders list.
+     * @param ordersList 
+     */
     public void setOrdersList(List<Orders> ordersList) {
         this.ordersList = ordersList;
     }
 
+    /**
+     * Gets the hash value of the vendor.
+     * @return hash
+     */
     @Override
     public int hashCode() {
         int hash = 0;
@@ -88,6 +128,11 @@ public class Vendor implements Serializable {
         return hash;
     }
 
+    /**
+     * Checks if the value of the transaction equals another item.
+     * @param object
+     * @return true if it equals otherwise false
+     */
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
@@ -101,6 +146,10 @@ public class Vendor implements Serializable {
         return true;
     }
 
+    /**
+     * Returns the vendor as a string value.
+     * @return vendorName
+     */
     @Override
     public String toString() {
         return vendorName;

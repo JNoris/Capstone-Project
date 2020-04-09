@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
- *
+ * Creates the item object.
  * @author Vinicius Smith
  */
 @Entity
@@ -64,84 +64,165 @@ public class Item implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "item", fetch = FetchType.EAGER)
     private List<TransactionItem> transactionItemList;
 
+    /**
+     * Default constructor for the item object.
+     */
     public Item() {
     }
 
+    /**
+     * Non-default constructor for the item object based on ID alone.
+     * @param itemID 
+     */
     public Item(Integer itemID) {
         this.itemID = itemID;
     }
 
+    /**
+     * Non-default constructor for the comic object.
+     * @param itemID
+     * @param price
+     * @param name 
+     */
     public Item(Integer itemID, float price, String name) {
         this.itemID = itemID;
         this.price = price;
         this.name = name;
     }
 
+    /**
+     * Gets the ItemID.
+     * @return itemID
+     */
     public Integer getItemID() {
         return itemID;
     }
 
+    /**
+     * Sets the ItemID.
+     * @param itemID 
+     */
     public void setItemID(Integer itemID) {
         this.itemID = itemID;
     }
 
+    /**
+     * Gets the description.
+     * @return description
+     */
     public String getDescription() {
         return description;
     }
 
+    /**
+     * Sets the description.
+     * @param description 
+     */
     public void setDescription(String description) {
         this.description = description;
     }
 
+    /**
+     * Gets the price.
+     * @return price
+     */
     public float getPrice() {
         return price;
     }
 
+    /**
+     * Sets the price.
+     * @param price 
+     */
     public void setPrice(float price) {
         this.price = price;
     }
 
+    /**
+     * Gets the name.
+     * @return name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Sets the name.
+     * @param name 
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * Gets the quantity.
+     * @return quantity
+     */
     public Integer getQuantity() {
         return quantity;
     }
 
+    /**
+     * Sets the quantity.
+     * @param quantity 
+     */
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
 
+    /**
+     * Gets the UPC
+     * @return upc
+     */
     public String getUpc() {
         return upc;
     }
 
+    /**
+     * Sets the UPC.
+     * @param upc 
+     */
     public void setUpc(String upc) {
         this.upc = upc;
     }
 
+    /**
+     * Gets the itemType.
+     * @return itemType.
+     */
     public Type getItemType() {
         return itemType;
     }
 
+    /**
+     * Sets the itemType.
+     * @param itemType 
+     */
     public void setItemType(Type itemType) {
         this.itemType = itemType;
     }
 
+    /**
+     * Gets the TransactionItem list.
+     * @return transactionItemList.
+     */
     @XmlTransient
     public List<TransactionItem> getTransactionItemList() {
         return transactionItemList;
     }
 
+    /**
+     * Sets the TransactionItemList.
+     * @param transactionItemList 
+     */
     public void setTransactionItemList(List<TransactionItem> transactionItemList) {
         this.transactionItemList = transactionItemList;
     }
 
+    /**
+     * Gets the hash value of the item.
+     * @return hash
+     */
     @Override
     public int hashCode() {
         int hash = 0;
@@ -149,6 +230,11 @@ public class Item implements Serializable {
         return hash;
     }
 
+    /**
+     * Checks if the value of the item equals another item.
+     * @param object
+     * @return true if it equals otherwise false
+     */
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
@@ -162,6 +248,10 @@ public class Item implements Serializable {
         return true;
     }
 
+    /**
+     * Returns the Item as a String.
+     * @return "domain.Item[ itemID=" + itemID + " ]"
+     */
     @Override
     public String toString() {
         return "domain.Item[ itemID=" + itemID + " ]";

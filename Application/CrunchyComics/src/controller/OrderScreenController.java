@@ -36,13 +36,7 @@ import manager.DatabaseManager;
 import ui.TransactionUIElement;
 
 /**
- *
- * @author Noris. UMM I MEAN: CAPSTONE GROUP, OF COURSE, TIS NOT MY WORK BUT OUR
- * WORK.
- *
- * @Notes Please make sure to correct this code. Namely: Password as well as
- * validation.
- *
+ * Controls the logic within the Order Screen to create transactions.
  */
 public class OrderScreenController implements Initializable {
 
@@ -75,6 +69,11 @@ public class OrderScreenController implements Initializable {
     private Transaction transaction;
 //    private Popup popup;
 
+    /**
+     * Loads all previous transactions in the database and opens resources to add to the database on startup.
+     * @param location
+     * @param resources 
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         itemBroker = new ItemBroker(DatabaseManager.getInstance(), DatabaseManager.getEntityManager());
@@ -92,9 +91,6 @@ public class OrderScreenController implements Initializable {
         //Set transaction date
         transaction.setTransactionID(tb.getHighestID() + 1);
 
-//        addItemToSale(items.get(0));
-//        addItemToSale(items.get(1));
-//        addItemToSale(items.get(2));
     }
 
     /**
@@ -105,19 +101,19 @@ public class OrderScreenController implements Initializable {
      * @throws IOException
      */
     public void logoutBtnClicked(ActionEvent event) throws IOException {
-//        Parent loginParent = FXMLLoader.load(getClass().getResource("/fxml/Login.fxml"));
-//        Scene logout = new Scene(loginParent);
-        Scene logout = ControllerManager.getInstance().getLoginScreen();
 
-        // This line grabs the Stage information
+        Scene logout = ControllerManager.getInstance().getLoginScreen();
         Stage loginWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
         loginWindow.setScene(logout);
         loginWindow.show();
     }
-
+    
+    /**
+     * Adds the requested item to the search container and displays the value.
+     * @param item 
+     */
     public void addItemToSearch(Item item) {
-//        Button base = new Button();
         HBox hbox = new HBox(20);
         Label name = new Label();
         Label price = new Label();
@@ -134,8 +130,6 @@ public class OrderScreenController implements Initializable {
         price.setMinWidth(100);
         price.setMaxWidth(100);
 
-        //label1.setTextFill(Color.web("#0076a3"));
-        //label.setFont(new Font("Arial", 30));
         name.setTextFill(Color.web("#FFFFFF"));
         price.setTextFill(Color.web("#FFFFFF"));
         name.setFont(new Font("Arial Black", 25));
@@ -152,7 +146,6 @@ public class OrderScreenController implements Initializable {
         hbox.setOnMouseClicked(new EventHandler() {
             @Override
             public void handle(Event event) {
-//                System.out.println("HBox clicked.");
                 addItemToSale(itemBroker.getItemByID(Integer.parseInt(id.getText())));
             }
         });
@@ -200,6 +193,9 @@ public class OrderScreenController implements Initializable {
         calculateSubtotal();
     }
 
+    /**
+     * Calculates current price total, based on item price; disregarding extra fees and values.
+     */
     public void calculateSubtotal() {
         float total = 0f;
         for (TransactionItem tItem : transaction.getTransactionItemList()) {
@@ -209,18 +205,27 @@ public class OrderScreenController implements Initializable {
         subtotalDisplay.setText(String.format("$%.2f", total));
     }
 
-    //Issues Here ($)
+    /**
+     * Calculates government tax of the item by itself.
+     * @param value 
+     */
     public void calculateTax(float value) {
         float tax = value * 0.05f;
         taxDisplay.setText(String.format("%.2f", tax));
         updateTotal(value + tax);
     }
-
-    //Issues with $ here
+    
+    /**
+     * Adds the value of the subtotal and tax together, creating the final price.
+     * @param value 
+     */
     public void updateTotal(float value) {
         finalPriceDisplay.setText(String.format("%.2f", value));
     }
 
+    /**
+     * Searches the database for the item requested by the user and matches the item in the database.
+     */
     public void searchItems() {
         resultContainer.getChildren().clear();
         List<Item> items = itemBroker.getMatchingItems(searchField.getText());
@@ -261,6 +266,10 @@ public class OrderScreenController implements Initializable {
 
     }
 
+    /**
+     * Displays the current sale items on the database.
+     * @return 
+     */
     public ArrayList<TransactionUIElement> getAllSaleElements() {
         ArrayList<TransactionUIElement> list = new ArrayList<TransactionUIElement>();
         for (Node n : saleListDisplay.getChildren()) {
@@ -269,7 +278,11 @@ public class OrderScreenController implements Initializable {
         return list;
     }
 
-    //Pop up
+    /**
+     * Creates the popup when the modification of the transaction needs to be made and transfers control to the TransactionUIElementController.
+     * @param element
+     * @param item 
+     */
     public void createPopup(TransactionUIElement element, TransactionItem item) {
         if (ControllerManager.getInstance().getPopup() != null) {
             System.out.println("Hiding old popup");
@@ -281,8 +294,6 @@ public class OrderScreenController implements Initializable {
         Popup popup = new Popup();
         ControllerManager.getInstance().setPopup(popup);
         try {
-//            itemPopup.getContent().add((Parent) loader.load());
-//            itemPopup.show(ControllerManager.getInstance().getMainScreen().getWindow());
             TransactionUIElementController controller = new TransactionUIElementController();
             loader.setController(controller);
             popup.getContent().add((Parent) loader.load());
@@ -295,11 +306,19 @@ public class OrderScreenController implements Initializable {
         }
     }
 
+    /**
+     * Removes requested item from the sale list .
+     * @param e 
+     */
     public void removeFromSale(TransactionUIElement e) {
         saleListDisplay.getChildren().remove(e);
         calculateSubtotal();
     }
 
+    /**
+     * Gets the currently created transaction.
+     * @return the transaction currently made
+     */
     public Transaction getTransaction() {
         return this.transaction;
     }

@@ -21,7 +21,7 @@ import manager.DatabaseManager;
 import utility.Settings;
 
 /**
- *
+ * The Initial Loading of the Database before the application GUI is present.
  * @author 695553
  */
 public class SplashController {

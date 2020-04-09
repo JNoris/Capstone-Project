@@ -20,10 +20,17 @@ public class TransactionBroker {
     private EntityManager em = null;
     private DatabaseManager dbManager = null;
 
+    /**
+     * The default constructor to grab transactions from the database.
+     */
     public TransactionBroker() {
         this.em = DatabaseManager.getEntityManager();
     }
 
+    /**
+     * The non-default constructor to grab transactions from the database. Requires a DatabaseManager object.
+     * @param dbManager 
+     */
     public TransactionBroker(DatabaseManager dbManager) {
         EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("CrunchyComicsPU");
         this.dbManager = dbManager;
@@ -67,6 +74,12 @@ public class TransactionBroker {
         return (List<Transaction>) q.getResultList();
     }
 
+    /**
+     * Gets the transaction/s between the the beginning date and the final date.
+     * @param from
+     * @param to
+     * @return 
+     */
     public List<Transaction> getTransactionsBetweenDates(String from, String to) {
         Query q = em.createNamedQuery("Transaction.findByTransactionBetween");
         q.setParameter("fromDate", from);

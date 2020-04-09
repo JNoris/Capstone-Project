@@ -18,6 +18,11 @@ import manager.ControllerManager;
  */
 public class Main extends Application {
 
+    /**
+     * Executes the application.
+     * @param args
+     * @throws Exception 
+     */
     public static void main(String[] args) throws Exception {
         launch(args);
     }

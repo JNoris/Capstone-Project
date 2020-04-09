@@ -18,13 +18,7 @@ import manager.ControllerManager;
 import utility.Timer;
 
 /**
- *
- * @author Noris. UMM I MEAN: CAPSTONE GROUP, OF COURSE, TIS NOT MY WORK BUT OUR
- * WORK.
- *
- * @Notes Please make sure to correct this code. Namely: Password as well as
- * validation.
- *
+ * Controls the initial security for the login scene.
  */
 public class LoginController implements Initializable {
 
@@ -35,7 +29,12 @@ public class LoginController implements Initializable {
 
     @FXML
     private Button btnLogin;
-
+    
+    /**
+     * Loads the password fields and event handlers for the login scene.
+     * @param location
+     * @param resources 
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         passwordFieldInput.setOnKeyPressed(new javafx.event.EventHandler<KeyEvent>() {
@@ -56,17 +55,11 @@ public class LoginController implements Initializable {
      */
     public void loginEnterBtnClicked(ActionEvent event) {
         try {
-//            Parent mainScreenParent = FXMLLoader.load(getClass().getResource("/fxml/MainScreen.fxml"));
-//            Scene main = new Scene(mainScreenParent);
 
             LoginService ls = new LoginService();
 
             if (ls.checkPassword(passwordFieldInput.getText())) {
 
-                // This line grabs the Stage information.
-//                Stage mainWindowScreen = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//                mainWindowScreen.setScene(main);
-//                mainWindowScreen.show();
                 ControllerManager.getInstance().changeScene(ControllerManager.getInstance().getLastScene());
                 ControllerManager.getInstance().restorePopup();
                 Timer.createTimer();

@@ -16,7 +16,7 @@ import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- *
+ * Creates the refund object.
  * @author Vinicius Smith
  */
 @Entity
@@ -39,37 +39,72 @@ public class Refund implements Serializable {
     @Column(name = "itemID")
     private Integer itemID;
 
+    /**
+     * Default constructor for the refund object.
+     */
     public Refund() {
     }
 
+    /**
+     * Non-default constructor for the refund based on refund ID alone.
+     * @param refundID 
+     */
     public Refund(Integer refundID) {
         this.refundID = refundID;
     }
 
+    /**
+     * Gets the refund ID.
+     * @return refundID
+     */
     public Integer getRefundID() {
         return refundID;
     }
 
+    /**
+     * Sets the refund ID.
+     * @param refundID 
+     */
     public void setRefundID(Integer refundID) {
         this.refundID = refundID;
     }
 
+    /**
+     * Gets the TransactionID for the refund
+     * @return transactionID
+     */
     public Integer getTransactionID() {
         return transactionID;
     }
 
+    /**
+     * Sets the TransactionID for the refund
+     * @param transactionID 
+     */
     public void setTransactionID(Integer transactionID) {
         this.transactionID = transactionID;
     }
 
+    /**
+     * Gets the ItemID for the refund.
+     * @return itemID
+     */
     public Integer getItemID() {
         return itemID;
     }
 
+    /**
+     * Sets the ItemID for the refund.
+     * @param itemID 
+     */
     public void setItemID(Integer itemID) {
         this.itemID = itemID;
     }
 
+    /**
+     * Gets the hash value of the refund.
+     * @return hash
+     */
     @Override
     public int hashCode() {
         int hash = 0;
@@ -77,6 +112,11 @@ public class Refund implements Serializable {
         return hash;
     }
 
+    /**
+     * Checks if the value of the refund equals another item.
+     * @param object
+     * @return true if it equals otherwise false
+     */
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
@@ -90,6 +130,10 @@ public class Refund implements Serializable {
         return true;
     }
 
+    /**
+     * Returns the refund as a string value
+     * @return "domain.Refund[ refundID=" + refundID + " ]"
+     */
     @Override
     public String toString() {
         return "domain.Refund[ refundID=" + refundID + " ]";

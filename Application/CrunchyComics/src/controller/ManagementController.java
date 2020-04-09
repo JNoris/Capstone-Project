@@ -22,17 +22,7 @@ import ui.ManagementUIItemElement;
 import ui.ManagementUIOrderElement;
 
 /**
- *
- * @author Noris. UMM I MEAN: CAPSTONE GROUP, OF COURSE, TIS NOT MY WORK BUT OUR
- * WORK.
- *
- * @Notes This is probably the most incomplete GUI as of Feb 17th. Change the
- * font to Arial Black, set a divider between tabs and the content they show,
- * etc.
- * @Events will have to be handled. My main question is is in the interaction
- * model we have things like the Edit button and all that, isn't this
- * repetitive? We already have Add/Edit Inventory on the left side.
- *
+ * Controls the Management scene.
  */
 public class ManagementController implements Initializable {
 
@@ -43,6 +33,11 @@ public class ManagementController implements Initializable {
 
     private boolean itemMode = false;
 
+    /**
+     * Loads the <code>newBtn</code> to invisible until needed.
+     * @param location
+     * @param resources 
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         newBtn.visibleProperty().set(false);
@@ -58,6 +53,9 @@ public class ManagementController implements Initializable {
         ControllerManager.getInstance().changeScene(ControllerManager.getInstance().getMainScreen());
     }
 
+    /**
+     * Sets the <code>newBtn</code> to <code>true</code> and loads all of the items currently in the database.
+     */
     public void populateItems() {
         newBtn.visibleProperty().set(true);
         itemMode = true;
@@ -69,7 +67,10 @@ public class ManagementController implements Initializable {
             populateArea.getChildren().add(new ManagementUIItemElement(this, i));
         }
     }
-
+    
+    /**
+     * Sets the <code>newBtn</code> to <code>true</code> and loads all of the orders currently in the database.
+     */
     public void populateOrders() {
         newBtn.visibleProperty().set(true);
         itemMode = false;
@@ -80,7 +81,12 @@ public class ManagementController implements Initializable {
         }
         System.out.println("Populating area with Orders.");
     }
-
+    
+    /**
+     * Creates the popup on top the Management scene and transfers control to the ManagementUIItemElementController.
+     * @param element
+     * @param item 
+     */
     public void createItemManagementPopup(ManagementUIItemElement element, Item item) {
         System.out.println("Popup " + item.getName());
         Popup popup = new Popup();
@@ -101,6 +107,11 @@ public class ManagementController implements Initializable {
         }
     }
 
+     /**
+     * Creates the popup on top the Management scene and transfers control to the ManagementUIOrderElementController.
+     * @param element
+     * @param order
+     */
     public void createOrderManagementPopup(ManagementUIOrderElement element, Orders order) {
         Popup popup = new Popup();
         ControllerManager.getInstance().setPopup(popup);
@@ -118,6 +129,10 @@ public class ManagementController implements Initializable {
         }
     }
 
+     /**
+     * Creates the popup on top the Management scene and transfers control to the ManagementNewOrderController.
+     * @param order
+     */
     public void createNewOrderPopup(Orders order) {
         Popup popup = new Popup();
         ControllerManager.getInstance().setPopup(popup);
@@ -130,13 +145,15 @@ public class ManagementController implements Initializable {
             popup.show(ControllerManager.getInstance().getWindow());
             controller.setOrder(order);
             controller.setManagementController(this);
-//            controller.populate();
         } catch (IOException e) {
             System.out.println("Could not create management new order popup. " + e.getMessage());
             e.printStackTrace();
         }
     }
-
+    
+    /**
+     * Creates the logic depending on what scene is shown. Shows the popup for either ItemManagementPopup or the new OrderPopup.
+     */
     public void newBtnClicked() {
         if (itemMode) {
             Item item = new Item();
@@ -146,7 +163,10 @@ public class ManagementController implements Initializable {
             createNewOrderPopup(order);
         }
     }
-
+    
+    /**
+     * Changes to the InventoryReportPopup as well as control to the Inventory Report Controller.
+     */
     public void createInventoryReportClicked() {
         Popup popup = new Popup();
         ControllerManager.getInstance().setPopup(popup);
@@ -157,14 +177,15 @@ public class ManagementController implements Initializable {
         try {
             popup.getContent().add((Parent) loader.load());
             popup.show(ControllerManager.getInstance().getWindow());
-//            controller.setManagementController(this);
-//            controller.populate();
         } catch (IOException e) {
             System.out.println("Could not create management inventory report popup. " + e.getMessage());
             e.printStackTrace();
         }
     }
 
+    /**
+     * Changes to the SaleReportPopup as well as control to the SaleReportController.
+     */
     public void createSalesReportClicked() {
         Popup popup = new Popup();
         ControllerManager.getInstance().setPopup(popup);
@@ -175,8 +196,7 @@ public class ManagementController implements Initializable {
         try {
             popup.getContent().add((Parent) loader.load());
             popup.show(ControllerManager.getInstance().getWindow());
-//            controller.setManagementController(this);
-//            controller.populate();
+            
         } catch (IOException e) {
             System.out.println("Could not create management sale report popup. " + e.getMessage());
             e.printStackTrace();
