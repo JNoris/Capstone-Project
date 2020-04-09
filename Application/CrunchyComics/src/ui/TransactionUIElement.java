@@ -47,7 +47,7 @@ public class TransactionUIElement extends HBox {
         this.transactionItem = item;
         this.controller = controller;
         this.name = new Label(item.getItem().getName());
-        this.price = new Label(Float.toString(item.getTransactionItemPK().getSoldPrice() * item.getTransactionItemPK().getQuantity()));
+        this.price = new Label(String.format("%.2f", Float.toString(item.getTransactionItemPK().getSoldPrice() * item.getTransactionItemPK().getQuantity())));
         this.quantity = new Label(1 + "");
         this.id = new Label(item.getItem().getItemID() + "");
 

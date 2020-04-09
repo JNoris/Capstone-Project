@@ -81,11 +81,6 @@
                                     <Font name="Arial Black" size="18.0" />
                                  </font>
                               </Button>
-                              <Label layoutX="352.0" layoutY="12.0" text="Please import a Microsoft Excel (.csv) file" textFill="WHITE">
-                                 <font>
-                                    <Font name="Arial Black" size="30.0" />
-                                 </font>
-                              </Label>
                            </children></AnchorPane>
                      </content>
                      <graphic>

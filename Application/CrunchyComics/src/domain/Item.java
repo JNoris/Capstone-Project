@@ -59,7 +59,7 @@ public class Item implements Serializable {
     @Column(name = "upc")
     private String upc;
     @JoinColumn(name = "item_type", referencedColumnName = "item_type")
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.EAGER)
     private Type itemType;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "item", fetch = FetchType.EAGER)
     private List<TransactionItem> transactionItemList;

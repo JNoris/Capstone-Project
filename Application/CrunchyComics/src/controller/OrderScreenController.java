@@ -139,7 +139,7 @@ public class OrderScreenController implements Initializable {
         hbox.setPadding(new Insets(10, 10, 10, 10));
 
         name.setText(item.getName());
-        price.setText(item.getPrice() + "");
+        price.setText(String.format("%.2f", item.getPrice()) + "");
         id.setText(item.getItemID() + "");
 
         hbox.getChildren().addAll(name, price);

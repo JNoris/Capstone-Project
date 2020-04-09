@@ -5,24 +5,21 @@ import broker.TypeBroker;
 import domain.Item;
 import domain.Type;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.collections.ObservableListBase;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TextFormatter;
 import manager.ControllerManager;
 import manager.DatabaseManager;
 import ui.ManagementUIItemElement;
 
 /**
  * Controls the ManagementUIElement popup logic to modify data in the database.
+ *
  * @author Vinicius Smith
  */
 public class ManagementUIItemElementController implements Initializable {
@@ -49,9 +46,11 @@ public class ManagementUIItemElementController implements Initializable {
     private ManagementController mgntController;
 
     /**
-     * Checks the value of the price if there is invalid input (not a number) on load.
+     * Checks the value of the price if there is invalid input (not a number) on
+     * load.
+     *
      * @param location
-     * @param resources 
+     * @param resources
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -61,7 +60,7 @@ public class ManagementUIItemElementController implements Initializable {
                 e.consume();
             }
         });
-        
+
         fieldItemUPC.setOnKeyTyped(e -> {
             if (e.getCharacter().matches("[^0-9]")) {
                 e.consume();
@@ -78,7 +77,9 @@ public class ManagementUIItemElementController implements Initializable {
             TypeBroker typeBroker = new TypeBroker(DatabaseManager.getInstance());
             List types = typeBroker.getAllTypes();
             comboItemType.setItems(FXCollections.observableArrayList(types));
-            comboItemType.setValue(types.get(0));
+            if (types.size() > 0) {
+                comboItemType.setValue(types.get(0));
+            }
 
             ItemBroker itemBroker = new ItemBroker(DatabaseManager.getInstance(), DatabaseManager.getEntityManager());
             labelItemID.setText((itemBroker.getLastID() + 1) + "");
@@ -144,10 +145,11 @@ public class ManagementUIItemElementController implements Initializable {
 
         ControllerManager.getInstance().hidePopup();
     }
-    
+
     /**
      * Sets the item to the inputted value.
-     * @param item 
+     *
+     * @param item
      */
     public void setItem(Item item) {
         this.item = item;
@@ -155,15 +157,17 @@ public class ManagementUIItemElementController implements Initializable {
 
     /**
      * Sets the ManagementUIItemElement to the parameter popup.
-     * @param element 
+     *
+     * @param element
      */
     public void setManagementUIItemElement(ManagementUIItemElement element) {
         this.element = element;
     }
-    
+
     /**
      * Controls which ManagementController is needed.
-     * @param mgntController 
+     *
+     * @param mgntController
      */
     public void setManagementController(ManagementController mgntController) {
         this.mgntController = mgntController;

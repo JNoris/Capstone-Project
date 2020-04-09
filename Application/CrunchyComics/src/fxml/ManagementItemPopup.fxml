@@ -96,7 +96,7 @@
                                           <Font name="Arial Black" size="14.0" />
                                        </font>
                                     </Label>
-                                    <ComboBox fx:id="comboItemType" prefWidth="150.0" promptText="Choose Type" styleClass="itemTypeComboBox" stylesheets="@managementscreen.css" />
+                                    <ComboBox fx:id="comboItemType" editable="true" prefWidth="150.0" promptText="Choose Type" styleClass="itemTypeComboBox" stylesheets="@managementscreen.css" />
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="263.0" spacing="50.0">

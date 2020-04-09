@@ -105,7 +105,8 @@ public class TransactionUIElementController implements Initializable {
             if (selectedToggle.equals("Flat")) {
                 node.getTransactionItem().getTransactionItemPK().setSoldPrice(node.getTransactionItem().getTransactionItemPK().getSoldPrice() - Float.parseFloat(discountFlatAmount.getText()));
             } else { //Percentage
-                node.getTransactionItem().getTransactionItemPK().setSoldPrice(node.getTransactionItem().getTransactionItemPK().getSoldPrice() * Float.parseFloat(discountPercentageAmount.getText())/100.0f);
+                node.getTransactionItem().getTransactionItemPK().setSoldPrice( node.getTransactionItem().getTransactionItemPK().getSoldPrice() -
+                        node.getTransactionItem().getTransactionItemPK().getSoldPrice() * Float.parseFloat(discountPercentageAmount.getText())/100.0f);
             }
         }
         node.refresh();

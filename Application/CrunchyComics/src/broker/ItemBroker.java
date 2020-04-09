@@ -82,6 +82,7 @@ public final class ItemBroker {
         Query q = em.createNamedQuery("Item.findByMatchingName");
         q.setParameter("name", toMatch);
         List results = q.getResultList();
+        
         return results;
     }
     
@@ -92,6 +93,9 @@ public final class ItemBroker {
     public int getLastID() {
         Query q = em.createNamedQuery("Item.findLastID");
         List results = q.getResultList();
+        if(results.get(0) == null){
+            return 0;
+        }
         return (int)results.get(0);
     }
 

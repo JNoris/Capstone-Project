@@ -49,6 +49,9 @@ public class VendorBroker {
     public int getLastID() {
         Query q = em.createNamedQuery("Vendor.findLastID");
         List results = q.getResultList();
+        if(results.get(0) == null){
+            return 0;
+        }
         return (int) results.get(0);
     }
 }
