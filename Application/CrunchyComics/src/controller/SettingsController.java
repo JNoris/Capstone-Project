@@ -40,7 +40,7 @@ public class SettingsController implements Initializable {
 
         timeoutTimeTextField.setOnKeyTyped(e -> {
             if (!e.getCharacter().matches("[0-9]")) {
-                Timer.getInstance().resetTimer();
+                Timer.resetTimer();
                 e.consume();
             }
         });
@@ -50,7 +50,7 @@ public class SettingsController implements Initializable {
      * Validates correct user input. Saves the new settings to a file.
      */
     public void confirmBtnClicked() {
-        Timer.getInstance().resetTimer();
+        Timer.resetTimer();
         Settings.getInstance().setTimerEnable(timeoutCheckBox.isSelected());
         if (timeoutCheckBox.isSelected()) {
             if (timeoutTimeTextField.getText().isEmpty()) {
@@ -75,7 +75,7 @@ public class SettingsController implements Initializable {
      * Cancels the action and closes the pop-up.
      */
     public void cancelBtnClicked() {
-        Timer.getInstance().resetTimer();
+        Timer.resetTimer();
         ControllerManager.getInstance().hidePopup();
     }
 

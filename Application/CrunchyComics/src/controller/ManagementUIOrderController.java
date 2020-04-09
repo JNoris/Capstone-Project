@@ -89,7 +89,7 @@ public class ManagementUIOrderController {
      * The button used to validate incorrect user input.
      */
     public void cancelBtnClicked() {
-        Timer.getInstance().resetTimer();
+        Timer.resetTimer();
         ControllerManager.getInstance().hidePopup();
     }
 }

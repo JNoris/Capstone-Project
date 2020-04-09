@@ -50,7 +50,7 @@ public class ManagementController implements Initializable {
      * @param event event reference.
      */
     public void homeBtnClicked(ActionEvent event) {
-        Timer.getInstance().resetTimer();
+        Timer.resetTimer();
         ControllerManager.getInstance().changeScene(ControllerManager.getInstance().getMainScreen());
     }
 
@@ -165,7 +165,7 @@ public class ManagementController implements Initializable {
      * either ItemManagementPopup or the new OrderPopup.
      */
     public void newBtnClicked() {
-        Timer.getInstance().resetTimer();
+        Timer.resetTimer();
         if (itemMode) {
             Item item = new Item();
             createItemManagementPopup(null, item);
@@ -180,7 +180,7 @@ public class ManagementController implements Initializable {
      * Report Controller.
      */
     public void createInventoryReportClicked() {
-        Timer.getInstance().resetTimer();
+        Timer.resetTimer();
         Popup popup = new Popup();
         ControllerManager.getInstance().setPopup(popup);
 
@@ -201,7 +201,7 @@ public class ManagementController implements Initializable {
      * SaleReportController.
      */
     public void createSalesReportClicked() {
-        Timer.getInstance().resetTimer();
+        Timer.resetTimer();
         Popup popup = new Popup();
         ControllerManager.getInstance().setPopup(popup);
 

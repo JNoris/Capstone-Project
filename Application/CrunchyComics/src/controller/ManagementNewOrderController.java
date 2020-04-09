@@ -70,7 +70,7 @@ public class ManagementNewOrderController implements Initializable {
         itemClicked = new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                Timer.getInstance().resetTimer();
+                Timer.resetTimer();
                 ((Label) event.getSource()).getUserData();
                 addToOrderList((Item) ((Label) event.getSource()).getUserData());
             }
@@ -111,7 +111,7 @@ public class ManagementNewOrderController implements Initializable {
      * The button used to validate incorrect user input.
      */
     public void cancelBtnClicked() {
-        Timer.getInstance().resetTimer();
+        Timer.resetTimer();
         ControllerManager.getInstance().hidePopup();
     }
 
@@ -193,7 +193,7 @@ public class ManagementNewOrderController implements Initializable {
         price.setOnKeyTyped(e -> {
             if (!e.getCharacter().matches("[0-9.]")) {
                 e.consume();
-                Timer.getInstance().resetTimer();
+                Timer.resetTimer();
             }
         });
 
@@ -205,7 +205,7 @@ public class ManagementNewOrderController implements Initializable {
         quantity.setOnKeyTyped(e -> {
             if (!e.getCharacter().matches("[0-9]")) {
                 e.consume();
-                Timer.getInstance().resetTimer();
+                Timer.resetTimer();
             }
         });
         removeBtn.setFont(Font.font("Arial Black", 12));
@@ -216,7 +216,7 @@ public class ManagementNewOrderController implements Initializable {
 
         removeBtn.setOnMouseReleased(e -> {
             orderListContainer.getChildren().remove(container);
-            Timer.getInstance().resetTimer();
+            Timer.resetTimer();
         });
     }
 
@@ -224,7 +224,7 @@ public class ManagementNewOrderController implements Initializable {
      * The button to validate correct user input.
      */
     public void confirmBtnClicked() {
-        Timer.getInstance().resetTimer();
+        Timer.resetTimer();
 
         //Error checking
         if (vendorComboBox.getValue() == null || vendorComboBox.getValue().toString().isEmpty()) {

@@ -97,7 +97,7 @@ public class OrderScreenController implements Initializable {
      * application and redirect to login screen
      */
     public void logoutBtnClicked() {
-        Timer.getInstance().resetTimer();
+        Timer.resetTimer();
         ControllerManager.getInstance().changeScene(ControllerManager.getInstance().getLoginScreen());
     }
 
@@ -256,7 +256,7 @@ public class OrderScreenController implements Initializable {
      * This method changes the screen to the MainScreen.
      */
     public void returnToMainScreen() {
-        Timer.getInstance().resetTimer();
+        Timer.resetTimer();
         //Get the controller for the MainScreen.
         MainScreenController c = (MainScreenController) ((FXMLLoader) ControllerManager.getInstance().getMainScreen().getUserData()).getController();
         //Updates the transactions in the MainScreen.
@@ -287,7 +287,7 @@ public class OrderScreenController implements Initializable {
      * @param item item reference.
      */
     public void createPopup(TransactionUIElement element, TransactionItem item) {
-        Timer.getInstance().resetTimer();
+        Timer.resetTimer();
         if (ControllerManager.getInstance().getPopup() != null) {
             System.out.println("Hiding old popup");
             ControllerManager.getInstance().getPopup().hide();

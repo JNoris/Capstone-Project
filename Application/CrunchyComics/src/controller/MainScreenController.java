@@ -103,7 +103,7 @@ public class MainScreenController implements Initializable {
      * scene.
      */
     public void managementBtnClicked() {
-        Timer.getInstance().resetTimer();
+        Timer.resetTimer();
         ControllerManager.getInstance().changeScene(ControllerManager.getInstance().getManagementScene());
     }
 
@@ -157,7 +157,7 @@ public class MainScreenController implements Initializable {
      * password and timeout.
      */
     public void settingsBtnClicked() {
-        Timer.getInstance().resetTimer();
+        Timer.resetTimer();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/SettingsPopup.fxml"));
         Popup popup = new Popup();
         ControllerManager.getInstance().setPopup(popup);

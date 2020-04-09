@@ -58,14 +58,14 @@ public class ManagementUIItemElementController implements Initializable {
         //Input check for price.
         fieldItemPrice.setOnKeyTyped(e -> {
             if (e.getCharacter().matches("[^0-9.]")) {
-                Timer.getInstance().resetTimer();
+                Timer.resetTimer();
                 e.consume();
             }
         });
 
         fieldItemUPC.setOnKeyTyped(e -> {
             if (e.getCharacter().matches("[^0-9]")) {
-                Timer.getInstance().resetTimer();
+                Timer.resetTimer();
                 e.consume();
             }
         });
@@ -106,7 +106,7 @@ public class ManagementUIItemElementController implements Initializable {
      * The button used to validate incorrect user input.
      */
     public void cancelBtnClicked() {
-        Timer.getInstance().resetTimer();
+        Timer.resetTimer();
         ControllerManager.getInstance().hidePopup();
     }
 
@@ -114,7 +114,7 @@ public class ManagementUIItemElementController implements Initializable {
      * The button used to validate correct user input.
      */
     public void confirmBtnClicked() {
-        Timer.getInstance().resetTimer();
+        Timer.resetTimer();
         ItemBroker itemBroker = new ItemBroker(DatabaseManager.getInstance(), DatabaseManager.getEntityManager());
 
         //Error checking

@@ -36,7 +36,7 @@ public class SaleReportController {
      * Creates the prompt for user to find the .CSV file
      */
     public void selectFolderClicked() {
-        Timer.getInstance().resetTimer();
+        Timer.resetTimer();
         DirectoryChooser dirChooser = new DirectoryChooser();
         folder = dirChooser.showDialog(ControllerManager.getInstance().getWindow());
         textFieldLocation.setText(folder.getAbsolutePath());
@@ -46,7 +46,7 @@ public class SaleReportController {
      * The button to validate correct user input.
      */
     public void confirmBtnClicked() {
-        Timer.getInstance().resetTimer();
+        Timer.resetTimer();
         if (textFieldFileName.getText().isEmpty()) {
             textFieldFileName.requestFocus();
             return;
@@ -80,7 +80,7 @@ public class SaleReportController {
      * The button to validate incorrect user input.
      */
     public void cancelBtnClicked() {
-        Timer.getInstance().resetTimer();
+        Timer.resetTimer();
         ControllerManager.getInstance().hidePopup();
     }
 
@@ -115,6 +115,6 @@ public class SaleReportController {
         } catch (IOException e) {
             System.out.println("Could not save file. Error:" + e.getMessage());
         }
-        Timer.getInstance().resetTimer();
+        Timer.resetTimer();
     }
 }

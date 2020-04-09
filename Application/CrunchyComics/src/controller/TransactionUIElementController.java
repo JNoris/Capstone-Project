@@ -95,7 +95,7 @@ public class TransactionUIElementController implements Initializable {
      * Saves the changes to the transaction by changing the value of the price.
      */
     public void applyChanges() {
-        Timer.getInstance().resetTimer();
+        Timer.resetTimer();
         node.getTransactionItem().getTransactionItemPK().setQuantity(Integer.parseInt(itemQuantity.getText()));
 
         //Apply discount if enabled
@@ -129,7 +129,7 @@ public class TransactionUIElementController implements Initializable {
      * OrderScreenController.
      */
     public void closePopup() {
-        Timer.getInstance().resetTimer();
+        Timer.resetTimer();
         this.popup.hide();
     }
 

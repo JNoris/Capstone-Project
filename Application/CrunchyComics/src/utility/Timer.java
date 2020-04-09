@@ -52,9 +52,11 @@ public class Timer implements Runnable {
     /**
      * Reset the timer so it starts counting from zero.
      */
-    public void resetTimer() {
+    public static void resetTimer() {
         System.out.println("Timer reset");
-        this.currTimeout = 0;
+        if (Timer.exist()) {
+            Timer.getInstance().currTimeout = 0;
+        }
     }
 
     /**
