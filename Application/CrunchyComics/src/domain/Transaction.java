@@ -36,7 +36,8 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Transaction.getHighestIndex", query = "SELECT MAX(t.transactionID) FROM Transaction t")
     , @NamedQuery(name = "Transaction.findByTransactionDate", query = "SELECT t FROM Transaction t WHERE t.transactionDate = :transactionDate")
     , @NamedQuery(name = "Transaction.findByFinalPrice", query = "SELECT t FROM Transaction t WHERE t.finalPrice = :finalPrice")
-    , @NamedQuery(name = "Transaction.findByTransactionBetween", query = "SELECT t FROM Transaction t WHERE t.transactionDate between CAST(:fromDate AS DATE) and CAST(:toDate AS DATETIME)")})
+    , @NamedQuery(name = "Transaction.findByTransactionBetween", query = "SELECT t FROM Transaction t WHERE t.transactionDate between CAST(:fromDate AS DATE) and CAST(:toDate AS DATETIME)")
+    , @NamedQuery(name = "Transaction.findDailyTotal", query = "SELECT SUM(t.finalPrice) FROM Transaction t WHERE t.transactionDate = :date")})
 public class Transaction implements Serializable {
 
     private static final long serialVersionUID = 1L;

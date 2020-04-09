@@ -1,6 +1,7 @@
 package controller;
 
 import broker.TransactionBroker;
+import broker.TransactionItemBroker;
 import domain.Transaction;
 import java.io.IOException;
 import java.net.URL;
@@ -41,14 +42,31 @@ public class MainScreenController implements Initializable {
     private VBox mainScreenDisplay;
     @FXML
     private Label currentTimeLabel;
+    @FXML
+    private Label loginTime;
+    @FXML
+    private Label mostPopularItem;
+    @FXML
+    private Label dailySales;
+    @FXML
+    private Label lastWeekSales;
+    @FXML
+    private Label averageSales;
 
     private List<Transaction> transactions;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("Initializing MainScreenController");
+        
         SimpleDateFormat format = new SimpleDateFormat("HH:mm");
         currentTimeLabel.setText(format.format(new Date()));
+        
+        TransactionItemBroker tiBroker = new TransactionItemBroker(DatabaseManager.getInstance());
+        mostPopularItem.setText(tiBroker.getMostSold().getItem().getName());
+        
+        
+        
         showTransactions();
     }
 

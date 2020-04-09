@@ -30,7 +30,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "TransactionItem.findTransactionItem", query = "SELECT t FROM TransactionItem t WHERE t.transactionItemPK.transactionID = :transactionID AND t.transactionItemPK.itemID = :itemID")
 //    , @NamedQuery(name = "TransactionItem.findByPrice", query = "SELECT t FROM TransactionItem t WHERE t.price = :price")
     , @NamedQuery(name = "TransactionItem.findByQuantity", query = "SELECT t FROM TransactionItem t WHERE t.transactionItemPK.quantity = :quantity")
-    , @NamedQuery(name = "TransactionItem.findBySoldPrice", query = "SELECT t FROM TransactionItem t WHERE t.transactionItemPK.soldPrice = :soldPrice")})
+    , @NamedQuery(name = "TransactionItem.findBySoldPrice", query = "SELECT t FROM TransactionItem t WHERE t.transactionItemPK.soldPrice = :soldPrice")
+    , @NamedQuery(name = "TransactionItem.findMostSoldItem", query = "SELECT t FROM TransactionItem t GROUP BY t.transactionItemPK.itemID ORDER BY COUNT(t) desc")})
 public class TransactionItem implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -102,5 +103,5 @@ public class TransactionItem implements Serializable {
     public String toString() {
         return "domain.TransactionItem[ transactionItemPK=" + transactionItemPK + " ]";
     }
-    
+
 }
