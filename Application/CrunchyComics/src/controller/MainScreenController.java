@@ -3,6 +3,7 @@ package controller;
 import broker.TransactionBroker;
 import broker.TransactionItemBroker;
 import domain.Transaction;
+import domain.TransactionItem;
 import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -58,15 +59,16 @@ public class MainScreenController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("Initializing MainScreenController");
-        
+
         SimpleDateFormat format = new SimpleDateFormat("HH:mm");
         currentTimeLabel.setText(format.format(new Date()));
-        
+
         TransactionItemBroker tiBroker = new TransactionItemBroker(DatabaseManager.getInstance());
-        mostPopularItem.setText(tiBroker.getMostSold().getItem().getName());
-        
-        
-        
+        TransactionItem ti = tiBroker.getMostSold();
+        if (ti != null) {
+            mostPopularItem.setText(ti.getItem().getName());
+        }
+
         showTransactions();
     }
 

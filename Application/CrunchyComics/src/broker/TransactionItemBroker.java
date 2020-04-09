@@ -99,11 +99,15 @@ public class TransactionItemBroker {
 
     /**
      * Gets the most sold TransactionItem.
+     *
      * @return the most sold TransactionItem.
      */
     public TransactionItem getMostSold() {
         Query q = em.createNamedQuery("TransactionItem.findMostSoldItem");
         List results = q.getResultList();
-        return (TransactionItem)results.get(0);
+        if (results.size() > 0) {
+            return (TransactionItem) results.get(0);
+        }
+        return null;
     }
 }

@@ -56,8 +56,8 @@ public class ManagementUIOrderElement extends HBox {
         orderVendor.setFont(new Font("Arial Black", 15));
 
         //Sizes
-        orderNumber.setMinWidth(20);
-        orderNumber.setMaxWidth(20);
+        orderNumber.setMinWidth(30);
+        orderNumber.setMaxWidth(30);
 
         orderDate.setMinWidth(110);
         orderDate.setMaxWidth(110);

@@ -49,7 +49,12 @@ public class TransactionBroker {
      */
     public int getHighestID() {
         Query q = em.createNamedQuery("Transaction.getHighestIndex");
-        return (int) q.getResultList().get(0);
+        List list = q.getResultList();
+        if (q.getResultList().get(0) != null) {
+            return (int) q.getResultList().get(0);
+        } else {
+            return 0;
+        }
     }
 
     /**
