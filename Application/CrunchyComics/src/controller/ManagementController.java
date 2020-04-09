@@ -22,17 +22,7 @@ import ui.ManagementUIItemElement;
 import ui.ManagementUIOrderElement;
 
 /**
- *
- * @author Noris. UMM I MEAN: CAPSTONE GROUP, OF COURSE, TIS NOT MY WORK BUT OUR
- * WORK.
- *
- * @Notes This is probably the most incomplete GUI as of Feb 17th. Change the
- * font to Arial Black, set a divider between tabs and the content they show,
- * etc.
- * @Events will have to be handled. My main question is is in the interaction
- * model we have things like the Edit button and all that, isn't this
- * repetitive? We already have Add/Edit Inventory on the left side.
- *
+ * Controls the Management scene.
  */
 public class ManagementController implements Initializable {
 

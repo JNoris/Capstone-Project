@@ -19,12 +19,6 @@ import utility.Timer;
 
 /**
  * Controls the initial security for the login scene.
- * @author Noris. UMM I MEAN: CAPSTONE GROUP, OF COURSE, TIS NOT MY WORK BUT OUR
- * WORK.
- *
- * @Notes Please make sure to correct this code. Namely: Password as well as
- * validation.
- *
  */
 public class LoginController implements Initializable {
 

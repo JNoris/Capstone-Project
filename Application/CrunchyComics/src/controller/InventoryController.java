@@ -17,11 +17,6 @@ import javafx.event.*;
 
 /**
  * This creates the controller for the Inventory Stage.
- * @author Noris. UMM I MEAN: CAPSTONE GROUP, OF COURSE, TIS NOT MY WORK BUT OUR
- *         WORK.
- * 
- * @Notes Please make sure to correct this code. This is not by any means the
- *        working version.
  * 
  */
 public class InventoryController implements Initializable {

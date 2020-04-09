@@ -17,12 +17,8 @@ import manager.ControllerManager;
 import utility.Settings;
 
 /**
- *
+ * Creates the configuration for the application. Changes password and timeout.
  * @author Noris.
- *
- * @date Feb 17/20
- *
- *
  */
 public class SettingsController implements Initializable {
     
@@ -35,6 +31,11 @@ public class SettingsController implements Initializable {
     @FXML
     private TextField newPasswordTextField;
     
+    /**
+     * Loads previous settings from the application.
+     * @param location
+     * @param resources 
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         
@@ -43,6 +44,9 @@ public class SettingsController implements Initializable {
         timeoutTimeTextField.setText(Settings.getInstance().getTimeoutTimer() / 1000 + "");
     }
     
+    /**
+     * Validates correct user input.
+     */
     public void confirmBtnClicked() {
         Settings.getInstance().setTimerEnable(timeoutCheckBox.isSelected());
         if (timeoutCheckBox.isSelected()) {
@@ -64,10 +68,16 @@ public class SettingsController implements Initializable {
         ControllerManager.getInstance().hidePopup();
     }
     
+    /**
+     * Validates incorrect user input and allows for a reset of the task.
+     */
     public void cancelBtnClicked() {
         ControllerManager.getInstance().hidePopup();
     }
     
+    /**
+     * Allows the user to change the timeout time.
+     */
     public void enableTimeoutClicked() {
         if (timeoutCheckBox.isSelected()) {
             timeoutTimeTextField.setDisable(false);
@@ -76,6 +86,9 @@ public class SettingsController implements Initializable {
         }
     }
     
+    /**
+     * Allows the user to change password.
+     */
     public void enablePasswordClicked() {
         if (passwordCheckBox.isSelected()) {
             newPasswordTextField.setDisable(false);

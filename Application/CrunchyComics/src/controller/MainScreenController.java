@@ -26,12 +26,6 @@ import manager.DatabaseManager;
 
 /**
  * Controls all of the logic for the main screen.
- * @author Noris. UMM I MEAN: CAPSTONE GROUP, OF COURSE, TIS NOT MY WORK BUT OUR
- * WORK.
- *
- * @Notes Please make sure to correct this code. Namely: Password as well as
- * validation.
- *
  */
 public class MainScreenController implements Initializable {
 

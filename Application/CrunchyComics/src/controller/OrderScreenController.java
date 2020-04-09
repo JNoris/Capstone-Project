@@ -36,14 +36,7 @@ import manager.DatabaseManager;
 import ui.TransactionUIElement;
 
 /**
- *
  * Controls the logic within the Order Screen to create transactions.
- * @author Noris. UMM I MEAN: CAPSTONE GROUP, OF COURSE, TIS NOT MY WORK BUT OUR
- * WORK.
- *
- * @Notes Please make sure to correct this code. Namely: Password as well as
- * validation.
- *
  */
 public class OrderScreenController implements Initializable {
 
