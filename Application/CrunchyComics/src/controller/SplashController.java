@@ -1,53 +1,40 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import javax.annotation.PostConstruct;
 import manager.ControllerManager;
 import manager.DatabaseManager;
 import utility.Settings;
 
 /**
  * The Initial Loading of the Database before the application GUI is present.
- * @author 695553
+ *
+ * @author Vinicius
  */
 public class SplashController {
 
     @FXML
     private BorderPane mainPane;
 
+    /**
+     * Creates connection with database and calls the first scene.
+     */
     public void initializeApp() {
-//Create a database connection.
+        //Create a database connection.
         System.out.println("Connecting to database...");
         DatabaseManager.getInstance();
         System.out.println("Connecting to database... done.");
         //Show login screen
-        try {
-            Parent loginScreen = FXMLLoader.load(getClass().getResource("/fxml/Login.fxml"));
-            Stage stage = (Stage) mainPane.getScene().getWindow();
+        Stage stage = (Stage) mainPane.getScene().getWindow();
 
-//            stage.setScene(new Scene(loginScreen));
-            Settings.getInstance();
-            
-            stage.setScene(ControllerManager.getInstance().getLoginScreen());
-            stage.show();
-            stage.centerOnScreen();
-        } catch (IOException e) {
-            System.err.println("Login FXML not found! Error: " + e.getMessage());
-            System.exit(0);
-        }
+        Settings.getInstance();
+
+        stage.setScene(ControllerManager.getInstance().getLoginScreen());
+        stage.show();
+        stage.centerOnScreen();
     }
 }

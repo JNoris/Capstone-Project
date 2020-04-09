@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import domain.TransactionItem;
@@ -23,7 +18,8 @@ import javafx.stage.Popup;
 import ui.TransactionUIElement;
 
 /**
- * Controls the modification of price within the transaction sale popup.
+ * Controls the modification of price within the transaction sale pop-up.
+ *
  * @author Vinicius Smith
  */
 public class TransactionUIElementController implements Initializable {
@@ -47,9 +43,11 @@ public class TransactionUIElementController implements Initializable {
     private ToggleGroup discount;
 
     /**
-     * Loads default values into the popup and sets discount to false until needed.
+     * Loads default values into the pop-up and sets discount to false until
+     * needed.
+     *
      * @param location
-     * @param resources 
+     * @param resources
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -85,7 +83,7 @@ public class TransactionUIElementController implements Initializable {
     /**
      * Fills fields with the information from a TrasactionItem.
      *
-     * @param item - target TransactionItem
+     * @param item target TransactionItem.
      */
     public void fill(TransactionItem item) {
         itemName.setText(item.getItem().getName());
@@ -105,8 +103,8 @@ public class TransactionUIElementController implements Initializable {
             if (selectedToggle.equals("Flat")) {
                 node.getTransactionItem().getTransactionItemPK().setSoldPrice(node.getTransactionItem().getTransactionItemPK().getSoldPrice() - Float.parseFloat(discountFlatAmount.getText()));
             } else { //Percentage
-                node.getTransactionItem().getTransactionItemPK().setSoldPrice( node.getTransactionItem().getTransactionItemPK().getSoldPrice() -
-                        node.getTransactionItem().getTransactionItemPK().getSoldPrice() * Float.parseFloat(discountPercentageAmount.getText())/100.0f);
+                node.getTransactionItem().getTransactionItemPK().setSoldPrice(node.getTransactionItem().getTransactionItemPK().getSoldPrice()
+                        - node.getTransactionItem().getTransactionItemPK().getSoldPrice() * Float.parseFloat(discountPercentageAmount.getText()) / 100.0f);
             }
         }
         node.refresh();
@@ -126,15 +124,17 @@ public class TransactionUIElementController implements Initializable {
     }
 
     /**
-     * Removes the popup from view and redirects control to the OrderScreenController.
+     * Removes the pop-up from view and redirects control to the
+     * OrderScreenController.
      */
     public void closePopup() {
         this.popup.hide();
     }
 
     /**
-     * Sets the popup to the TransactionUIElement popup.
-     * @param popup 
+     * Sets the pop-up to the TransactionUIElement pop-up.
+     *
+     * @param popup new pop-up.
      */
     public void setPopup(Popup popup) {
         this.popup = popup;
@@ -142,7 +142,8 @@ public class TransactionUIElementController implements Initializable {
 
     /**
      * Sets the node that called the controller.
-     * @param node 
+     *
+     * @param node new node.
      */
     public void setNode(TransactionUIElement node) {
         this.node = node;

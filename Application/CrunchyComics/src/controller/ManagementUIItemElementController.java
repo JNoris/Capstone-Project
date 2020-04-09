@@ -18,7 +18,7 @@ import manager.DatabaseManager;
 import ui.ManagementUIItemElement;
 
 /**
- * Controls the ManagementUIElement popup logic to modify data in the database.
+ * Controls the ManagementUIElement pop-up logic to modify data in the database.
  *
  * @author Vinicius Smith
  */
@@ -149,16 +149,16 @@ public class ManagementUIItemElementController implements Initializable {
     /**
      * Sets the item to the inputted value.
      *
-     * @param item
+     * @param item new item.
      */
     public void setItem(Item item) {
         this.item = item;
     }
 
     /**
-     * Sets the ManagementUIItemElement to the parameter popup.
+     * Sets the ManagementUIItemElement to the parameter pop-up.
      *
-     * @param element
+     * @param element new element.
      */
     public void setManagementUIItemElement(ManagementUIItemElement element) {
         this.element = element;
@@ -167,7 +167,7 @@ public class ManagementUIItemElementController implements Initializable {
     /**
      * Controls which ManagementController is needed.
      *
-     * @param mgntController
+     * @param mgntController new management controller.
      */
     public void setManagementController(ManagementController mgntController) {
         this.mgntController = mgntController;

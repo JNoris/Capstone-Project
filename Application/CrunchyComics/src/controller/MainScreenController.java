@@ -7,7 +7,6 @@ import domain.TransactionItem;
 import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -15,7 +14,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -24,7 +22,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Popup;
-import javafx.stage.Stage;
 import manager.ControllerManager;
 import manager.DatabaseManager;
 
@@ -51,9 +48,11 @@ public class MainScreenController implements Initializable {
     private List<Transaction> transactions;
 
     /**
-     * Loads all of the transactions within the database as well as the daily/weekly records.
+     * Loads all of the transactions within the database as well as the
+     * daily/weekly records.
+     *
      * @param location
-     * @param resources 
+     * @param resources
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -71,6 +70,10 @@ public class MainScreenController implements Initializable {
         showTransactions();
     }
 
+    /**
+     * Populates the transaction container with existent transactions. Orders by
+     * newest first.
+     */
     public void showTransactions() {
         mainScreenDisplay.getChildren().clear();
 
@@ -84,7 +87,9 @@ public class MainScreenController implements Initializable {
 
     /**
      * This method is called by clicking "Logout" and will redirect user to
-     * login screen
+     * login screen.
+     *
+     * @param event event reference.
      */
     public void logoutBtnClicked(ActionEvent event) throws IOException {
         ControllerManager.getInstance().changeScene(ControllerManager.getInstance().getLoginScreen());
@@ -92,16 +97,19 @@ public class MainScreenController implements Initializable {
     }
 
     /**
-     * Transfers control to the ManagementController to change to the Management scene.
+     * Transfers control to the ManagementController to change to the Management
+     * scene.
      */
     public void managementBtnClicked() {
         ControllerManager.getInstance().changeScene(ControllerManager.getInstance().getManagementScene());
     }
 
     /**
-     * Transfers control to the OrderController as well as changes to the Orders scene.
-     * @param event
-     * @throws IOException 
+     * Transfers control to the OrderController as well as changes to the Orders
+     * scene.
+     *
+     * @param event event reference.
+     * @throws IOException thrown if OrderScreen.fxml can't be loaded.
      */
     public void orderBtnClicked(ActionEvent event) throws IOException {
         Parent orderParent = FXMLLoader.load(getClass().getResource("/fxml/OrderScreen.fxml"));
@@ -111,8 +119,10 @@ public class MainScreenController implements Initializable {
     }
 
     /**
-     * Grabs the loaded transactions from the database and places it onto the scene.
-     * @param t 
+     * Grabs the loaded transactions from the database and places it onto the
+     * scene.
+     *
+     * @param t transcation reference.
      */
     public void addOrderToMainScreen(Transaction t) {
         HBox transactionContainer = new HBox(10);
@@ -139,13 +149,15 @@ public class MainScreenController implements Initializable {
         mainScreenDisplay.getChildren().addAll(transactionContainer);
     }
 
+    /**
+     * Opens a pop-up that allows the modification of certain settings like
+     * password and timeout.
+     */
     public void settingsBtnClicked() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/SettingsPopup.fxml"));
         Popup popup = new Popup();
         ControllerManager.getInstance().setPopup(popup);
         try {
-//            itemPopup.getContent().add((Parent) loader.load());
-//            itemPopup.show(ControllerManager.getInstance().getMainScreen().getWindow());
             SettingsController controller = new SettingsController();
             loader.setController(controller);
             popup.getContent().add((Parent) loader.load());

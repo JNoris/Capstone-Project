@@ -67,12 +67,13 @@ public class OrderScreenController implements Initializable {
     private Button result;
     private ItemBroker itemBroker;
     private Transaction transaction;
-//    private Popup popup;
 
     /**
-     * Loads all previous transactions in the database and opens resources to add to the database on startup.
+     * Loads all previous transactions in the database and opens resources to
+     * add to the database on startup.
+     *
      * @param location
-     * @param resources 
+     * @param resources
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -96,22 +97,15 @@ public class OrderScreenController implements Initializable {
     /**
      * This method is called by clicking "Logout" which logs the user out of the
      * application and redirect to login screen
-     *
-     * @param event
-     * @throws IOException
      */
-    public void logoutBtnClicked(ActionEvent event) throws IOException {
-
-        Scene logout = ControllerManager.getInstance().getLoginScreen();
-        Stage loginWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        loginWindow.setScene(logout);
-        loginWindow.show();
+    public void logoutBtnClicked() {
+        ControllerManager.getInstance().changeScene(ControllerManager.getInstance().getLoginScreen());
     }
-    
+
     /**
      * Adds the requested item to the search container and displays the value.
-     * @param item 
+     *
+     * @param item item reference.
      */
     public void addItemToSearch(Item item) {
         HBox hbox = new HBox(20);
@@ -155,6 +149,7 @@ public class OrderScreenController implements Initializable {
     /**
      * Grab an item to the sale side.
      *
+     * @param item item reference.
      */
     public void addItemToSale(Item item) {
         boolean exist = false;
@@ -194,7 +189,8 @@ public class OrderScreenController implements Initializable {
     }
 
     /**
-     * Calculates current price total, based on item price; disregarding extra fees and values.
+     * Calculates current price total, based on item price; disregarding extra
+     * fees and values.
      */
     public void calculateSubtotal() {
         float total = 0f;
@@ -207,24 +203,28 @@ public class OrderScreenController implements Initializable {
 
     /**
      * Calculates government tax of the item by itself.
-     * @param value 
+     *
+     * @param value value to calculate tax from.
      */
     public void calculateTax(float value) {
         float tax = value * 0.05f;
         taxDisplay.setText(String.format("%.2f", tax));
         updateTotal(value + tax);
     }
-    
+
     /**
-     * Adds the value of the subtotal and tax together, creating the final price.
-     * @param value 
+     * Adds the value of the subtotal and tax together, creating the final
+     * price.
+     *
+     * @param value new value.
      */
     public void updateTotal(float value) {
         finalPriceDisplay.setText(String.format("%.2f", value));
     }
 
     /**
-     * Searches the database for the item requested by the user and matches the item in the database.
+     * Searches the database for the item requested by the user and matches the
+     * item in the database.
      */
     public void searchItems() {
         resultContainer.getChildren().clear();
@@ -268,7 +268,8 @@ public class OrderScreenController implements Initializable {
 
     /**
      * Displays the current sale items on the database.
-     * @return 
+     *
+     * @return a list with sale elements.
      */
     public ArrayList<TransactionUIElement> getAllSaleElements() {
         ArrayList<TransactionUIElement> list = new ArrayList<TransactionUIElement>();
@@ -279,9 +280,11 @@ public class OrderScreenController implements Initializable {
     }
 
     /**
-     * Creates the popup when the modification of the transaction needs to be made and transfers control to the TransactionUIElementController.
-     * @param element
-     * @param item 
+     * Creates the pop-up when the modification of the transaction needs to be
+     * made and transfers control to the TransactionUIElementController.
+     *
+     * @param element element reference.
+     * @param item item reference.
      */
     public void createPopup(TransactionUIElement element, TransactionItem item) {
         if (ControllerManager.getInstance().getPopup() != null) {
@@ -307,8 +310,9 @@ public class OrderScreenController implements Initializable {
     }
 
     /**
-     * Removes requested item from the sale list .
-     * @param e 
+     * Removes requested item from the sale list.
+     *
+     * @param e element to be removed.
      */
     public void removeFromSale(TransactionUIElement e) {
         saleListDisplay.getChildren().remove(e);
@@ -317,7 +321,8 @@ public class OrderScreenController implements Initializable {
 
     /**
      * Gets the currently created transaction.
-     * @return the transaction currently made
+     *
+     * @return the transaction currently made.
      */
     public Transaction getTransaction() {
         return this.transaction;

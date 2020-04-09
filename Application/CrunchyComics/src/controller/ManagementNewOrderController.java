@@ -11,7 +11,6 @@ import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -31,7 +30,8 @@ import javafx.scene.text.Font;
 import manager.ControllerManager;
 
 /**
- * Controls the logic for the popup of the ManagementNewOrder.
+ * Controls the logic for the pop-up of the ManagementNewOrder.
+ *
  * @author Vinicius Smith
  */
 public class ManagementNewOrderController implements Initializable {
@@ -56,11 +56,13 @@ public class ManagementNewOrderController implements Initializable {
     private Orders order;
     private EventHandler<MouseEvent> itemClicked;
     private ManagementController mgntController;
-    
+
     /**
-     * Loads the event handlers to add the order items to the <code>orderListContainer</code>.
+     * Loads the event handlers to add the order items to the
+     * <code>orderListContainer</code>.
+     *
      * @param location
-     * @param resources 
+     * @param resources
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -74,8 +76,7 @@ public class ManagementNewOrderController implements Initializable {
 
         SimpleDateFormat format = new SimpleDateFormat("yyyy-dd-MM");
         currentDateLabel.setText(format.format(new Date()));
-        
-        
+
         monthComboBox.setItems(FXCollections.observableArrayList("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"));
         monthComboBox.setValue(monthComboBox.getItems().get(0));
         dayComboBox.setItems(FXCollections.observableArrayList("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14",
@@ -85,7 +86,7 @@ public class ManagementNewOrderController implements Initializable {
         String year = currentDateLabel.getText().substring(0, 4);
         yearComboBox.setItems(FXCollections.observableArrayList(year, (Integer.parseInt(year) + 1) + ""));
         yearComboBox.setValue(yearComboBox.getItems().get(0));
-        
+
         VendorBroker vendorBroker = new VendorBroker();
 
         vendorComboBox.setItems(FXCollections.observableList(vendorBroker.getAllVendors()));
@@ -94,10 +95,11 @@ public class ManagementNewOrderController implements Initializable {
         List<Item> items = itemBroker.getAllItems();
         fillItemList(items);
     }
-    
+
     /**
      * Sets the order to inputted value.
-     * @param order 
+     *
+     * @param order new order.
      */
     public void setOrder(Orders order) {
         this.order = order;
@@ -110,6 +112,10 @@ public class ManagementNewOrderController implements Initializable {
         ControllerManager.getInstance().hidePopup();
     }
 
+    /**
+     * When the month is changed in the ComboBox the day ComboBox is modified to
+     * have only the amount of days in that specific month.
+     */
     public void monthChanged() {
         String month = (String) monthComboBox.getValue();
         if (month.equals("January") || month.equals("March") || month.equals("May") || month.equals("July") || month.equals("August") || month.equals("October") || month.equals("December")) {
@@ -129,10 +135,11 @@ public class ManagementNewOrderController implements Initializable {
                     "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28"));
         }
     }
-    
+
     /**
      * Loads the items from the database and displays the items list.
-     * @param items 
+     *
+     * @param items list of items
      */
     public void fillItemList(List<Item> items) {
         itemListContainer.getChildren().clear();
@@ -140,7 +147,7 @@ public class ManagementNewOrderController implements Initializable {
             Label name = new Label(i.getName());
             name.getStylesheets().add("/fxml/managementscreen.css");
             name.getStyleClass().add("itemListContainer");
-            name.setFont(Font.font("Arial Black",12));
+            name.setFont(Font.font("Arial Black", 12));
             name.setUserData(i);
             name.setOnMouseClicked(itemClicked);
             itemListContainer.getChildren().add(name);
@@ -148,7 +155,8 @@ public class ManagementNewOrderController implements Initializable {
     }
 
     /**
-     * Traverses through the items database until the input from the front-end matches with the item in the database
+     * Traverses through the items database until the input from the front-end
+     * matches with the item in the database
      */
     public void searchItems() {
         ItemBroker itemBroker = new ItemBroker();
@@ -156,8 +164,10 @@ public class ManagementNewOrderController implements Initializable {
     }
 
     /**
-     * Loads the specific item into the <code>HBox</code> container and displays the name,price, and quantity.
-     * @param item 
+     * Loads the specific item into the <code>HBox</code> container and displays
+     * the name,price, and quantity.
+     *
+     * @param item item reference.
      */
     public void addToOrderList(Item item) {
         HBox container = new HBox();
@@ -170,19 +180,19 @@ public class ManagementNewOrderController implements Initializable {
 
         name.setMaxWidth(120);
         name.setMinWidth(120);
-        name.setFont(Font.font("Arial Black",12));
+        name.setFont(Font.font("Arial Black", 12));
 
         price.setMaxWidth(70);
         price.setMinWidth(70);
         price.setPromptText("Price");
-        price.setFont(Font.font("Arial Black",12));
+        price.setFont(Font.font("Arial Black", 12));
 
         quantity.setMaxWidth(45);
         quantity.setMinWidth(45);
         quantity.setText("0");
-        quantity.setFont(Font.font("Arial Black",12));
-        
-        removeBtn.setFont(Font.font("Arial Black",12));
+        quantity.setFont(Font.font("Arial Black", 12));
+
+        removeBtn.setFont(Font.font("Arial Black", 12));
 
         container.setUserData(item);
         container.getChildren().addAll(name, price, quantity, removeBtn);
@@ -198,11 +208,11 @@ public class ManagementNewOrderController implements Initializable {
      */
     public void confirmBtnClicked() {
         //Error checking
-        if(vendorComboBox.getValue() == null || vendorComboBox.getValue().toString().isEmpty()){
+        if (vendorComboBox.getValue() == null || vendorComboBox.getValue().toString().isEmpty()) {
             vendorComboBox.requestFocus();
             return;
         }
-        if(orderListContainer.getChildren().size() == 0){
+        if (orderListContainer.getChildren().size() == 0) {
             orderListContainer.requestFocus();
             return;
         }
@@ -220,7 +230,7 @@ public class ManagementNewOrderController implements Initializable {
             System.out.println("Adding vendor to database.");
             vendorid = vendorBroker.getLastID() + 1;
             vendorBroker.insert(new Vendor(vendorid, vendorName));
-        }       
+        }
         OrderBroker orderBroker = new OrderBroker();
         int orderID = orderBroker.getLastID() + 1;
 
@@ -255,8 +265,10 @@ public class ManagementNewOrderController implements Initializable {
     }
 
     /**
-     * Controls the many ManagementControllers and sets the value to the specific ManagementController.
-     * @param mgntController 
+     * Controls the many ManagementControllers and sets the value to the
+     * specific ManagementController.
+     *
+     * @param mgntController new management controller.
      */
     public void setManagementController(ManagementController mgntController) {
         this.mgntController = mgntController;

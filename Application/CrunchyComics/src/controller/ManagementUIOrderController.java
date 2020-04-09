@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import domain.OrderItem;
@@ -18,6 +13,7 @@ import manager.ControllerManager;
 
 /**
  * Controls the logic to modify data within the ManagementUIOrder container.
+ *
  * @author Vinicius Smith
  */
 public class ManagementUIOrderController {
@@ -36,7 +32,8 @@ public class ManagementUIOrderController {
     private Orders order;
 
     /**
-     * Loads the dates and order information into the <code>orderItemContainer</code>
+     * Loads the dates and order information into the
+     * <code>orderItemContainer</code>
      */
     public void populate() {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-dd-MM");
@@ -47,7 +44,6 @@ public class ManagementUIOrderController {
         labelOrderVendor.setText(order.getVendorID().getVendorName());
 
         //OrderItems list logic
-        
         List<OrderItem> list = order.getOrderItemList();
         System.out.println(list);
         for (OrderItem oi : list) {
@@ -56,24 +52,24 @@ public class ManagementUIOrderController {
             Label itemPurchasePrice = new Label(String.format("$%.2f", oi.getPurchasePrice()));
             Label itemQuantity = new Label(oi.getOrderQuantity() + "");
             Label itemTotal = new Label(String.format("$%.2f", oi.getOrderQuantity() * oi.getPurchasePrice()));
-            
+
             //Sizes and Font
             itemName.setMinWidth(150);
             itemName.setMaxWidth(150);
-            itemName.setFont(Font.font("Arial Black",12));
-            
+            itemName.setFont(Font.font("Arial Black", 12));
+
             itemPurchasePrice.setMinWidth(45);
             itemPurchasePrice.setMaxWidth(45);
-            itemPurchasePrice.setFont(Font.font("Arial Black",12));
-            
+            itemPurchasePrice.setFont(Font.font("Arial Black", 12));
+
             itemQuantity.setMinWidth(30);
             itemQuantity.setMaxWidth(30);
-            itemQuantity.setFont(Font.font("Arial Black",12));
-            
+            itemQuantity.setFont(Font.font("Arial Black", 12));
+
             itemTotal.setMinWidth(45);
             itemTotal.setMaxWidth(45);
-            itemTotal.setFont(Font.font("Arial Black",12));
-            
+            itemTotal.setFont(Font.font("Arial Black", 12));
+
             itemContainer.getChildren().addAll(itemName, itemPurchasePrice, itemQuantity, itemTotal);
             orderItemContainer.getChildren().add(itemContainer);
         }
@@ -81,7 +77,8 @@ public class ManagementUIOrderController {
 
     /**
      * Sets the order to the inputted values
-     * @param order 
+     *
+     * @param order new order.
      */
     public void setOrder(Orders order) {
         this.order = order;

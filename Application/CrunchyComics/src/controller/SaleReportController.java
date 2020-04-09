@@ -1,19 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
-import broker.ItemBroker;
 import broker.TransactionBroker;
-import domain.Item;
 import domain.Transaction;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
@@ -23,6 +15,7 @@ import manager.ControllerManager;
 
 /**
  * Controls the creation of sale reports.
+ *
  * @author Vinicius Smith
  */
 public class SaleReportController {
@@ -38,8 +31,8 @@ public class SaleReportController {
 
     private File folder;
 
-     /**
-     * Creates the prompt for user to find the .CSV file 
+    /**
+     * Creates the prompt for user to find the .CSV file
      */
     public void selectFolderClicked() {
         DirectoryChooser dirChooser = new DirectoryChooser();
@@ -89,8 +82,9 @@ public class SaleReportController {
 
     /**
      * Checks if the filename is a Microsoft Excel file.
-     * @param filename
-     * @return 
+     *
+     * @param filename the filename to correct.
+     * @return the filename with .csv appended.
      */
     private String correctFileName(String filename) {
         if (filename.endsWith(".csv")) {
@@ -101,7 +95,8 @@ public class SaleReportController {
 
     /**
      * Persists the transactions onto a Microsoft Excel Sheet.
-     * @param transactions 
+     *
+     * @param transactions list of transactions to be written.
      */
     private void writeFile(List<Transaction> transactions) {
         File file = new File(folder.getAbsolutePath() + "/" + correctFileName(textFieldFileName.getText()));

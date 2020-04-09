@@ -3,13 +3,8 @@ package controller;
 import javafx.scene.input.*;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.*;
 import javafx.scene.control.*;
-import javafx.stage.*;
 import utility.LoginService;
 import javafx.fxml.*;
 import javafx.scene.paint.Color;
@@ -32,7 +27,7 @@ public class LoginController implements Initializable {
     
     /**
      * Loads the password fields and event handlers for the login scene.
-     * @param location
+     * @param location 
      * @param resources 
      */
     @Override
@@ -49,9 +44,9 @@ public class LoginController implements Initializable {
 
     /**
      * When this method is called by clicking "Enter" in Login (assuming correct
-     * credentials inputted), it will change the Scene to Main Screen
+     * credentials inputted), it will change the Scene to Main Screen.
      *
-     * @param event
+     * @param event event reference.
      */
     public void loginEnterBtnClicked(ActionEvent event) {
         try {

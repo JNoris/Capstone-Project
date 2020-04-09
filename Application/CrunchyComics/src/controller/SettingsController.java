@@ -18,10 +18,11 @@ import utility.Settings;
 
 /**
  * Creates the configuration for the application. Changes password and timeout.
- * @author Noris.
+ *
+ * @author Noris
  */
 public class SettingsController implements Initializable {
-    
+
     @FXML
     private CheckBox timeoutCheckBox;
     @FXML
@@ -30,22 +31,23 @@ public class SettingsController implements Initializable {
     private TextField timeoutTimeTextField;
     @FXML
     private TextField newPasswordTextField;
-    
+
     /**
      * Loads previous settings from the application.
+     *
      * @param location
-     * @param resources 
+     * @param resources
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        
+
         timeoutCheckBox.setSelected(Settings.getInstance().getTimerEnable());
         timeoutTimeTextField.setDisable(!timeoutCheckBox.isSelected());
         timeoutTimeTextField.setText(Settings.getInstance().getTimeoutTimer() / 1000 + "");
     }
-    
+
     /**
-     * Validates correct user input.
+     * Validates correct user input. Saves the new settings to a file.
      */
     public void confirmBtnClicked() {
         Settings.getInstance().setTimerEnable(timeoutCheckBox.isSelected());
@@ -63,20 +65,20 @@ public class SettingsController implements Initializable {
             }
             Settings.getInstance().setPassword(newPasswordTextField.getText());
         }
-        
+
         Settings.saveSettings();
         ControllerManager.getInstance().hidePopup();
     }
-    
+
     /**
-     * Validates incorrect user input and allows for a reset of the task.
+     * Cancels the action and closes the pop-up.
      */
     public void cancelBtnClicked() {
         ControllerManager.getInstance().hidePopup();
     }
-    
+
     /**
-     * Allows the user to change the timeout time.
+     * Allows the user to enable or disable the timeout feature.
      */
     public void enableTimeoutClicked() {
         if (timeoutCheckBox.isSelected()) {
@@ -85,7 +87,7 @@ public class SettingsController implements Initializable {
             timeoutTimeTextField.setDisable(true);
         }
     }
-    
+
     /**
      * Allows the user to change password.
      */
