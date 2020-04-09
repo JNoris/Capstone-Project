@@ -20,6 +20,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * Creates the comic object.
+ *
  * @author Vinicius Smith
  */
 @Entity
@@ -62,7 +63,8 @@ public class Comic implements Serializable {
 
     /**
      * Non-default constructor for the comic object based on ID alone.
-     * @param itemID 
+     *
+     * @param itemID
      */
     public Comic(Integer itemID) {
         this.itemID = itemID;
@@ -70,10 +72,11 @@ public class Comic implements Serializable {
 
     /**
      * Non-default constructor for the comic object.
+     *
      * @param itemID
      * @param author
      * @param volume
-     * @param isbn 
+     * @param isbn
      */
     public Comic(Integer itemID, String author, int volume, String isbn) {
         this.itemID = itemID;
@@ -84,6 +87,7 @@ public class Comic implements Serializable {
 
     /**
      * Gets the item ID.
+     *
      * @return itemID
      */
     public Integer getItemID() {
@@ -92,7 +96,8 @@ public class Comic implements Serializable {
 
     /**
      * Sets the item ID.
-     * @param itemID 
+     *
+     * @param itemID
      */
     public void setItemID(Integer itemID) {
         this.itemID = itemID;
@@ -100,6 +105,7 @@ public class Comic implements Serializable {
 
     /**
      * Gets the author of the comic.
+     *
      * @return author
      */
     public String getAuthor() {
@@ -108,7 +114,8 @@ public class Comic implements Serializable {
 
     /**
      * Sets the author for the comic.
-     * @param author 
+     *
+     * @param author
      */
     public void setAuthor(String author) {
         this.author = author;
@@ -116,6 +123,7 @@ public class Comic implements Serializable {
 
     /**
      * Gets the volume of the comic.
+     *
      * @return volume
      */
     public int getVolume() {
@@ -124,7 +132,8 @@ public class Comic implements Serializable {
 
     /**
      * Sets the volume for the comic.
-     * @param volume 
+     *
+     * @param volume
      */
     public void setVolume(int volume) {
         this.volume = volume;
@@ -132,6 +141,7 @@ public class Comic implements Serializable {
 
     /**
      * Gets the ISBN of the comic.
+     *
      * @return isbn
      */
     public String getIsbn() {
@@ -140,7 +150,8 @@ public class Comic implements Serializable {
 
     /**
      * Sets the ISBN for the comic.
-     * @param isbn 
+     *
+     * @param isbn
      */
     public void setIsbn(String isbn) {
         this.isbn = isbn;
@@ -148,6 +159,7 @@ public class Comic implements Serializable {
 
     /**
      * Gets the Publisher for the comic.
+     *
      * @return publisher
      */
     public String getPublisher() {
@@ -156,7 +168,8 @@ public class Comic implements Serializable {
 
     /**
      * Sets the Publisher for the comic.
-     * @param publisher 
+     *
+     * @param publisher
      */
     public void setPublisher(String publisher) {
         this.publisher = publisher;
@@ -164,6 +177,7 @@ public class Comic implements Serializable {
 
     /**
      * Gets the item related to the comic.
+     *
      * @return item
      */
     public Item getItem() {
@@ -172,7 +186,8 @@ public class Comic implements Serializable {
 
     /**
      * Sets the item related to the comic.
-     * @param item 
+     *
+     * @param item
      */
     public void setItem(Item item) {
         this.item = item;
@@ -180,6 +195,7 @@ public class Comic implements Serializable {
 
     /**
      * Returns the hash value of the comic.
+     *
      * @return hash
      */
     @Override
@@ -191,6 +207,7 @@ public class Comic implements Serializable {
 
     /**
      * Checks if the value of the comics equals another item.
+     *
      * @param object
      * @return true if it equals otherwise false
      */
@@ -209,11 +226,12 @@ public class Comic implements Serializable {
 
     /**
      * Returns the comic as a string value.
+     *
      * @return "domain.Comic[ itemID=" + itemID + " ]"
      */
     @Override
     public String toString() {
         return "domain.Comic[ itemID=" + itemID + " ]";
     }
-    
+
 }
