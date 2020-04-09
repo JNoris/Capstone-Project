@@ -1,7 +1,5 @@
 package broker;
 
-import domain.Item;
-import domain.Transaction;
 import domain.TransactionItem;
 import java.util.List;
 import javax.persistence.EntityManager;

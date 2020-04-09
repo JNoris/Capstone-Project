@@ -1,4 +1,5 @@
 package broker;
+
 import manager.DatabaseManager;
 import domain.*;
 import java.util.List;
@@ -14,18 +15,20 @@ import javax.persistence.Query;
 public final class ItemBroker {
 
     private EntityManager em = null;
-    
+
     /**
      * This is the default constructor to get items in the database.
      */
-    public ItemBroker(){
+    public ItemBroker() {
         this.em = DatabaseManager.getEntityManager();
     }
-    
+
     /**
-     * This is the non-default constructor to get items in the database; required a database manager object and entity manager object. 
-     * @param dbManager
-     * @param em 
+     * This is the non-default constructor to get items in the database;
+     * required a database manager object and entity manager object.
+     *
+     * @param dbManager reference to database manager.
+     * @param em reference to entity manager.
      */
     public ItemBroker(DatabaseManager dbManager, EntityManager em) {
         this.em = em;
@@ -49,7 +52,7 @@ public final class ItemBroker {
      * Get an item base on the UPC.
      *
      * @param upc target item UPC.
-     * @return
+     * @return the item that has the given UPC.
      */
     public Item getItemByUPC(int upc) {
         Query q = em.createNamedQuery("Item.findByItemID");
@@ -82,26 +85,28 @@ public final class ItemBroker {
         Query q = em.createNamedQuery("Item.findByMatchingName");
         q.setParameter("name", toMatch);
         List results = q.getResultList();
-        
+
         return results;
     }
-    
+
     /**
      * Looks at the final item in the database and grabs that item.
-     * @return the last item ID 
+     *
+     * @return the last item ID
      */
     public int getLastID() {
         Query q = em.createNamedQuery("Item.findLastID");
         List results = q.getResultList();
-        if(results.get(0) == null){
+        if (results.get(0) == null) {
             return 0;
         }
-        return (int)results.get(0);
+        return (int) results.get(0);
     }
 
     /**
-     * Allows for an item to be inserted into the database and saves that file.
-     * @param item 
+     * Allows for an item to be updated/inserted into the database.
+     *
+     * @param item item to be inserted or updated.
      */
     public void insert(Item item) {
         em.getTransaction().begin();

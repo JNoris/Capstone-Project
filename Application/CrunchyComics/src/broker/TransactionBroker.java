@@ -5,7 +5,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import manager.DatabaseManager;
 import domain.*;
-import java.util.Date;
 import java.util.List;
 import javax.persistence.Query;
 
@@ -28,8 +27,10 @@ public class TransactionBroker {
     }
 
     /**
-     * The non-default constructor to grab transactions from the database. Requires a DatabaseManager object.
-     * @param dbManager 
+     * The non-default constructor to grab transactions from the database.
+     * Requires a DatabaseManager object.
+     *
+     * @param dbManager database manager reference.
      */
     public TransactionBroker(DatabaseManager dbManager) {
         EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("CrunchyComicsPU");
@@ -40,7 +41,7 @@ public class TransactionBroker {
     /**
      * Inserts a Transaction object and TransationItem list to the database.
      *
-     * @param transaction - Transaction object to be persisted.
+     * @param transaction Transaction object to be persisted.
      */
     public void insert(Transaction transaction) {
         em.getTransaction().begin();
@@ -76,16 +77,15 @@ public class TransactionBroker {
 
     /**
      * Gets the transaction/s between the the beginning date and the final date.
-     * @param from
-     * @param to
-     * @return 
+     *
+     * @param from starting date.
+     * @param to ending date.
+     * @return a list of transaction between both dates.
      */
     public List<Transaction> getTransactionsBetweenDates(String from, String to) {
         Query q = em.createNamedQuery("Transaction.findByTransactionBetween");
         q.setParameter("fromDate", from);
         q.setParameter("toDate", to + " 23:00:00");
         return (List<Transaction>) q.getResultList();
-
     }
-
 }
